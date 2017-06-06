@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/</loc>
+    <lastmod>2017-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</loc>
+    <lastmod>2013-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/archives/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/automation/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/categories/automation/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/bpf/</loc>
+    <lastmod>2017-05-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/categories/bpf/</loc>
+    <lastmod>2017-05-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/categories/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/categories/datacenter/</loc>
+    <lastmod>2013-01-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/facebook/</loc>
+    <lastmod>2013-01-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/network/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/categories/network/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/post/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/python/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/routing/</loc>
+    <lastmod>2017-05-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/sixpack/</loc>
+    <lastmod>2013-01-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.firstclassfunc.com/tags/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

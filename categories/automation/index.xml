@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Lambda FU</title>
+    <link>http://www.firstclassfunc.com/categories/automation/</link>
+    <description>Recent content in Automation on Lambda FU</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.firstclassfunc.com/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A brief discussion on Network Automation</title>
+      <link>http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/</guid>
+      <description>There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,936 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Facebook Fabric Networking Deconstructed</title>
+    <meta name="author" content="Gary Berger">
+    <meta name="keywords" content="tech, development, networking, sdn">
+
+    <link rel="icon" href="http://www.firstclassfunc.com/favicon.png">
+    
+
+    
+    <meta name="description" content="Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.">
+    <meta property="og:description" content="Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Facebook Fabric Networking Deconstructed">
+    <meta property="og:url" content="/2013/01/facebook-fabric-networking-deconstructed/">
+    <meta property="og:site_name" content="Lambda FU">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lambda FU">
+    <meta name="twitter:description" content="Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.">
+    
+      <meta name="twitter:creator" content="@firstclassfunc">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="http://www.firstclassfunc.com/lambda.png">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://www.firstclassfunc.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://www.firstclassfunc.com/">Lambda FU</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://www.firstclassfunc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://www.firstclassfunc.com/#about">
+          <img class="sidebar-profile-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Gary Berger</h4>
+        
+          <h5 class="sidebar-profile-bio">Developer, Engineer, Father, Musician</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gaberger" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Facebook Fabric Networking Deconstructed
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2013-01-28T00:00:00Z">
+      
+  January 28, 2013
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/network">network</a>, 
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/datacenter">datacenter</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. <a href="https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network">Introducing data center fabric, the next-generation Facebook data center network</a></p>
+
+<p>In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.</p>
+
+<hr />
+
+<h2 id="facebook-the-killer-app-literally">Facebook, the killer app.. literally</h2>
+
+<p>Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together. The challenges unfold on two axis, the first being the explosive growth in the user population and its increasing demand and access bolstered by modern mobile devices and the second related to the exponential growth of machine to machine traffic required to aggregate and compose information which we all know and love. Due to the nature of Facebook applications, machine to machine communications is &ldquo;several orders of magnitude larger than what goes out the Internet&rdquo;</p>
+
+<p>The need to parallelize work becomes a daunting task in this environment requiring an enormous communication fabric for internal processing.</p>
+
+<blockquote>
+<p>the rate of our machine-to-machine traffic growth remains exponential, and the volume has been doubling at an interval of less than a year.</p>
+</blockquote>
+
+<p>Most companies never experience the level of complexity Facebook deals with on a daily basis. The ever growing &ldquo;connectedness&rdquo; of the social fabric brings with it huge challenges. Since the information used to compose ones Facebook page is dictated by the set of friends and the frequency of updates, Facebook must deal with complex power law distributions as hot trending topics fire off millions of requests and updates across their servers to get the latest status which can drive the network to its breaking point.</p>
+
+<p>Facebook&rsquo;s challenges are extreme but not completely orthogonal to previous work in designing supercomputers which require low-latency parallel connectivity.</p>
+
+<hr />
+
+<h2 id="facebook-s-four-post-architecture">Facebook&rsquo;s Four Post Architecture</h2>
+
+<p>The previous architecture leveraged  a  &ldquo;3+1&rdquo; cluster switch configuration in a layer 3 design used to add redundancy while taking advantage of the internal capacity of large cluster switches..</p>
+
+<blockquote>
+<p>&ldquo;A cluster is a large unit of deployment, involving hundreds of server cabinets with top of rack (TOR) switches aggregated on a set of large, high-radix cluster switches&rdquo;</p>
+</blockquote>
+
+<p><img src="http://www.firstclassfunc.com/images/fp1.png" alt="FP1" /></p>
+
+<p><strong>Design limitations with this approach:</strong></p>
+
+<ol>
+<li>Only a few vendors with capable high-radix designs</li>
+<li>Switch radix becomes a limit to the number of cluster attached hosts</li>
+<li>Switches internal capacity become a limit to advancing to higher interface speeds</li>
+<li>The complexity of the architectures and different design characteristics add a level of operational uncertainty.</li>
+</ol>
+
+<blockquote>
+<p>The whole concept of a “cluster” was born from a networking limitation – it was dictated by a need to position a large amount of compute resources (server racks) within an area of high network performance supported by the internal capacity of the large cluster switches</p>
+</blockquote>
+
+<p>This design should be very familiar, it is called an &ldquo;augmented collapsed backbone&rdquo; design in which the communications backplane is consolidated onto the internal fabric of a large radix switch called a <strong>cross-bar</strong></p>
+
+<blockquote>
+<p>&ldquo;Additionally, the need for so many ports in a box is orthogonal to the desire to provide the highest bandwidth infrastructure possible.&rdquo;</p>
+</blockquote>
+
+<p>As long as the capacity of the switch provides enough bandwidth to match the load and there are appropriate resources such as buffers available, a high-radix switch would be ideal at delivering the highest bandwidth.</p>
+
+<p>It might be better to say:</p>
+
+<blockquote>
+<p>The need for so many ports in a box is orthogonal to the desired outcome related to efficiency, power and cost when maximizing for the highest bandwidth infrastructure possible since the design complexity and cost become gating factors.</p>
+</blockquote>
+
+<p>Core to the design limitation of the 4-Post architecture stems from the use of a two-layer network. Lets examine this a bit further by analyzing the design constraints to a similar network, the 2-Layer Fat-Tree.</p>
+
+<p>In 1985 Charles E. Leiserson publishes a paper entitled <a href="http://courses.csail.mit.edu/6.896/spring04/handouts/papers/fat_trees.pdf">&ldquo;Fat-Trees: Universal Networks for Hardware-Efficient Supercomputing&rdquo;</a>. This paper helped provide a model by which the number of components in a communication system (channels/ports) could be decoupled from the quantity of processing elements.</p>
+
+<blockquote>
+<p>Fat-Trees: A family of general-pupose interconnection strategies which effectively utilize any given amount of hardware resources devoted to communication.</p>
+</blockquote>
+
+<p>Other names used for Fat-Trees include : Folded Clos, Leaf/Spine, n-Layer Fat-Tree, GFT, and k-ary, n-tree (a more formalized model).</p>
+
+<h2 id="investigating-the-limits-of-two-tier-fat-tree">Investigating the limits of two-tier Fat-Tree</h2>
+
+<p>As the name suggests, a two-layer Fat-Tree is divided into two stages:  The spine stage which is used to aggregate and route packets towards the final destination and the &ldquo;leaf&rdquo; stage which is used to connect end-hosts and load balance connections across the spine. In most modern designs Valiant Load Balancing as implemented in ECMP is used to provide randomized load balancing although with the advent of OpenFlow implementations other intereting techniques can be used.</p>
+
+<blockquote>
+<p>We won&rsquo;t go into all of the pathologies related to optimzing traffic here but there is an enourmous quantity of research on this topic.</p>
+</blockquote>
+
+<p>Lets model a network with the following variables:</p>
+
+<p>Let <strong><em>P</em></strong> = The number of external ports (i.e. host attachments)</p>
+
+<p>Let <strong><em>R</em></strong> = The radix of the switch (i.e. how many ports are available on a single switch)</p>
+
+<p>Let <strong><em>L</em></strong> = The number of layers in the network ( in a two-layer design this number is always 2)</p>
+
+<p>We also need to define the term <strong><em>min-cut</em></strong></p>
+
+<blockquote>
+<p>The min-cut is the minimum amount of cuts necessary to divide the network into two equal partitions. The min-cut represents the biectional bandwidth available (in other words the bottleneck throughput) and becomes an important element in designing a non-blocking fabric. We will use the terms min-cut and bisectional interchangeably except where noted.</p>
+
+<p>Note: in these calculations we are using fixed radix switches (i.e. all switches have the same number of ports). All caclulations are based on maximizing bi-sectional bandwidth and such have an oversubscription of 1.</p>
+</blockquote>
+
+<p><img src="http://www.firstclassfunc.com/images/fp2.png" alt="" /></p>
+
+<p>Lets use the figure above and walk through the calculations.</p>
+
+<p>We will start off by designing our network to handle 8 hosts.</p>
+
+<p>Let <strong><em>P</em></strong> = TotalHosts = 8</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp3.png" alt="" /></p>
+
+<p>Solving for <strong><em>R</em></strong> we get <strong><em>R</em></strong> = 4.</p>
+
+<p>Now that we have <strong><em>R</em></strong>,  we can solve for the other unknowns</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Equation</th>
+<th align="right">Result</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp4.png" alt="" /></td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/ts.png" alt="TotalSwitches" /></td>
+<td align="right">6</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp5.png" alt="" /></td>
+<td align="right">24</td>
+</tr>
+</tbody>
+</table>
+
+<p>The min-cut of this network would be P/2 or 4, oversubscription rate can be calculated as <strong><em>(P/2)/min-cut</em></strong> = <sup>4</sup>&frasl;<sub>4</sub> = 1 or non-blocking.</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp6.png" alt="" /></p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp7.png" alt="" /></p>
+
+<p>#So is R really a limitation?</p>
+
+<p>Even though we can use larger and larger switches in this mathematical model, the scaling issues center around packaging constraints, power requirements and sensitivity to temperature. All data centers are constrained by power, space and temperture and therefore one must make a tradeoff between the size and allocation of power, space and cooling between processors and the communication fabric. This limit corresponds to Number 2 of our design limitations.</p>
+
+<p>#Practical Example Using Broadcom Trident 2</p>
+
+<p>The Broadcom Trident 2 provides a total of 2.6Tbps of bandwidth and 1.28Tb forwarding performance. Lets design a network that can exploit the 32 QSFP+ ports to build a high-radix network.</p>
+
+<blockquote>
+<p>Note: We will use a fixed-switch configuration normalized to 10GE interfaces.</p>
+</blockquote>
+
+<p>Let <strong><em>R</em></strong> = 128</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Equation</th>
+<th align="right">Result for 10GE</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp8.png" alt="" /></td>
+<td align="right">64</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/ts.png" alt="TotalSwitches" /></td>
+<td align="right">192</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp9.png" alt="" /></td>
+<td align="right">24,576</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp10.png" alt="" /></td>
+<td align="right">8,192</td>
+</tr>
+</tbody>
+</table>
+
+<p>So with the radix limited to 128 we can only support 8,192 hosts with a Bisection of  122.8Tbps</p>
+
+<p>Lets now take a look at the new Facebook Network Fabric model to see how they can scale to the upper limit of the physical capacity of a data center.</p>
+
+<hr />
+
+<h2 id="facebook-network-fabric-is-a-3-layer-folded-clos-network">Facebook Network Fabric is a 3-layer Folded Clos Network</h2>
+
+<p>When looking at the image below.. even though its just a model of a much larger network design, you should recognize the symmetry and tree structure. In fact this design, even though pictured in different ways uses the same mathematical model we used above for 2-layer Fat-Trees. This is because the new Facebook Network Fabric is in fact a Fat-Tree with 3-levels.</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp11.png" alt="" /></p>
+
+<p>What else do we know?</p>
+
+<ol>
+<li>The spine and fabric switches will operate at 40GE but be upgradeable</li>
+<li>The spine will consist of 4 spine planes with up to 48 nodes per plane for a total of 192 Spine switches</li>
+<li>All wiring will be pre-deployed to scale from a 4:1 oversubscribed network to a 1:1 fully non-blocking</li>
+<li>A POD will consist of up to 48 ToR switches with 4 uplinks to the fabric switches corresponding to each spine plane.</li>
+<li>Edge POD&rsquo;s connect to the spine and are used to egress the fabric and support a capacity of 7.68Tbps</li>
+<li>Each TOR currently has 4 x 40G uplinks, 160Gbps total bandwidth for a rack of 10GE connected servers. The way Facebook divides the capacity across their racks is unknown.</li>
+<li>Each POD has 48 server racks, so a POD has 160G*48 or 7.6Tbps total capacity.</li>
+</ol>
+
+<p>Given this we want to know:</p>
+
+<ul>
+<li>How many spine (core) switches will this topology scale to?</li>
+<li>How many fabric switches are required to achieve 1:1 non-blocking fabric?</li>
+<li>How many server Pods can we scale to?</li>
+<li>How many hosts are supported in this new network fabric?</li>
+</ul>
+
+<p>We can use this diagram and our equations to validate we are indeed working with a network derived from a Fat-Tree</p>
+
+<p>First lets just model the information we have to see if it indeed compares to our equations.</p>
+
+<p>Let <strong><em>R</em></strong> = 8</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Equation</th>
+<th align="right">Result</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp12.png" alt="" /></td>
+<td align="right">16</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/ts.png" alt="TotalSwitches" /></td>
+<td align="right">80</td>
+</tr>
+
+<tr>
+<td align="left"><img src="http://www.firstclassfunc.com/images/fp13.png" alt="" /></td>
+<td align="right">640</td>
+</tr>
+</tbody>
+</table>
+
+<p>These numbers do correspond to the graphic so we can feel comfortable that we can work out all the details based on the information provided by Facebook.</p>
+
+<p><img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-xfp1/t39.2365-6/10734294_775986955823316_1197403205_n.jpg" alt="Facebook Cube" /></p>
+
+<p>Based on the information we gathered above we can calculate all the unknowns.</p>
+
+<p>Solving for <strong><em>R</em></strong> we know that the Radix of the switch being used here must be 96 (i.e. fabric switches are 48 up and 48 down).</p>
+
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Equation</th>
+<th>Result</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Total number of Spine switches</td>
+<td>48 x 4</td>
+<td>192</td>
+<td>Gathered this information from the blog post</td>
+</tr>
+
+<tr>
+<td>Total Fabric Switches</td>
+<td>( 2(R/2)^L-1 ) /12</td>
+<td>384</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Total ToR Switches</td>
+<td>2 × (R/2)^(L - 1)</td>
+<td>4,608</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Total Switches</td>
+<td>Spine+Fabric+ToR</td>
+<td>5,184</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Total Ports</td>
+<td>Total Switches * 96</td>
+<td>497,664</td>
+<td></td>
+</tr>
+
+<tr>
+<td>External 40GE Ports</td>
+<td>R × (R/2)^(L - 1)</td>
+<td>221,184</td>
+<td></td>
+</tr>
+
+<tr>
+<td>External 10GE Ports</td>
+<td>R × (R/2)^(L - 1) x 4</td>
+<td>884,736</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Here is the altered visual showing the upper limit on this design.</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp14.png" alt="" /></p>
+
+<p>As you can see we have allocated infrastructure for 95 out of 96 server Pods, we reserve those ports exatcly 192 off the spine for our 7.6Tbps uplinks.</p>
+
+<blockquote>
+<p>Note: we have not included these edge ports in our calculations</p>
+</blockquote>
+
+<p>So where does Facebook get a 96 port 40GE switch when the highest density fixed-function 40GE switch is around 32ports not 96?</p>
+
+<p>A Cisco NX-9508 can support up to 288 40GE interfaces with a 30Tbps backplane but it is modular not a fixed function commodity switch. Facebook engineering must have something else in mind for this deployment.</p>
+
+<p>Remember the Altoona data center will go live with a 4:1 oversubscription. This can be implemented with a Broadcom BCM56850 with support for  up to 32 x 40GE with 2.56Tbps throughput and 1.28Tbps of forwarding capacity.</p>
+
+<p>By gradually adding spine switches and upgrading to higher-radix switches Facebook can move from the current 4:1 oversubscription, to 2:1 and 1:1 the maximum allocation of ports as described above.. Stay tuned to see what they come up with.</p>
+
+<p>Before we wrap this up we should talk about the dirty little problem when building these tree networks. Because of the structure of this network, Fat-Tree designs require a substantial amount of long cable runs which extend from one side of the data center to the other.</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp17.png" alt="" /></p>
+
+<p>Facebook has designed the datacenter to minimize these lengths as much as possible with a uniform wiring plant which allows for a wire once run anywhere deployment.</p>
+
+<p><img src="http://www.firstclassfunc.com/images/fp18.png" alt="" /></p>
+
+<p>This blog post took me quite a while to put together so I hope you find it useful.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/facebook/">facebook</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/sixpack/">sixpack</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/" data-tooltip="Monitoring the Control Plane">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 Gary Berger. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/" data-tooltip="Monitoring the Control Plane">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2013%2f01%2ffacebook-fabric-networking-deconstructed%2f">
+        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Gary Berger</h4>
+    
+      <div id="about-card-bio">Developer, Engineer, Father, Musician</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Principal Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        United States
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/">
+                <h3 class="media-heading">A brief discussion on Network Automation</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/">
+                <h3 class="media-heading">Monitoring the Control Plane</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/">
+                <h3 class="media-heading">Facebook Fabric Networking Deconstructed</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://www.firstclassfunc.com/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://www.firstclassfunc.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

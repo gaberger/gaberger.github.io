@@ -1,0 +1,927 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Monitoring the Control Plane</title>
+    <meta name="author" content="Gary Berger">
+    <meta name="keywords" content="tech, development, networking, sdn">
+
+    <link rel="icon" href="http://www.firstclassfunc.com/favicon.png">
+    
+
+    
+    <meta name="description" content="Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.">
+    <meta property="og:description" content="Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Monitoring the Control Plane">
+    <meta property="og:url" content="/2017/05/monitoring-the-control-plane/">
+    <meta property="og:site_name" content="Lambda FU">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lambda FU">
+    <meta name="twitter:description" content="Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.">
+    
+      <meta name="twitter:creator" content="@firstclassfunc">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="http://www.firstclassfunc.com/lambda.png">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://www.firstclassfunc.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://www.firstclassfunc.com/">Lambda FU</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://www.firstclassfunc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://www.firstclassfunc.com/#about">
+          <img class="sidebar-profile-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Gary Berger</h4>
+        
+          <h5 class="sidebar-profile-bio">Developer, Engineer, Father, Musician</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gaberger" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Monitoring the Control Plane
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-28T00:00:00Z">
+      
+  May 28, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/network">network</a>, 
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/bpf">bpf</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h2 id="primer">Primer</h2>
+
+<p>Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) <sub>1</sub>, Open Shortest Path First (OSPF)<sub>2</sub> and IS-IS (Intermediate System - Intermediate System) <sup>3</sup>.</p>
+
+<p>Often times the implementations of these protocols run in both virtual and physical platforms like Brocade, Cisco and Juniper routers exposing only a thin veneer to allow users to inspect, control and observe these applications.</p>
+
+<p>What sets these applications apart from say your typical application service such as Nginx is they work in cooperation to maintain continuity of communications across both internally managed (non-autonomous) and externally managed (autonomous) entities. Given their distributed service, the lack of open interfaces and critical nature, we want to investigate building an application that can introspect their payload and possibly leverage this data to help enumerate network properties, diagnose problems or provide service assurance.</p>
+
+<h2 id="observability">Observability</h2>
+
+<p>Observability is a property in control theory that allows us to infer the internal state of a system given knowledge of its inputs and outputs <sup>4</sup>. To be fair, most routers do allow some visibility of internal state through operational and debug commands, but these are usually difficult to access and each implementation can render output in many different forms.</p>
+
+<blockquote>
+<p>There is an effort being spearheaded to address the access to critical operational data  through an effort called <a href="http://www.openconfig.net">OpenConfig</a>.</p>
+</blockquote>
+
+<p>So what are we trying to accomplish? Obviously we do not want to build a fully functioning router that handles all of the various protocol features and algorithms but gather a subset of information that can be used for various goals.</p>
+
+<h3 id="possible-goals">Possible goals:</h3>
+
+<ol>
+<li>Evaluate if networks in the output set are equal to the input set with the expected filtering policies applied.</li>
+<li>Measure the number of route-changes in the network correlated with administrative or operational events.</li>
+<li>Enumerate the entire network graph through careful inspection of protocol information.</li>
+<li>Can we determine if the number of neighbors in the system over time is accurate?</li>
+<li>Can we generate alerts on adjacency changes?</li>
+</ol>
+
+<p>All of these can be assessed by deconstructing the protocol information into a useable form and inferring the behavior expected based on both internal and external constraints.</p>
+
+<h2 id="design-evaluation">Design Evaluation</h2>
+
+<p>For goals 1-2 above we need a comparator to evaluate the output R&rsquo; and the estimated R^&rsquo; to calculate the difference of the two sets. The model for such a system is depicted below. The implementation splices off the inputs to the Router and copy them into a <em>shadow router</em>. The <em>shadow router</em> leverages a BPF HASH table located in kernel memory. The evaluator can then run on a scheduled interval and perform the necessary calculations.</p>
+
+<p><center> <img src="http://www.firstclassfunc.com/B2F1DD9D-F263-495C-92D6-52333FDC4FD6.png" alt="" /> </center></p>
+
+<p>We find goals 3-5 to be simpler since we do not have to implement a comparator but simply collect information from the routing protocol to perform an evaluation on. The model for this is depicted below. We again splice off the input to the Router and copy them to the <em>shadow router</em>. We de-structure the protocol data into a set of fields and insert them into the BPF hash table. This is the fundamental design for an implementation we call <em><strong>RouteWatch</strong></em></p>
+
+<p><center> <img src="http://www.firstclassfunc.com/575E2378-762B-4B65-893C-8B0FD45F035B.png" alt="" /> </center></p>
+
+<h2 id="introducing-routewatch">Introducing RouteWatch</h2>
+
+<p>First order of business was to establish requirements and understand the possible solutions.</p>
+
+<ol>
+<li>Leverage open source routing platforms like Quagga (now part of the <a href="https://frrouting.org/">Free Range Routing</a> community)</li>
+<li>Record control-plane traffic from packet capture utilities such as TCPDUMP or Wireshark</li>
+<li>Run parsing commands on configuration and operational statistics of networking equipment</li>
+<li>Build something agnostic to the network device with enough flexibility to analyze any routing protocol.</li>
+</ol>
+
+<p>We had dismissed the first option immediately since we knew the information we wanted was pushed deep within the data structures of the implementation and we didn’t want to fork off and maintain a custom version of the code. We also felt that we wanted to build something that didn’t rely on any one vendors implementation and would allow us to observe behavior between heterogeneous devices.</p>
+
+<p>The second option was definitely doable, and would have been relatively simple given the wide use of libraries like libpcap. The problem was that we wanted to have the ability to design an event-driven model where we could create events to react to various rules and constraints we felt would provide the best facility for building a RouteWatch application without resorting to a post-processing ETL pipeline.</p>
+
+<p>Writing parsers for command output is a complex task so we dismissed the third option as well. Dealing with all of the different vendor implementations is complex and fundamentally why building automation systems for network infrastructure is difficult. This issue is not necessarily solved by NetConf but that is a post for another day.</p>
+
+<p>So ultimately we decided to go with building something ourselves that would give us the flexibility we needed and provide a stable foundation to build upon.</p>
+
+<h3 id="routewatch-requirements">RouteWatch Requirements</h3>
+
+<ul>
+<li>Be agnostic of any vendor hardware or VNF</li>
+<li>Be completely passive i.e. we don’t want to participate in the routing logic at all, or be in the critical path in any way</li>
+<li>Easily support thousands of adjacencies and tens of thousands of routing entries (scale to the maximum amount of locked memory available)</li>
+<li>Be flexible so that it can be tailored to any protocol, even non-routing protocols.</li>
+</ul>
+
+<h2 id="technology">Technology</h2>
+
+<p>After some research we quickly gravitated towards the amazing work done by the Linux NetDev team on BPF. An in depth review of BPF was done by my collegue @im_ferris and can be read here: <a href="https://ferrisellis.com/posts/ebpf_past_present_future/">eBPF, part 1: Past, Present, and Future </a>. You can also see a great talk by Thomas Graf from <a href="https://www.youtube.com/watch?v=ilKlmTDdFgk">DockerCon</a> discussing the use of BPF in <a href="https://www.cilium.io/">Cilium</a>.</p>
+
+<p>In summary, BPF provides an in-kernel JIT-ed virtual machine that allows you to write code using a restricted version of <code>C</code> and run it within the kernel for maximal performance.</p>
+
+<p>We decided to use the <a href="https://github.com/iovisor/bcc">IOVisor BCC</a> toolchain so we could leverage the Python native bindings to libbcc and allow python to handle the loading and interaction with the in-kernel hash table.</p>
+
+<p><center> <img src="http://www.firstclassfunc.com/C2E279A6-A63C-49B7-A1EF-529B8B492429.png" alt="" /> </center></p>
+
+<h4 id="lets-look-at-the-bpf-program">Lets look at the BPF Program</h4>
+
+<p><div style="text-align: left;">First we define our includes which provide us with some important data structures necessary for parsing network packets and providing our parsing.</p>
+
+<pre><code class="language-c">#include &lt;uapi/linux/if_ether.h&gt;
+#include &lt;uapi/linux/in.h&gt;
+#include &lt;uapi/linux/pkt_cls.h&gt;
+#include &lt;linux/string.h&gt;
+#include &quot;is_is.h&quot;
+</code></pre>
+
+<p>This is the main structure for our hash table. This structure models our adjacency table stored in-kernel and will hold all of the details of the IS-IS Hello frame we want to capture and store.</p>
+
+<pre><code class="language-c">typedef struct adjacency
+{
+    __u8 snpa[6];
+    __u8 circuit_type;
+    __u8 sysid[ISIS_SYS_ID_LEN];
+    __u16 hold_time;
+    __u16 pdu_len;
+    __u8 priority;
+    __u8 lanid[ISIS_SYS_ID_LEN + 1];
+    __u64 timestamp;
+    __u8 nlpid;
+    struct Neighbor neighbors[4];
+    struct Interface interfaces[4];
+    struct Area areas[4];
+} adj_t;
+
+</code></pre>
+
+<p>This is the structure we will use as a key into our hash. It is comprised of the MAC source address + the IS-IS LANID</p>
+
+<pre><code class="language-c">typedef struct table_key
+{
+    __u8 src[6];
+    __u8 lanid[ISIS_SYS_ID_LEN + 1];
+} table_key_t;
+</code></pre>
+
+<p>Here we use the BPF helper functions to initialize the HASH Map and provide a ring buffer to send messages to our Python application</p>
+
+<pre><code class="language-c">BPF_HASH(adjacency, table_key_t, adj_t);
+BPF_PERF_OUTPUT(skb_events);
+</code></pre>
+
+<p>Finally we have the function that is called each time a packet appears on the ingress interface.</p>
+
+<p>This is fairly straightforward. We get a pointer to the raw payload of the packet in the <code>skb</code> data structure and then we test to see if we have accessed memory outside the bounds enforced by the verifier.</p>
+
+<p><code>if (data + sizeof(*eth) + sizeof(*llc) + sizeof(*is_is) + sizeof(*iih) &gt; data_end) return TC_ACT_SHOT;</code></p>
+
+<p>We then test to see if we have an 802.3 frame and that it has the appropriate SSAP/DSAP identifier for IS-IS <code>0xFEFE</code>.</p>
+
+<p>Finally we add entries to the hash table and if they are new we signal this upstream by setting a sentinel value to 1. This is used to trigger an event in the user space application. We then take a note of the timestamp we got the packet update the table and send the packet up to user space for further processing.</p>
+
+<blockquote>
+<p>Note: BPF programs are limited to 4096 instructions and we must ensure that looping terminates properly or the verifier will never load our program. There are various ways to accomplish this i.e. using tail calls but we chose to do this in user space for expediency.</p>
+</blockquote>
+
+<pre><code class="language-c">int is_is_parse(struct __sk_buff *skb)
+{
+
+    void *data = (void *)(long)skb-&gt;data;
+    void *data_end = (void *)(long)skb-&gt;data_end;
+
+    struct ethhdr *eth = data;
+    struct ethernet_llc *llc = data + sizeof(*eth);
+    struct is_is_header *is_is = data + sizeof(*eth) + sizeof(*llc);
+    struct is_is_hello_header *iih = data + sizeof(*eth) + sizeof(*llc) + sizeof(*is_is);
+
+    /* single length check */
+    if (data + sizeof(*eth) + sizeof(*llc) + sizeof(*is_is) + sizeof(*iih) &gt; data_end)
+        return TC_ACT_SHOT;
+
+    if (eth-&gt;h_proto &lt;= htons(ETH_DATA_LEN) &amp;&amp; llc-&gt;sap == ISISSAP &amp;&amp; is_is-&gt;pdu_type == PDU_HELLO)
+    {
+
+        __u32 magic;
+        __u64 stest;
+
+        table_key_t tk;
+        adj_t zleaf = {0};
+
+        memcpy(tk.src, eth-&gt;h_source, 6);
+        memcpy(tk.lanid, iih-&gt;lanid, ISIS_SYS_ID_LEN + 1);
+        adj_t *a = adjacency.lookup_or_init(&amp;tk, &amp;zleaf);
+        if (a)
+        {
+            stest = *((__u64 *)a-&gt;snpa);
+            (stest == 0) ? (magic = 1) : (magic = 0);
+
+            memcpy(a-&gt;snpa, eth-&gt;h_source, 6);
+            a-&gt;circuit_type = iih-&gt;circuit_type;
+            memcpy(a-&gt;sysid, iih-&gt;sysid, ISIS_SYS_ID_LEN);
+            a-&gt;hold_time = ntohs(iih-&gt;hold_time);
+            a-&gt;pdu_len = ntohs(iih-&gt;pdu_len);
+            a-&gt;priority = iih-&gt;priority;
+            memcpy(a-&gt;lanid, iih-&gt;lanid, ISIS_SYS_ID_LEN + 1);
+            a-&gt;timestamp = bpf_ktime_get_ns();
+
+            skb_events.perf_submit_skb(skb, skb-&gt;len, &amp;magic, sizeof(magic));
+
+            return TC_ACT_OK;
+            // }
+        }
+    }
+    else
+        return TC_ACT_OK;
+
+    return TC_ACT_OK;
+}
+
+</code></pre>
+
+<p>Now we are going to step into the userspace program.</p>
+
+<p>The IOVisor toolchain allows clients to leverage Python, Lua or C++. Here we will demonstrate a python application.</p>
+
+<p>If you remember in our architecture diagram above we are loading our program into the <a href="http://man7.org/linux/man-pages/man8/tc-bpf.8.html">TC</a> subsystem using the bpf system call. Accessing netdev/switchdev services is done through the <a href="https://linux.die.net/man/7/netlink">Netlink</a> protocol. The <a href="http://docs.pyroute2.org/">Pyroute2</a> library gives us access to this as demonstrated below.</p>
+
+<pre><code class="language-python">def tc(self):
+    def isInstalled():
+        q = self.ipr.get_qdiscs(index=self.interface_index)
+        if len(q) &gt; 1:
+            (attr, val) =  q[1]['attrs'][0]
+            if 'clsact' in val:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    installFlag = bool(isInstalled())
+    if not installFlag:
+        assert isInstalled is not True
+        self.ipr.tc('add', 'clsact', index=self.interface_index)
+    
+    rn = randint(1, 100)
+    self.ipr.tc(&quot;add-filter&quot;, &quot;bpf&quot;, index=self.interface_index, handle=&quot;:{}&quot;.format(rn),
+                fd=self.parser.fd, name=self.parser.name,  parent=&quot;ffff:fff2&quot;, direct_action=True)
+    self.adjacency_table = self.b.get_table(&quot;adjacency&quot;, table_key, adjacency)
+
+</code></pre>
+
+<p>The <code>skb_events</code> function provides the main loop of the program. We issue a <code>kprobe_poll</code> and block for 1000ms after which we run the cache_invalidation algorithm.</p>
+
+<p>The <code>open_perf_buffer</code> method call takes a callback function to execute if there is anything in the perf ring-buffer. Every time we have a new frame to parse we fire off the <code>parse_tlv</code> method to extract the TLV data of the payload.</p>
+
+<pre><code class="language-python">def skb_events(self):
+
+    try:
+        self.b[&quot;skb_events&quot;].open_perf_buffer(self.parse_tlv)
+    except KeyError, e:
+        print(&quot;Key doesn't exist: error {}&quot;.format(str(e)))
+    except:
+        raise
+
+    while True:
+        self.b.kprobe_poll(1000)
+        self.cache_invalidate()
+
+
+</code></pre>
+
+<p>Notice we are using the ctypes library to coerce our raw data into Python types.</p>
+
+<pre><code class="language-python">def parse_tlv(self, cpu, data, size):
+    tlv_map = {}
+
+    class SkbEvent(ct.Structure):
+        _fields_ = [(&quot;magic&quot;, ct.c_uint32),
+                    (&quot;raw&quot;, ct.c_ubyte * (size - ct.sizeof(ct.c_uint32)))]
+
+    skb_event = ct.cast(data, ct.POINTER(SkbEvent)).contents
+    magic = skb_event.magic
+    raw = bytearray(skb_event.raw)
+
+    if self.debug:
+        print(&quot;Adjacency event: &quot;, magic)
+
+    src = binascii.hexlify(raw[6:12])
+    lanid = binascii.hexlify(raw[37:44])
+    if self.debug:
+        print(&quot;LANID Value: &quot;, int(lanid))
+
+    # update user table.
+    tlv = raw[44:]
+    tlv_length = len(tlv)
+    assert tlv_length &gt; 0
+    key = self.adjacency_table.Key(hexstring_ubyte(src), hexstring_ubyte(lanid))
+
+    if self.debug:
+        print(&quot;Key Value: &quot;, ubyte_string(key))
+
+    d1 = self.adjacency_table[key]
+    d2 = parse_handler(tlv_length, tlv, tlv_map)
+
+    assert d1 is not None
+    assert d2 is not None
+
+    # Test for new adjacency and alert
+    sysid = ubyte_string(d1.sysid)
+    lspid = &quot;{}0000&quot;.format(sysid)
+
+
+    if int(lanid) is not 0:
+        if(magic == 1):
+            snmpTrap(targets, 1, lspid, &quot;up&quot;)
+        for k in d2.iterkeys():
+            self.update_hash(key, k, d2[k])
+</code></pre>
+
+<p>Recursive parse handler. Calls parse_fns for each type found in TLV payload</p>
+
+<pre><code class="language-python">def parse_handler(length, tlv, coll):
+    (type, l) = struct.unpack('!BB', tlv[:2])
+    tlv_skip = tlv[2:]  # skip type value
+    if type in parse_fns:
+        parse_fns[type](l, tlv_skip, coll)
+    next_tlv = tlv[l + 2:]  # Move pointer and call again
+    try:
+        parse_handler(len(next_tlv), next_tlv, coll)
+    except:
+        &quot;Print issue parsing TLV&quot;
+    return coll
+
+</code></pre>
+
+<p>The <code>cache_invalidate</code> function is the only algorithm we need in this application. It simply evaluates the <code>hold_time</code> to see if it has reached 0. This would mean we have not seen another IS-IS Hello packet within the hold-time interval and we remove the entry from the table and issue an snmpTrap. Of course this could be any event you wanted to generate to alert your operations that we have a failure of one of our peers. This could indicate a loss somewhere in the transport network or failure of the route instance itself.</p>
+
+<pre><code class="language-python"> def cache_invalidate(self):
+        for k, v in self.adjacency_table.items():
+            table = self.adjacency_table
+            leaf = table[k]
+            sysid = the(leaf.sysid)
+            lspid = &quot;{}0000&quot;.format(sysid)
+            if (leaf.hold_time == 0):
+                snmpTrap(targets, 1, lspid, &quot;down&quot;)
+                table.__delitem__(k)
+            else:
+                leaf.hold_time -= 1
+                table.__setitem__(k, leaf)
+        if self.debug:
+            if self.adjacency_table.values():
+                dump_table(self.adjacency_table)
+</code></pre>
+
+<p>Here is a demonstration of the application that is running between 3 IS-IS Quagga Instances. You will notice how the hold_time counts down and then restarts back at 50 seconds when it receives a new IIH packet. You will also notice that the table includes all areas so this is an aggregate that usually is isolated within seperate IS-IS instances.</p>
+
+<script type="text/javascript" src="https://asciinema.org/a/117749.js" id="asciicast-117749" async></script>  
+
+<h2 id="summary">Summary</h2>
+
+<p>BPF is an amazing technology for dynamically inserting code into the kernel in a safe and controlled way to create new applications. We have demonstrated how you can leverage BPF to capture routing protocol data and leverage the BPF hash tables to store application state that can be used to simulate a real router adjacency table. This could be expanded to support various use-cases in performing control plane analytics and OAM services.</p>
+
+<p><sup>1</sup><a href="https://tools.ietf.org/html/rfc4271">RFC-4271</a></p>
+
+<p><sup>2</sup><a href="https://tools.ietf.org/html/rfc2328">RFC-2328</a></p>
+
+<p><sup>3</sup> ISO10589-Second-Edition</p>
+
+<p><sup>4</sup>Kalman R. E., &ldquo;On the General Theory of Control Systems&rdquo;, Proc. 1st Int. Cong. of IFAC, Moscow 1960 1 481, Butterworth, London 1961</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/network/">network</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/bpf/">bpf</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/routing/">routing</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/" data-tooltip="A brief discussion on Network Automation">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/" data-tooltip="Facebook Fabric Networking Deconstructed">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 Gary Berger. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/" data-tooltip="A brief discussion on Network Automation">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/" data-tooltip="Facebook Fabric Networking Deconstructed">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f05%2fmonitoring-the-control-plane%2f">
+        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Gary Berger</h4>
+    
+      <div id="about-card-bio">Developer, Engineer, Father, Musician</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Principal Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        United States
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/06/a-brief-discussion-on-network-automation/">
+                <h3 class="media-heading">A brief discussion on Network Automation</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/">
+                <h3 class="media-heading">Monitoring the Control Plane</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/">
+                <h3 class="media-heading">Facebook Fabric Networking Deconstructed</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://www.firstclassfunc.com/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://www.firstclassfunc.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

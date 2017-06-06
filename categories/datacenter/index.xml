@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Datacenter on Lambda FU</title>
+    <link>http://www.firstclassfunc.com/categories/datacenter/</link>
+    <description>Recent content in Datacenter on Lambda FU</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Jan 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.firstclassfunc.com/categories/datacenter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Facebook Fabric Networking Deconstructed</title>
+      <link>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</link>
+      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</guid>
+      <description>Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&amp;rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</description>
+    </item>
+    
+  </channel>
+</rss>
