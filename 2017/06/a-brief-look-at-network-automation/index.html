@@ -1,0 +1,663 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>A brief look at Network Automation</title>
+    <meta name="author" content="Gary Berger">
+    <meta name="keywords" content="automation, development, networking, sdn">
+
+    <link rel="icon" href="http://www.firstclassfunc.com/favicon.png">
+    
+
+    
+    <meta name="description" content="There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:">
+    <meta property="og:description" content="There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="A brief look at Network Automation">
+    <meta property="og:url" content="/2017/06/a-brief-look-at-network-automation/">
+    <meta property="og:site_name" content="Lambda FU">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lambda FU">
+    <meta name="twitter:description" content="There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:">
+    
+      <meta name="twitter:creator" content="@firstclassfunc">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="http://www.firstclassfunc.com/lambda.png">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://www.firstclassfunc.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://www.firstclassfunc.com/">Lambda FU</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://www.firstclassfunc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://www.firstclassfunc.com/#about">
+          <img class="sidebar-profile-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Gary Berger</h4>
+        
+          <h5 class="sidebar-profile-bio">Developer, Engineer, Father, Musician</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gaberger" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      A brief look at Network Automation
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-06T00:00:00Z">
+      
+  June 6, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/network">network</a>, 
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/automation">automation</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.</p>
+
+<p>As defined by Oxford the definition of automation:</p>
+
+<blockquote>
+<p>the use of machines to do work that was previously done by people</p>
+</blockquote>
+
+<p>What are the benefits of automation:</p>
+
+<ol>
+<li>Increase the number of changes that can be performed by an individual</li>
+<li>Reduce the probability of errors</li>
+<li>Rollback to a sane state</li>
+<li>Optimize the network on attributes besides bandwidth and delay</li>
+</ol>
+
+<h2 id="goals-of-automation">Goals of Automation</h2>
+
+<h3 id="operational-transparency-and-global-reasoning">Operational Transparency and Global Reasoning</h3>
+
+<p>What drives your vendor selection process? Is it your confidence in your vendor to provide the features which will make your business more efficient or competitive? Is it the flexibility of the system or its performance? or is it your familiarity with the devices interface coupled with the fact you don&rsquo;t want to be slowed down to learn something new or possibly a combination of these?</p>
+
+<p><em>Operational Transparency</em> is defined as the ability to control, operate and manage the behavior of your infrastructure regardless of the underlying implementation. In other words, I want to choose the best-of-breed implementations to satisfy my business problems while operating it in a consistent way. Not just consistent with that particular device model and version but across all devices and versions.</p>
+
+<p><em>Global Reasoning</em> is a bit of a different goal, it is more in-line with the SDN movement but not reliant on it. SDN as originally envisioned relies on the normalization of the device through a specific control protocol and processing model i.e. the match/action processing model. This turns out to be quite difficult to do in practice (for varying reasons) but that&rsquo;s a conversation for another day. The main point to take away here is that complex distributed systems cannot be understood from the point of view of one single element, but the entire system as a whole needs to be reasoned about to be effective. This is where machine learning will play a large role to identify trends, classify information and leverage advanced solvers to examine the solution space and make predictions. We will talk about solutions in this space in another post.</p>
+
+<h2 id="the-problem-nobody-is-talking-about">The problem nobody is talking about</h2>
+
+<p>There are lots of people talking about network automation and asking if network engineers should study languages like Python. While I absolutely see benefits in learning to code I feel there is a deeper problem that still isn&rsquo;t being addressed in the industry.</p>
+
+<p>There are a few frameworks that have emerged such as <a href="https://github.com/napalm-automation">Napalm-automation</a> and <a href="https://www.ansible.com/network-automation">Ansible Networking</a> catering to the goals of providing network operations with an automated way of configuring networks. These frameworks either entwine low-level device details into the code or rely on another set of libraries to bind control channels, manipulate the device configuration and inspect operational state. Who owns these low-level libraries and how often are they updated, patched, etc..?</p>
+
+<p>Unfortunately this is the bane of the problem. We are constantly needing to care and feed these low-level interfaces in order to keep up with deployments, security updates and new features.</p>
+
+<p>What we need is a consistent and extensible data model to represent network configuration and operational state. We will continue hobbling across this path of incrementalism until the open source communities establish enough of a foothold that we can transition from these proprietary implementations towards a generalized set of models that brings us to fruition.</p>
+
+<blockquote>
+<p>A good example of building towards a thoughtful architecture can be seen in the <a href="https://www.arista.com/en/products/eos/eos-cloudvision">Arista Cloud Vision Architecture</a>. Arista had been very careful about designing how operational and configuration state was represented within the device OS, they easily were able to aggregate this to build features based on <em>Global Reasoning</em>. In addition Cumulus Networks just released ints <a href="https://finance.yahoo.com/news/cumulus-networks-launches-netq-telemetry-130000866.html">NetQ</a> web-scale soultion for data center operations that allows for <em>Global Reasoning</em> of the data center network as a whole.</p>
+</blockquote>
+
+<h4 id="a-small-detour-on-why-automation-frameworks-are-not-enough">A small detour on why automation frameworks are not enough.</h4>
+
+<p>Ok, so we have all these different vendor products, interfaces and data representations how do we build up economies of scale to help communities be successful?</p>
+
+<h5 id="reuse-reuse-and-reuse">Reuse, Reuse and Reuse</h5>
+
+<p>It&rsquo;s a well known fact in software engineering that reusable code is a highly desirable attribute. For the main reason that as others become dependant on that piece of code, there is more of a desire to maintain, evolve and optimize the code that others have grown so dependant on. And if the community is not happy with the maintainers, given the appropriate open source licenses, they are free to fork it off and maintain their own version of the code.</p>
+
+<h5 id="openness-and-ecosystems">Openness and EcoSystems</h5>
+
+<p>So how does one get reuse? Afterall it&rsquo;s fairly easy to structure a piece of code into a library that can be consumed by others. In fact there are vast dependency networks in place such as PIP, NPM, Crates.io, Maven, etc.. that provide repositories of libraries that others can consume these libraries. Providing access to these libraries and making the consumable is critical for a successful ecosystem.</p>
+
+<h5 id="a-library-is-not-a-service">A library is not a Service</h5>
+
+<p>One thing that people should recognize is that a library typically is written in a specific programming language. In most cases it is difficult to share these libraries across different programming languages unless it was written in C and the language provides for a Foreign Function Interface (FFI). So in other words, libraries we see in general use today are locked within the programming environment they were created in.</p>
+
+<blockquote>
+<p>This is unfortunate because it minimizes the broad population of developers who might find these solutions beneficial but cannot cross the language divide.</p>
+</blockquote>
+
+<h2 id="enter-the-service">Enter the Service</h2>
+
+<p>Services are a critical concept to understand in the realm of reusable software. They are paramount in the evolving microservice architectural style and a key tenant to functional programming. Services can be written in a way that they can easily be consumed by applications written in other programming languages.</p>
+
+<h5 id="how-do-i-talk-with-a-service">How do I talk with a service?</h5>
+
+<p>It turns out that the major bulk of services exposed today leverage web based standards such as HTTP and JSON. This is a fairly well understood architectural style commonly known as REST although most implementations do not leverage the full HATEOAS style developed by Roy Fielding.</p>
+
+<p>There are other methods however for communicating between services using common protocols such as messaging API&rsquo;s like: ZeroMQ, AMQP, GRPC, Thrift, ProtoBuf, MessagePack, NATS. This decouples clients and services in both space and time. Meaning the clients do not care where the location of the services are and they don&rsquo;t have to hang on the phone and wait for a reply.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>So as we have seen automation does not stop at delivering configuration payloads to devices. We must model the management plane, control plane and data plane in order to normalize information to remove implementation specific details and build up our reasoning about operational behavior.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/network/">network</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/automation/">automation</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.firstclassfunc.com//tags/python/">python</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/" data-tooltip="Monitoring the Control Plane">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 Gary Berger. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/" data-tooltip="Monitoring the Control Plane">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.firstclassfunc.com%2f2017%2f06%2fa-brief-look-at-network-automation%2f">
+        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Gary Berger</h4>
+    
+      <div id="about-card-bio">Developer, Engineer, Father, Musician</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Principal Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        United States
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/06/a-brief-look-at-network-automation/">
+                <h3 class="media-heading">A brief look at Network Automation</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/">
+                <h3 class="media-heading">Monitoring the Control Plane</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/">
+                <h3 class="media-heading">Facebook Fabric Networking Deconstructed</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://www.firstclassfunc.com/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://www.firstclassfunc.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

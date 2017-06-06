@@ -1,0 +1,447 @@
+
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21-DEV">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Datacenter</title>
+    <meta name="author" content="Gary Berger">
+    <meta name="keywords" content=", development, networking, sdn">
+
+    <link rel="icon" href="http://www.firstclassfunc.com/favicon.png">
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.firstclassfunc.com/categories/datacenter/index.xml">
+    
+
+    
+    <meta name="description" content="Gary Berger&#39;s Blog">
+    <meta property="og:description" content="Gary Berger&#39;s Blog">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Datacenter">
+    <meta property="og:url" content="/categories/datacenter/">
+    <meta property="og:site_name" content="Lambda FU">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lambda FU">
+    <meta name="twitter:description" content="Gary Berger&#39;s Blog">
+    
+      <meta name="twitter:creator" content="@firstclassfunc">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="http://www.firstclassfunc.com/lambda.png">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="http://www.firstclassfunc.com/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://www.firstclassfunc.com/">Lambda FU</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://www.firstclassfunc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://www.firstclassfunc.com/#about">
+          <img class="sidebar-profile-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Gary Berger</h4>
+        
+          <h5 class="sidebar-profile-bio">Developer, Engineer, Father, Musician</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/gaberger" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.firstclassfunc.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+        
+
+      
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/">
+          Facebook Fabric Networking Deconstructed
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2013-01-28T00:00:00Z">
+      
+  January 28, 2013
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/network">network</a>, 
+    
+      <a class="category-link" href="http://www.firstclassfunc.com/categories/datacenter">datacenter</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.
+        <br>
+        <a href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+
+          </section>
+        
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 Gary Berger. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://www.firstclassfunc.com/lambda.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Gary Berger</h4>
+    
+      <div id="about-card-bio">Developer, Engineer, Father, Musician</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Principal Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        United States
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/06/a-brief-look-at-network-automation/">
+                <h3 class="media-heading">A brief look at Network Automation</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/">
+                <h3 class="media-heading">Monitoring the Control Plane</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/">
+                <h3 class="media-heading">Facebook Fabric Networking Deconstructed</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2013
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.firstclassfunc.com/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://www.firstclassfunc.com/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="http://www.firstclassfunc.com/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Lambda FU</title>
+    <link>http://www.firstclassfunc.com/categories/network/</link>
+    <description>Recent content in Network on Lambda FU</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.firstclassfunc.com/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A brief look at Network Automation</title>
+      <link>http://www.firstclassfunc.com/2017/06/a-brief-look-at-network-automation/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.firstclassfunc.com/2017/06/a-brief-look-at-network-automation/</guid>
+      <description>There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
+As defined by Oxford the definition of automation:</description>
+    </item>
+    
+    <item>
+      <title>Monitoring the Control Plane</title>
+      <link>http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/</link>
+      <pubDate>Sun, 28 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/</guid>
+      <description>Primer Within every customer, provider and transport network, there exists a host of applications that collect, disseminate and make decisions so that application services can communicate. These applications are also known as routing protocols and are at the core of how the Internet functions. The most common routing protocols used today include: Border Gateway Protocol (BGP) 1, Open Shortest Path First (OSPF)2 and IS-IS (Intermediate System - Intermediate System) 3.</description>
+    </item>
+    
+    <item>
+      <title>Facebook Fabric Networking Deconstructed</title>
+      <link>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</link>
+      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</guid>
+      <description>Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
+In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
+Facebook, the killer app.. literally Within Facebook&amp;rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</description>
+    </item>
+    
+  </channel>
+</rss>
