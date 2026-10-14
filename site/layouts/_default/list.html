@@ -1,0 +1,12 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="eyebrow">{{ if eq .Kind "term" }}{{ .Data.Singular | title }}{{ else }}Archive{{ end }}</p>
+  <h1>{{ if eq .Kind "term" }}{{ .Data.Term }}{{ else if eq .Section "posts" }}Writing{{ else }}{{ .Title }}{{ end }}</h1>
+</header>
+{{ range .Pages.GroupByDate "2006" }}
+<section class="year">
+  <h2 class="year-label">{{ .Key }}</h2>
+  <ul class="post-list">{{ range .Pages }}{{ partial "post-row.html" . }}{{ end }}</ul>
+</section>
+{{ end }}
+{{ end }}

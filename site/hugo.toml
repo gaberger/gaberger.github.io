@@ -1,0 +1,39 @@
+baseURL = "https://gaberger.github.io/"
+languageCode = "en-us"
+title = "Gary Berger"
+contentDir = "../content"
+ignoreFiles = ["README\\.md$"]
+enableRobotsTXT = true
+
+[params]
+  role = "Field CTO"
+  description = "Networks, distributed systems and automation, from the field."
+  github = "https://github.com/gaberger"
+
+[permalinks]
+  posts = "/:year/:month/:slug/"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[menus]
+  [[menus.main]]
+    name = "Writing"
+    url = "/posts/"
+    weight = 1
+  [[menus.main]]
+    name = "Topics"
+    url = "/tags/"
+    weight = 2
+  [[menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+[markup.highlight]
+  noClasses = false
+  lineNos = false
+
+[markup.goldmark.renderer]
+  unsafe = false

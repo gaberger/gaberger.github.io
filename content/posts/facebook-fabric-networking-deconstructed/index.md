@@ -107,11 +107,11 @@ The min-cut of this network would be P/2 or 4, oversubscription rate can be calc
 
 ![](fp7.png)
 
-\#So is R really a limitation?
+## So is R really a limitation?
 
 Even though we can use larger and larger switches in this mathematical model, the scaling issues center around packaging constraints, power requirements and sensitivity to temperature. All data centers are constrained by power, space and temperture and therefore one must make a tradeoff between the size and allocation of power, space and cooling between processors and the communication fabric. This limit corresponds to Number 2 of our design limitations.
 
-\#Practical Example Using Broadcom Trident 2
+## Practical Example Using Broadcom Trident 2
 
 The Broadcom Trident 2 provides a total of 2.6Tbps of bandwidth and 1.28Tb forwarding performance. Lets design a network that can exploit the 32 QSFP+ ports to build a high-radix network.
 

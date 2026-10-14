@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="hero">
+  <p class="eyebrow">{{ site.Params.role }}</p>
+  <h1>{{ site.Params.description }}</h1>
+  <p class="lede">Field notes on how production networks are built, observed and automated, written for the engineers who run them and the leaders who fund them.</p>
+  <div class="hero-actions">
+    <a class="btn" href="{{ "/posts/" | relURL }}">Read the writing</a>
+    <a class="btn btn-ghost" href="{{ "/about/" | relURL }}">About</a>
+  </div>
+</section>
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ with index $posts 0 }}
+<section class="featured">
+  <p class="label">Latest</p>
+  <a class="featured-card" href="{{ .RelPermalink }}">
+    <span class="meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</span>
+    <h2>{{ .Title }}</h2>
+    <p>{{ .Summary | plainify | truncate 240 }}</p>
+    <span class="more">Continue reading →</span>
+  </a>
+</section>
+{{ end }}
+<section>
+  <p class="label">All writing</p>
+  <ul class="post-list">{{ range $posts }}{{ partial "post-row.html" . }}{{ end }}</ul>
+</section>
+{{ with site.Taxonomies.categories }}
+<section>
+  <p class="label">Focus areas</p>
+  <ul class="topics">{{ range .ByCount }}<li><a href="{{ .Page.RelPermalink }}"><span>{{ .Term }}</span><b>{{ .Count }}</b></a></li>{{ end }}</ul>
+</section>
+{{ end }}
+{{ end }}
