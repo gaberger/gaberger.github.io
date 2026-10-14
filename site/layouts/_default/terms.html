@@ -1,0 +1,7 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="eyebrow">Index</p>
+  <h1>{{ if eq .Data.Plural "tags" }}Topics{{ else }}{{ .Title }}{{ end }}</h1>
+</header>
+<ul class="topics">{{ range .Data.Terms.ByCount }}<li><a href="{{ .Page.RelPermalink }}"><span>{{ .Term }}</span><b>{{ .Count }}</b></a></li>{{ end }}</ul>
+{{ end }}
