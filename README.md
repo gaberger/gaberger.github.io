@@ -1,6 +1,6 @@
 # gaberger.github.io
 
-Gary Berger's blog, built with Hugo and deployed to GitHub Pages by
+A Field CTO Perspective, Gary Berger's blog, built with Hugo and deployed to GitHub Pages by
 `.github/workflows/pages.yml` on every push to `master`.
 
 - `content/posts/<slug>/index.md`: one folder per post, front matter plus its

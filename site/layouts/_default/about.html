@@ -3,7 +3,7 @@
   <span class="avatar" aria-hidden="true">λ</span>
   <div>
     <p class="eyebrow">{{ site.Params.role }}</p>
-    <h1>{{ site.Title }}</h1>
+    <h1>{{ site.Params.author }}</h1>
     <div class="prose">{{ .Content }}</div>
     <p class="about-links"><a class="btn" href="{{ site.Params.github }}">GitHub</a> <a class="btn btn-ghost" href="{{ "index.xml" | relURL }}">RSS</a></p>
   </div>

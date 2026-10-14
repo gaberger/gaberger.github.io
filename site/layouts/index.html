@@ -1,8 +1,8 @@
 {{ define "main" }}
 <section class="hero">
-  <p class="eyebrow">{{ site.Params.role }}</p>
-  <h1>{{ site.Params.description }}</h1>
-  <p class="lede">Field notes on how production networks are built, observed and automated, written for the engineers who run them and the leaders who fund them.</p>
+  <p class="eyebrow">{{ site.Params.author }}</p>
+  <h1>{{ site.Title }}</h1>
+  <p class="lede">{{ site.Params.description }}</p>
   <div class="hero-actions">
     <a class="btn" href="{{ "/posts/" | relURL }}">Read the writing</a>
     <a class="btn btn-ghost" href="{{ "/about/" | relURL }}">About</a>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ site.Title }} · {{ site.Params.role }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ site.Title }} · {{ site.Params.author }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
   <link rel="icon" href="{{ "lambda.png" | relURL }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
     <div class="wrap header-row">
       <a class="brand" href="{{ "/" | relURL }}">
         <span class="brand-mark" aria-hidden="true">λ</span>
-        <span class="brand-text"><span class="brand-name">{{ site.Title }}</span><span class="brand-role">{{ site.Params.role }}</span></span>
+        <span class="brand-text"><span class="brand-name">{{ site.Title }}</span><span class="brand-role">{{ site.Params.author }}</span></span>
       </a>
       <nav class="nav" aria-label="Main">
         {{ range site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
@@ -30,7 +30,7 @@
   </main>
   <footer class="site-footer">
     <div class="wrap footer-row">
-      <span>© {{ now.Year }} {{ site.Title }}</span>
+      <span>© {{ now.Year }} {{ site.Params.author }} · {{ site.Title }}</span>
       <span class="footer-links">
         <a href="{{ site.Params.github }}">GitHub</a>
         <a href="{{ "index.xml" | relURL }}">RSS</a>
