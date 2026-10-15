@@ -6,6 +6,9 @@
        any post without one, uses the site card. Both are exactly 1200x630. */ -}}
 {{- $card := resources.Get "social-card.png" -}}
 {{- if .IsPage }}{{ with .Resources.GetMatch "cover.*" }}{{ $card = . }}{{ end }}{{ end -}}
+{{- /* A content hash in the file name gives every new version a new URL, so
+       LinkedIn and others fetch it instead of reusing a cached copy. */ -}}
+{{- $card = $card | fingerprint "md5" -}}
 <link rel="canonical" href="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
