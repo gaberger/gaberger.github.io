@@ -108,6 +108,10 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .prose li { margin: .3em 0; }
 .prose img { display: block; margin: 0 auto; border-radius: 8px; }
 .prose table { width: 100%; border-collapse: collapse; font: 15px var(--sans); }
+.prose table { display: block; overflow-x: auto; font-size: 14px; }
+.prose th { white-space: nowrap; }
+.prose td { min-width: 9rem; }
+.prose p:has(> img:only-child) + p:has(> em:only-child) { margin-top: -.6em; text-align: center; font: 14px/1.5 var(--sans); color: var(--muted); }
 .prose th, .prose td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: middle; }
 .prose td img { display: inline; margin: 0; border-radius: 0; }
 @media (prefers-color-scheme: dark) { .prose img { background: #fff; padding: 6px; } }
