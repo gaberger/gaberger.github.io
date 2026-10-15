@@ -49,6 +49,7 @@
       </span>
     </div>
   </footer>
+  {{ if .IsPage }}{{ with resources.Get "js/zoom.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>{{ end }}{{ end }}
   <script>
     document.querySelector(".theme-toggle").addEventListener("click", function () {
       var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
