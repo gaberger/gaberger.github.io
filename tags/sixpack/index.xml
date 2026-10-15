@@ -1,26 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Sixpack on Lambda FU</title>
-    <link>http://www.firstclassfunc.com/tags/sixpack/</link>
-    <description>Recent content in Sixpack on Lambda FU</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jan 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.firstclassfunc.com/tags/sixpack/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Facebook Fabric Networking Deconstructed</title>
-      <link>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</link>
-      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/</guid>
-      <description>Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. Introducing data center fabric, the next-generation Facebook data center network
-In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.
-Facebook, the killer app.. literally Within Facebook&amp;rsquo;s data center the network is a critical component driving this social networks ever increasing appetite to connect people together.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sixpack on A Field CTO Perspective</title><link>https://gaberger.github.io/tags/sixpack/</link><description>Recent content in Sixpack on A Field CTO Perspective</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 28 Jan 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://gaberger.github.io/tags/sixpack/index.xml" rel="self" type="application/rss+xml"/><item><title>Facebook Fabric Networking Deconstructed</title><link>https://gaberger.github.io/2013/01/facebook-fabric-networking-deconstructed/</link><pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate><guid>https://gaberger.github.io/2013/01/facebook-fabric-networking-deconstructed/</guid><description>&lt;p>Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. &lt;a href="https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network">Introducing data center fabric, the next-generation Facebook data center network&lt;/a>&lt;/p>
+&lt;p>In this post we are going to look at the design proposed and break down some of the reasons why this design was necessary although maybe still not ideal.&lt;/p>
+&lt;hr>
+&lt;h2 id="facebook-the-killer-app-literally">Facebook, the killer app.. literally&lt;/h2>
+&lt;p>Within Facebook’s data center the network is a critical component driving this social networks ever increasing appetite to connect people together. The challenges unfold on two axis, the first being the explosive growth in the user population and its increasing demand and access bolstered by modern mobile devices and the second related to the exponential growth of machine to machine traffic required to aggregate and compose information which we all know and love. Due to the nature of Facebook applications, machine to machine communications is “several orders of magnitude larger than what goes out the Internet”&lt;/p></description></item></channel></rss>

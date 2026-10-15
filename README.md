@@ -10,8 +10,10 @@ A Field CTO Perspective, Gary Berger's blog, built with Hugo and deployed to Git
   the build has no outside dependency.
 
 The HTML at the repository root (`index.html`, `2017/`, `tags/` and the rest)
-is the old 2017 build. Once Pages is switched to GitHub Actions it is no longer
-served, and it can be deleted.
+is the built site. Don't edit it by hand: the workflow rebuilds it from
+`content/` and `site/` and commits it on every push to `master`, because GitHub
+Pages serves the root of `master`. Old 2017 URLs that the new site doesn't
+cover redirect from stubs in `site/static/`.
 
 ## Writing a post
 
@@ -30,8 +32,8 @@ Body in Markdown. Images go in the same folder.
 
 Preview locally with `cd site && hugo server`.
 
-## One-time setup
+## Hosting
 
-In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**
-and leave the custom domain empty. The site is served at
-https://gaberger.github.io.
+The site is served at https://gaberger.github.io from the root of `master`. If
+**Settings → Pages → Source** is later switched to **GitHub Actions**, the same
+workflow's Pages artifact takes over and nothing else needs to change.
