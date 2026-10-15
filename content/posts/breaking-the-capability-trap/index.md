@@ -1,6 +1,7 @@
 ---
 title: "Breaking the Capability Trap"
 slug: "breaking-the-capability-trap"
+description: "Network change is one of the riskiest things an enterprise does to itself. A systems view of why change controls backfire, and how pre-change simulation breaks the failure loop."
 date: 2026-06-26
 categories: ["network"]
 tags: ["network-change", "system-dynamics", "simulation", "digital-twin"]
