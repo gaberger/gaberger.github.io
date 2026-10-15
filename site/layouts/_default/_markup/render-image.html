@@ -1,0 +1,16 @@
+{{- /* Images stored with a post render at their real size. If "name-dark.png"
+       sits next to "name.png", dark-mode readers get that version instead. */ -}}
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+{{- $dark := "" -}}
+{{- with $img -}}
+  {{- with $.Page.Resources.GetMatch (replaceRE `(\.[a-zA-Z]+)$` "-dark$1" $.Destination) -}}{{- $dark = . -}}{{- end -}}
+{{- end -}}
+{{- $src := .Destination -}}
+{{- with $img }}{{ $src = .RelPermalink }}{{ end -}}
+{{- $tag := printf `<img src="%s" alt="%s"` $src (htmlEscape .Text) -}}
+{{- with $img }}{{ $tag = printf `%s width="%d" height="%d"` $tag .Width .Height }}{{ end -}}
+{{- if $dark -}}
+<picture><source srcset="{{ $dark.RelPermalink }}" media="(prefers-color-scheme: dark)">{{ printf `%s class="has-dark" loading="lazy">` $tag | safeHTML }}</picture>
+{{- else -}}
+{{ printf `%s loading="lazy">` $tag | safeHTML }}
+{{- end -}}

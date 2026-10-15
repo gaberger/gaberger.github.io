@@ -100,7 +100,7 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 /* Text runs at about 70 characters per line; figures, code and tables use the full column. */
 :root { --measure: 600px; }
 .post-head, .post-foot, .prose > * { max-width: var(--measure); margin-left: auto; margin-right: auto; }
-.prose > pre, .prose > table, .prose > p:has(> img:only-child) { max-width: none; }
+.prose > pre, .prose > table, .prose > p:has(> img:only-child), .prose > p:has(> picture:only-child) { max-width: none; }
 .prose > * { margin-top: 0; margin-bottom: 1.15em; }
 .prose h2, .prose h3, .prose h4, .prose h5 { font-family: var(--sans); margin-top: 2em; margin-bottom: .6em; }
 .prose h2 { font-size: 26px; }
@@ -115,10 +115,18 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .prose table { display: block; overflow-x: auto; font-size: 14px; }
 .prose th { white-space: nowrap; }
 .prose td { min-width: 9rem; }
-.prose p:has(> img:only-child) + p:has(> em:only-child) { margin-top: -.6em; text-align: center; font: 14px/1.5 var(--sans); color: var(--muted); }
+.prose p:has(> img:only-child) + p:has(> em:only-child), .prose p:has(> picture:only-child) + p:has(> em:only-child) { margin-top: -.6em; text-align: center; font: 14px/1.5 var(--sans); color: var(--muted); }
 .prose th, .prose td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: middle; }
 .prose td img { display: inline; margin: 0; border-radius: 0; }
-@media (prefers-color-scheme: dark) { .prose img { background: #fff; padding: 6px; } }
+/* Diagrams are white artwork: frame them as figure panels so the white reads as deliberate. */
+.prose p:has(> img:only-child) img, .prose p:has(> picture:only-child) img { background: #fff; border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 1px 2px rgb(20 23 28 / .04), 0 4px 16px rgb(20 23 28 / .05); }
+@media (prefers-color-scheme: dark) {
+  .prose img:not(.has-dark) { background: #fff; }
+  /* Diagrams without a dark version: take the glare off the white panel. */
+  .prose p:has(> img:only-child) img:not(.has-dark) { filter: brightness(.86) contrast(1.06); }
+  .prose p:has(> img:only-child) img, .prose p:has(> picture:only-child) img { border-color: #2c333d; box-shadow: none; }
+  .prose img.has-dark { background: #151a21; }
+}
 .prose :not(pre) > code { font: .84em var(--mono); background: var(--accent-soft); color: var(--accent-ink); padding: .1em .35em; border-radius: 4px; }
 .prose pre { font: 14px/1.6 var(--mono); padding: 18px 20px; border-radius: 10px; overflow-x: auto; background: var(--code-bg) !important; border: 1px solid var(--rule); margin-left: -20px; margin-right: -20px; }
 @media (min-width: 800px) { .prose pre { margin-left: -24px; margin-right: -24px; } }
