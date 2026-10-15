@@ -1,5 +1,7 @@
 ---
 title: "Facebook Fabric Networking Deconstructed"
+cover_motif: "clos"
+cover_accent: "pink"
 date: 2013-01-28
 categories: ["network", "datacenter"]
 tags: ["facebook", "sixpack"]

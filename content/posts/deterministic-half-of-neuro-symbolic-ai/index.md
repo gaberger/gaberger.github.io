@@ -1,6 +1,8 @@
 ---
 title: "The deterministic half of neuro-symbolic AI already exists. It's called network verification."
 slug: "deterministic-half-of-neuro-symbolic-ai"
+cover_motif: "split"
+cover_accent: "teal"
 date: 2026-07-26
 categories: ["network", "ai"]
 tags: ["neuro-symbolic-ai", "network-verification", "ai-trust", "digital-twin", "network-security"]
