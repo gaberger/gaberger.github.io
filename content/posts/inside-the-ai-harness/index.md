@@ -2,6 +2,8 @@
 title: "Inside the AI Harness: The Substrate Around the Chat"
 slug: "inside-the-ai-harness"
 description: "In 2026, what an AI agent can actually do depends less on the model and more on the software wrapped around it. That wrapper is the harness."
+cover_motif: "rings"
+cover_accent: "violet"
 date: 2026-10-13
 categories: ["ai"]
 tags: ["agents", "agent-harness", "mcp", "context-engineering", "security", "governance"]

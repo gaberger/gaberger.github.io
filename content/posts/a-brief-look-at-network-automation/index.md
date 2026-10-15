@@ -1,5 +1,7 @@
 ---
 title: "A brief look at Network Automation"
+cover_motif: "fabric"
+cover_accent: "green"
 date: 2017-06-06
 categories: ["network", "automation"]
 tags: ["network", "automation", "python"]

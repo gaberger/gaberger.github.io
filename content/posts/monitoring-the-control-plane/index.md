@@ -1,5 +1,7 @@
 ---
 title: "Monitoring the Control Plane"
+cover_motif: "waves"
+cover_accent: "amber"
 date: 2017-05-28
 categories: ["network", "bpf"]
 tags: ["network", "bpf", "routing"]

@@ -1,6 +1,8 @@
 ---
 title: "Delivering APIs for AI"
 slug: "delivering-apis-for-ai"
+cover_motif: "flow"
+cover_accent: "blue"
 date: 2026-07-09
 categories: ["ai"]
 tags: ["mcp", "api-design", "agents"]
