@@ -33,4 +33,5 @@ Preview locally with `cd site && hugo server`.
 ## One-time setup
 
 In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**
-and clear the custom domain. `firstclassfunc.com` is no longer owned.
+and leave the custom domain empty. The site is served at
+https://gaberger.github.io.

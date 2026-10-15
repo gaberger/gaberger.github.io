@@ -3,7 +3,6 @@ title: "A brief look at Network Automation"
 date: 2017-06-06
 categories: ["network", "automation"]
 tags: ["network", "automation", "python"]
-original_url: "http://www.firstclassfunc.com/2017/06/a-brief-look-at-network-automation/"
 ---
 
 There is an incredible amount of hype these days discussing automation especially in the realm of networking. Some would say that this is relatively new but I would argue that we have been struggling with automating the network for many decades, it is however becoming critical today due to the massive dependencies on our communications facilities and shifting application architectures towards distributed computing.
