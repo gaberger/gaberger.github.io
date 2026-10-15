@@ -2,7 +2,7 @@
   <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
   <div>
     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-    <p class="excerpt">{{ .Summary | plainify | truncate 180 }}</p>
+    <p class="excerpt">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 180 }}{{ end }}</p>
     {{ partial "tags.html" . }}
   </div>
 </li>

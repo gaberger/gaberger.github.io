@@ -30,6 +30,21 @@ tags: ["bpf"]
 Body in Markdown. Images go in the same folder.
 ```
 
+Then generate the post's header image and link-preview card:
+
+```bash
+pip install playwright && playwright install chromium   # once
+python3 scripts/make-covers.py <slug>
+```
+
+This writes `hero.jpg` (shown at the top of the post) and `cover.jpg` (the
+1200x630 LinkedIn preview, with the title) into the post folder. Each post gets
+its own network-graph artwork, seeded from the slug, so re-running reproduces it.
+Use `--force` to regenerate after changing a title.
+
+For a diagram with a dark-mode version, save it as `name-dark.png` next to
+`name.png`; the theme toggle shows the matching one.
+
 Preview locally with `cd site && hugo server`.
 
 ## Hosting
