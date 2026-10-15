@@ -42,7 +42,7 @@ jobs:
         run: |
           rm -f hugo.deb
           cp -a site/public/. .
-          git add -A -- . ':!site/public' ':!site/resources' ':!site/.hugo_build.lock'
+          git add -A  # site/public and Hugo's lock file are in site/.gitignore
           if git diff --cached --quiet; then
             echo "Built site unchanged"
           else
