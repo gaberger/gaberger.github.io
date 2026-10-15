@@ -3,7 +3,6 @@ title: "Facebook Fabric Networking Deconstructed"
 date: 2013-01-28
 categories: ["network", "datacenter"]
 tags: ["facebook", "sixpack"]
-original_url: "http://www.firstclassfunc.com/2013/01/facebook-fabric-networking-deconstructed/"
 ---
 
 Facebook engineering has recently introduced their next-generation data center network architecture planned to be operational in the new Altoona facility. [Introducing data center fabric, the next-generation Facebook data center network](https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network)

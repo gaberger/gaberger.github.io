@@ -3,7 +3,6 @@ title: "Monitoring the Control Plane"
 date: 2017-05-28
 categories: ["network", "bpf"]
 tags: ["network", "bpf", "routing"]
-original_url: "http://www.firstclassfunc.com/2017/05/monitoring-the-control-plane/"
 ---
 
 ## Primer
