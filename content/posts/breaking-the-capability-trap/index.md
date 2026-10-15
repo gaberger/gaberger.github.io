@@ -60,11 +60,11 @@ Systems theorist Donella Meadows ranked the ways you can intervene in a system i
 
 Right now that learning happens in production, after deployment, with a delay measured in outage minutes and a cost measured in revenue and reputation. Every tool in the conventional kit (CABs, freezes, peer review) tries to cover that delay with human judgment. But a person reviewing a 400-line firewall diff against a mental picture of a 10,000-device network isn't really exercising control. They're performing a ritual.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQE2I2SUchmUnA/article-inline_image-shrink_1500_2232/B56Z8Fw3ybKcAU-/0/1782508125841?e=2147483647&v=beta&t=FO9OXPZ8W3Ub6Vakbisw8ahHA9oLzkkfi4-XJVWnaDg)
+![Reinforcing loop: a change ships, fails with unforeseen side effects, fear and blame set in, heavier controls follow, batches grow larger, and the next change is riskier](feedback-loop.png)
 
 Pre-change simulation changes the information flow itself. Run a proposed routing or firewall change against a high-fidelity model of the production network, one that captures its topology, its configs, and its routing state, and you learn what the change will do before it ships, in seconds, with zero blast radius. The loop that used to run change → production → outage → postmortem → fear now runs change → simulation → evidence → deploy or revise. The delay drops from weeks to seconds. The cost of being wrong drops from an outage to an edit.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFHOedepCWsXg/article-inline_image-shrink_1500_2232/B56Z8FxS0PLAAU-/0/1782508236409?e=2147483647&v=beta&t=PnoDw-faFY1vXK33x2sQAyinHGkQzhTWaUfkwhNglis)
+![Virtuous loop: test the change on the digital twin first, get evidence in seconds, ship smaller verified changes, gain reliability, and raise change velocity](simulation-loop.png)
 
 That one structural change flips the loop's polarity. When verification is fast and cheap, small changes finally make sense, because each one is trivial to check. Small changes carry less risk. Less risk means fewer failures. Fewer failures let you relax the fear-driven controls. Relaxed controls raise change velocity. And higher velocity now lowers risk instead of raising it, because every change is smaller, fresher, and already verified. The doom loop runs in reverse. This is the same result the DORA and Accelerate research found for software delivery (Forsgren, Humble, & Kim, 2018), namely that speed and stability go together once feedback is fast, carried into the one place it has always seemed least believable: the production network.
 
@@ -155,7 +155,7 @@ Senior engineers routinely spend hours per change on manual pre-checks, lab appr
 
 The figures below are deliberately conservative and entirely made up. The structure is the point, not the numbers. Take a mid-size enterprise: 2,000 network change requests a year, 8 severe change-induced incidents a year, a 3-hour mean restore time, and a blended outage cost of \$80,000 an hour.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQHdwoNGyVYRHg/article-inline_image-shrink_1000_1488/B56Z8Fv4TSH4AI-/0/1782507865654?e=2147483647&v=beta&t=TKG3Y0X8nG_mOxOIsA2B8NAW4rTpraJodEYmCnpjiZA)
+![Illustrative annual value: avoided outage cost $1.34M, initiative acceleration $1.50M, engineering toil $0.60M, CAB and freeze overhead $0.35M, combined $3.79M](roi-model.png)
 
 Use this as a framework for sizing the impact of change simulation, and notice two things about it. First, avoided outages, the line everyone reaches for first, is only the floor. The larger gains sit in velocity and project acceleration. Second, the whole model runs on the organization's own data. Map your real metrics onto this structure and the analysis describes your network, not a generic benchmark, which is what makes the conclusion hard to wave away.
 
