@@ -8,7 +8,7 @@ enableRobotsTXT = true
 [params]
   author = "Gary Berger"
   role = "Field CTO"
-  description = "Networks, distributed systems and automation, from the field."
+  description = "Notes on networks, distributed systems and automation, from the customer side of the architecture."
   github = "https://github.com/gaberger"
 
 [permalinks]
