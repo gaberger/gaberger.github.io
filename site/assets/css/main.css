@@ -97,13 +97,17 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .post-head { padding: 64px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
 .post-head h1 { font-size: clamp(32px, 6vw, 46px); margin: 0 0 14px; }
 .prose { font: 19px/1.72 var(--serif); color: var(--ink); }
-.prose > * { margin: 0 0 1.15em; }
-.prose h2, .prose h3, .prose h4, .prose h5 { font-family: var(--sans); margin: 2em 0 .6em; }
+/* Text runs at about 70 characters per line; figures, code and tables use the full column. */
+:root { --measure: 600px; }
+.post-head, .post-foot, .prose > * { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+.prose > pre, .prose > table, .prose > p:has(> img:only-child) { max-width: none; }
+.prose > * { margin-top: 0; margin-bottom: 1.15em; }
+.prose h2, .prose h3, .prose h4, .prose h5 { font-family: var(--sans); margin-top: 2em; margin-bottom: .6em; }
 .prose h2 { font-size: 26px; }
 .prose h3 { font-size: 21px; }
 .prose h4, .prose h5 { font-size: 17px; }
 .prose a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
-.prose blockquote { margin-left: 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); color: var(--ink-2); font-style: italic; }
+.prose blockquote { padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); color: var(--ink-2); font-style: italic; }
 .prose ul, .prose ol { padding-left: 1.3em; }
 .prose li { margin: .3em 0; }
 .prose img { display: block; margin: 0 auto; border-radius: 8px; }
@@ -118,7 +122,7 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .prose :not(pre) > code { font: .84em var(--mono); background: var(--accent-soft); color: var(--accent-ink); padding: .1em .35em; border-radius: 4px; }
 .prose pre { font: 14px/1.6 var(--mono); padding: 18px 20px; border-radius: 10px; overflow-x: auto; background: var(--code-bg) !important; border: 1px solid var(--rule); margin-left: -20px; margin-right: -20px; }
 @media (min-width: 800px) { .prose pre { margin-left: -24px; margin-right: -24px; } }
-.prose hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+.prose hr { border: 0; border-top: 1px solid var(--rule); margin-top: 2.5em; margin-bottom: 2.5em; }
 .post-foot { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--rule); }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
 .pager a { padding: 16px; border-radius: 10px; border: 1px solid var(--rule); color: var(--ink); font-weight: 600; font-size: 15px; }
