@@ -297,6 +297,10 @@ The practical rule: keep depth to two or three levels, and pass down checks, not
 
 "Shared context" is not one store but several, each suited to a different kind of knowledge.
 
+![context layer · seven questions routed to seven stores](context-layer.png)
+
+*Context layer · seven questions routed to seven stores*
+
 Three patterns are emerging around these stores:
 
 - **Route by question type.** Rules come from files, "what does it say" from vector search, "how is it connected" from a graph, and "what is true now" from a system of record or a digital twin.
@@ -314,6 +318,10 @@ A harness gives the genie real hands, such as files, shells and inboxes, so secu
 ### Security: the genie cannot tell a wish from a trap
 
 **Prompt injection is the core problem.** Everything the model reads lands in the same transcript: the user's request, a web page, a GitHub issue, an email. The model cannot reliably tell instructions from data. Simon Willison coined the term prompt injection for this mixing of trusted and untrusted content, naming it after SQL injection ([Willison, 2025](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)). A system prompt that says "ignore injected instructions" is just more text in the same transcript, so it can be overridden.
+
+![lethal trifecta · three capabilities that together enable data theft](lethal-trifecta.png)
+
+*Lethal trifecta · three capabilities that together enable data theft*
 
 Willison's "lethal trifecta" turns this into a design rule. An agent that combines private data, untrusted content and a way to communicate externally can be tricked into sending your data to an attacker. His canonical example is a GitHub MCP exploit: one server could read attacker-filed public issues, access private repositories, and open pull requests that leaked the private data ([PolicyLayer](https://policylayer.com/glossary/lethal-trifecta)). The practical question becomes "which leg can I remove from this agent?", not "will the model resist?"
 
