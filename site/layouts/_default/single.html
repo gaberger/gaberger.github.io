@@ -1,5 +1,8 @@
 {{ define "main" }}
 <article class="post">
+  {{- with .Resources.GetMatch "hero.*" }}
+  <figure class="post-hero"><img src="{{ .RelPermalink }}" alt="" width="{{ .Width }}" height="{{ .Height }}" fetchpriority="high"></figure>
+  {{- end }}
   <header class="post-head">
     {{ with .GetTerms "categories" }}<p class="eyebrow">{{ range $i, $c := . }}{{ if $i }} · {{ end }}<a href="{{ $c.RelPermalink }}">{{ $c.Data.Term }}</a>{{ end }}</p>{{ end }}
     <h1>{{ .Title }}</h1>

@@ -1,29 +1,11 @@
-{{- /* Link-preview tags for LinkedIn, Slack, X and others. Posts use the image
-       named in front matter (image: name.png), else the first image in the post,
-       fitted whole onto a 1200x630 card padded in the image's own dominant colour; small images and everything else use the site card. */ -}}
+{{- /* Link-preview tags for LinkedIn, Slack, X and others. */ -}}
 {{- $title := cond .IsHome site.Title .Title -}}
 {{- $desc := "" -}}
 {{- with .Description }}{{ $desc = . }}{{ else }}{{ if .IsPage }}{{ $desc = .Summary | plainify | htmlUnescape | truncate 200 }}{{ else }}{{ $desc = site.Params.description }}{{ end }}{{ end -}}
-{{- $src := "" -}}
-{{- if .IsPage -}}
-  {{- with .Params.image -}}{{- $src = $.Resources.GetMatch . -}}{{- end -}}
-  {{- if not $src -}}
-    {{- with findRESubmatch `!\[[^\]]*\]\(([^)\s]+)` .RawContent 1 -}}
-      {{- $src = $.Resources.GetMatch (index (index . 0) 1) -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- $card := "" -}}
-{{- /* Small images would sit tiny on the card; use the site card instead. */ -}}
-{{- if and $src (lt $src.Width 800) }}{{ $src = "" }}{{ end -}}
-{{- with $src -}}
-  {{- $fit := .Fit "1136x566 png" -}}
-  {{- $bg := index .Colors 0 -}}{{- if gt $bg.Luminance 0.8 }}{{ $bg = "#ffffff" }}{{ end -}}
-  {{- $l := div (sub 1200 $fit.Width) 2 -}}{{- $t := div (sub 630 $fit.Height) 2 -}}
-  {{- $card = $fit.Filter (images.Padding $t (sub (sub 1200 $fit.Width) $l) (sub (sub 630 $fit.Height) $t) $l $bg) -}}
-{{- else -}}
-  {{- $card = resources.Get "social-card.png" -}}
-{{- end -}}
+{{- /* Posts use cover.jpg (made by scripts/make-covers.py); everything else, and
+       any post without one, uses the site card. Both are exactly 1200x630. */ -}}
+{{- $card := resources.Get "social-card.png" -}}
+{{- if .IsPage }}{{ with .Resources.GetMatch "cover.*" }}{{ $card = . }}{{ end }}{{ end -}}
 <link rel="canonical" href="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
