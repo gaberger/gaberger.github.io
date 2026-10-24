@@ -345,3 +345,6 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .zoom-close:hover { background: rgb(255 255 255 / .18); }
 @keyframes zoom-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .zoom-overlay { animation: none; } }
+
+/* Portrait diagrams display narrower so they don't fill the screen; zoom shows them full size. */
+.prose img.is-tall { max-width: min(440px, 100%); }
