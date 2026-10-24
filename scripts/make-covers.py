@@ -10,7 +10,7 @@ For each content/posts/<slug>/index.md this writes, next to it:
 Each post gets a motif and accent colour (cover_motif / cover_accent in its
 front matter, or picked from the slug) drawn with a pattern seeded from the
 slug, so re-running the script reproduces it exactly. Motifs: graph, rings,
-split, flow, loop, fabric, waves, clos. Accents: violet, teal, blue, orange,
+split, flow, loop, fabric, waves, clos, hexgrid. Accents: violet, teal, blue, orange,
 green, amber, pink, or any hex colour. Existing images
 are kept unless --force is given.
 
@@ -136,6 +136,17 @@ clos(){ // tiered Clos / fat-tree
   let cur=T[0][Math.floor(rnd()*4)];
   for(let i=1;i<4;i++){ const cand=T[i].filter(([x])=>Math.abs(x-cur[0])<(x1-x0)*0.2); const nx=cand[Math.floor(rnd()*cand.length)]; line(cur[0],cur[1],nx[0],nx[1],A,.85,2.2); cur=nx }
   T.forEach((row,i)=>row.forEach(([x,y])=>{ const w=[26,20,14,9][i]; el('rect',{x:x-w/2,y:y-w*0.4,width:w,height:w*0.8,rx:3,fill:'#122033',stroke:i===0?A:B,'stroke-opacity':i===0?.9:.55,'stroke-width':1.2}) })) },
+hexgrid(){ // honeycomb with a highlighted core hexagon and inward links
+  const r=TEXTSIDE?W*0.034:S*0.042, hw=Math.sqrt(3)*r, cy=H*0.5;
+  const hex=(x,y,rr)=>{let d='';for(let k=0;k<6;k++){const a=Math.PI/180*(60*k-30);d+=(k?'L':'M')+(x+rr*Math.cos(a)).toFixed(1)+','+(y+rr*Math.sin(a)).toFixed(1)}return d+'Z'};
+  const cells=[];
+  for(let row=-1, y=0; y<H+r*2; row++, y=row*r*1.5){ for(let col=-1; col*hw<W+hw; col++){ const x=col*hw+(row%2?hw/2:0); if(x<XL-hw) continue;
+    const d=Math.hypot(x-CX,y-cy); cells.push({x,y,d}); path(hex(x,y,r*0.94),B,Math.max(.05,.22-.0009*d),1) } }
+  const ring=cells.filter(c=>c.d>r*1.2&&c.d<r*3.6);
+  for(const c of ring){ if(rnd()<.55){ el('path',{d:hex(c.x,c.y,r*0.94),fill:A,'fill-opacity':.08,stroke:A,'stroke-opacity':.45,'stroke-width':1.2}); line(c.x,c.y,CX,cy,A,.35,1.2,{'stroke-dasharray':'3 5'}); hot(c.x,c.y,2.4) } }
+  el('circle',{cx:CX,cy,r:r*3,fill:'url(#glow)'});
+  el('path',{d:hex(CX,cy,r*1.9),fill:'#0f1824',stroke:A,'stroke-width':2.4});
+  el('path',{d:hex(CX,cy,r*1.1),fill:A,'fill-opacity':.25,stroke:A,'stroke-opacity':.8,'stroke-width':1.4}) },
 };
 (M[MOTIF]||M.graph)();
 </script></body></html>"""
@@ -156,7 +167,7 @@ def front_matter(text):
     return get("title"), get("date"), cats, {"cover_motif": get("cover_motif"), "cover_accent": get("cover_accent")}
 
 
-MOTIFS = ["graph", "rings", "split", "flow", "loop", "fabric", "waves", "clos"]
+MOTIFS = ["graph", "rings", "split", "flow", "loop", "fabric", "waves", "clos", "hexgrid"]
 ACCENTS = {"violet": "#a78bfa", "teal": "#2dd4bf", "blue": "#60a5fa", "orange": "#fb8a4c",
            "green": "#4ade80", "amber": "#fbbf24", "pink": "#f472b6"}
 

@@ -9,10 +9,11 @@
 {{- with $img }}{{ $src = .RelPermalink }}{{ end -}}
 {{- $tag := printf `<img src="%s" alt="%s"` $src (htmlEscape .Text) -}}
 {{- with $img }}{{ $tag = printf `%s width="%d" height="%d"` $tag .Width .Height }}{{ end -}}
+{{- $tall := and $img (gt $img.Height $img.Width) -}}
 {{- if $dark -}}
 {{- $darkTag := printf `<img src="%s" alt="%s"` $dark.RelPermalink (htmlEscape .Text) -}}
 {{- with $dark }}{{ $darkTag = printf `%s width="%d" height="%d"` $darkTag .Width .Height }}{{ end -}}
-<picture class="themed">{{ printf `%s class="img-light has-dark" loading="lazy">` $tag | safeHTML }}{{ printf `%s class="img-dark has-dark" loading="lazy">` $darkTag | safeHTML }}</picture>
+<picture class="themed">{{ printf `%s class="img-light has-dark%s" loading="lazy">` $tag (cond $tall " is-tall" "") | safeHTML }}{{ printf `%s class="img-dark has-dark%s" loading="lazy">` $darkTag (cond $tall " is-tall" "") | safeHTML }}</picture>
 {{- else -}}
-{{ printf `%s loading="lazy">` $tag | safeHTML }}
+{{ printf `%s%s loading="lazy">` $tag (cond $tall ` class="is-tall"` "") | safeHTML }}
 {{- end -}}
