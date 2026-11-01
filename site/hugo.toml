@@ -28,9 +28,13 @@ enableRobotsTXT = true
     url = "/tags/"
     weight = 2
   [[menus.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
+  [[menus.main]]
     name = "About"
     url = "/about/"
-    weight = 3
+    weight = 4
 
 [markup.highlight]
   noClasses = false

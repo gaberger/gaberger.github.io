@@ -93,6 +93,24 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .page-head h1 { font-size: clamp(30px, 5vw, 40px); margin: 0; }
 .year-label { font: 600 14px var(--mono); color: var(--muted); margin: 40px 0 4px; }
 
+/* Projects */
+.project-intro { font: 19px/1.6 var(--serif); color: var(--ink-2); max-width: 58ch; margin-top: 16px; }
+.project-intro p { margin: 0; }
+.project-intro a { text-decoration: underline; text-underline-offset: 3px; }
+.project-grid { list-style: none; padding: 0; margin: 12px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.project-card { position: relative; display: flex; flex-direction: column; padding: 22px; border-radius: 14px; background: var(--surface); border: 1px solid var(--rule); transition: border-color .15s, transform .15s; }
+.project-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.project-card:focus-within { border-color: var(--accent); }
+.project-card h3 { margin: 0 0 8px; font-size: 19px; }
+.project-card h3 a { color: var(--ink); }
+.project-card h3 a:hover { text-decoration: none; }
+/* The whole card opens the repo; the post link sits above that target. */
+.project-card h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.project-summary { margin: 0 0 18px; color: var(--ink-2); font-size: 15px; }
+.project-foot { margin-top: auto; }
+.project-meta { margin: 0; font: 500 12px/1.7 var(--mono); color: var(--muted); }
+.project-post { position: relative; display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 500; color: var(--accent-ink); }
+
 /* Article */
 .post-head { padding: 64px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
 .post-head h1 { font-size: clamp(32px, 6vw, 46px); margin: 0 0 14px; }
@@ -154,6 +172,7 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
   .brand-text { display: none; }
   .post-row { grid-template-columns: 1fr; gap: 4px; }
   .post-row time { line-height: 1.4; }
+  .project-grid { grid-template-columns: 1fr; }
   .about { grid-template-columns: 1fr; }
   .prose { font-size: 18px; }
   .hero { padding-top: 48px; }

@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="eyebrow">Open source</p>
+  <h1>{{ .Title }}</h1>
+  <div class="project-intro">{{ .Content }}</div>
+</header>
+{{ range .Params.groups }}
+<section class="year">
+  <h2 class="year-label">{{ .name }}</h2>
+  <ul class="project-grid">
+    {{ range .projects }}
+    <li class="project-card">
+      <h3><a href="{{ .url }}">{{ .name }}</a></h3>
+      <p class="project-summary">{{ .summary }}</p>
+      <div class="project-foot">
+        <p class="project-meta">{{ .language }} · {{ .license }}{{ with .status }} · {{ . }}{{ end }}</p>
+        {{ with .post }}{{ with site.GetPage (printf "/posts/%s" .) }}<a class="project-post" href="{{ .RelPermalink }}">Read: {{ .Title }}</a>{{ else }}{{ errorf "projects: no post named %q" . }}{{ end }}{{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+{{ end }}
