@@ -9,7 +9,7 @@
     <tbody>
     {{ range .projects }}
     <tr class="research-card">
-      <th scope="row"><span class="research-name">{{ .name }}</span>{{ with .owner }}<span class="research-owner">{{ . }}</span>{{ end }}{{ with .tags }}<span class="research-tags">{{ range . }}<span class="research-tag">{{ . }}</span>{{ end }}</span>{{ end }}</th>
+      <th scope="row">{{ $first := index .links 0 }}<a class="research-name" href="{{ $first.url }}" rel="noopener">{{ .name }}</a>{{ with .owner }}<span class="research-owner">{{ . }}</span>{{ end }}{{ with .tags }}<span class="research-tags">{{ range . }}<span class="research-tag">{{ . }}</span>{{ end }}</span>{{ end }}</th>
       <td class="research-sum">{{ .summary }}</td>
       <td class="research-mono">{{ .license }}</td>
       <td class="research-mono">{{ .stars }}</td>
@@ -28,8 +28,8 @@
   .research-filter input:focus { border-color: var(--accent); }
   .research-filter .project-meta { margin-top: 8px; }
   .research-n { font: 500 12px var(--mono); color: var(--muted); margin-left: 6px; }
-  .research-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); margin-top: 12px; }
-  .research-table { width: 100%; min-width: 860px; border-collapse: collapse; font-size: 14px; }
+  .research-scroll { width: min(1200px, calc(100vw - 40px)); position: relative; left: 50%; transform: translateX(-50%); overflow-x: auto; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); margin-top: 12px; }
+  .research-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px; }
   .research-table thead th { text-align: left; font: 600 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 14px 16px; border-bottom: 1px solid var(--rule); }
   .research-table tbody th, .research-table td { text-align: left; vertical-align: top; padding: 16px; border-bottom: 1px solid var(--rule); }
   .research-table tbody tr:last-child > * { border-bottom: 0; }
@@ -40,9 +40,12 @@
   .research-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   .research-tag { font: 500 10.5px/1 var(--mono); padding: 4px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
   .research-sum { color: var(--ink-2); line-height: 1.55; }
-  .research-mono { width: 13%; font: 500 12px/1.6 var(--mono); color: var(--muted); }
-  .research-links { width: 13%; }
-  .research-links a { display: block; font-size: 13px; font-weight: 500; color: var(--accent-ink); line-height: 1.9; white-space: nowrap; }
+  .research-mono { width: 11%; font: 500 12px/1.6 var(--mono); color: var(--muted); }
+  .research-links { width: 14%; }
+  .research-links a { display: inline-block; margin: 0 4px 6px 0; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; font-size: 12.5px; font-weight: 500; color: var(--accent-ink); white-space: nowrap; text-decoration: none; }
+  .research-links a:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+  .research-links a:first-child { border-color: var(--accent); }
+  a.research-name:hover { color: var(--accent-ink); }
   .research-card[hidden], .research-group[hidden] { display: none; }
 </style>
 <script>
