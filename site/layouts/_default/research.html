@@ -1,32 +1,24 @@
 {{ define "main" }}
 {{ $d := site.Data.airesearch }}
-{{ $total := 0 }}{{ range $d.groups }}{{ $total = add $total (len .projects) }}{{ end }}
-<header class="page-head">
-  <p class="eyebrow">Research</p>
-  <h1>{{ .Title }}</h1>
-  <div class="project-intro">{{ .Content }}</div>
-  <p class="project-meta research-total">{{ $total }} projects · {{ .Params.asof }}</p>
-</header>
-<div class="research-filter" role="search">
-  <input id="rq" type="search" placeholder="Filter by name, license or topic, e.g. sandbox, MIT, memory" autocomplete="off" aria-label="Filter projects">
-  <p class="project-meta" id="rcount" aria-live="polite"></p>
-</div>
-{{ range $d.groups }}
+{{ $total := 0 }}{{ range $d.groups }}
 <section class="year research-group">
-  <h2 class="year-label">{{ .name }}</h2>
-  <ul class="project-grid">
+  <h2 class="year-label">{{ .name }} <span class="research-n">{{ len .projects }}</span></h2>
+  <div class="research-scroll">
+  <table class="research-table">
+    <thead><tr><th>Project</th><th>What it is</th><th>License</th><th>Stars</th><th>Links</th></tr></thead>
+    <tbody>
     {{ range .projects }}
-    <li class="project-card research-card">
-      <h3>{{ $first := index .links 0 }}<a href="{{ $first.url }}" rel="noopener">{{ .name }}</a>{{ with .owner }} <span class="research-owner">{{ . }}</span>{{ end }}</h3>
-      {{ with .tags }}<p class="research-tags">{{ range . }}<span class="research-tag">{{ . }}</span>{{ end }}</p>{{ end }}
-      <p class="project-summary">{{ .summary }}</p>
-      <div class="project-foot">
-        <p class="project-meta">{{ .license }} · ★ {{ .stars }}</p>
-        <p class="research-links">{{ range .links }}<a href="{{ .url }}" rel="noopener">{{ .label }} ↗</a>{{ end }}</p>
-      </div>
-    </li>
+    <tr class="research-card">
+      <th scope="row"><span class="research-name">{{ .name }}</span>{{ with .owner }}<span class="research-owner">{{ . }}</span>{{ end }}{{ with .tags }}<span class="research-tags">{{ range . }}<span class="research-tag">{{ . }}</span>{{ end }}</span>{{ end }}</th>
+      <td class="research-sum">{{ .summary }}</td>
+      <td class="research-mono">{{ .license }}</td>
+      <td class="research-mono">{{ .stars }}</td>
+      <td class="research-links">{{ range .links }}<a href="{{ .url }}" rel="noopener">{{ .label }}</a>{{ end }}</td>
+    </tr>
     {{ end }}
-  </ul>
+    </tbody>
+  </table>
+  </div>
 </section>
 {{ end }}
 <style>
@@ -35,11 +27,22 @@
   .research-filter input { width: 100%; max-width: 560px; padding: 11px 16px; font: 15px/1.4 var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; outline: none; }
   .research-filter input:focus { border-color: var(--accent); }
   .research-filter .project-meta { margin-top: 8px; }
-  .research-owner { font: 500 12px var(--mono); color: var(--muted); margin-left: 6px; }
-  .research-tags { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .research-tag { font: 500 11px/1 var(--mono); padding: 5px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
-  .research-links { position: relative; z-index: 1; margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
-  .research-links a { font-size: 13px; font-weight: 500; color: var(--accent-ink); }
+  .research-n { font: 500 12px var(--mono); color: var(--muted); margin-left: 6px; }
+  .research-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); margin-top: 12px; }
+  .research-table { width: 100%; min-width: 860px; border-collapse: collapse; font-size: 14px; }
+  .research-table thead th { text-align: left; font: 600 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 14px 16px; border-bottom: 1px solid var(--rule); }
+  .research-table tbody th, .research-table td { text-align: left; vertical-align: top; padding: 16px; border-bottom: 1px solid var(--rule); }
+  .research-table tbody tr:last-child > * { border-bottom: 0; }
+  .research-table tbody tr:hover { background: var(--accent-soft); }
+  .research-table tbody th { width: 21%; font-weight: 400; }
+  .research-name { display: block; font-weight: 600; font-size: 15px; color: var(--ink); }
+  .research-owner { display: block; font: 500 12px/1.6 var(--mono); color: var(--muted); }
+  .research-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .research-tag { font: 500 10.5px/1 var(--mono); padding: 4px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+  .research-sum { color: var(--ink-2); line-height: 1.55; }
+  .research-mono { width: 13%; font: 500 12px/1.6 var(--mono); color: var(--muted); }
+  .research-links { width: 13%; }
+  .research-links a { display: block; font-size: 13px; font-weight: 500; color: var(--accent-ink); line-height: 1.9; white-space: nowrap; }
   .research-card[hidden], .research-group[hidden] { display: none; }
 </style>
 <script>
