@@ -1,0 +1,58 @@
+{{ define "main" }}
+{{ $d := site.Data.airesearch }}
+{{ $total := 0 }}{{ range $d.groups }}{{ $total = add $total (len .projects) }}{{ end }}
+<header class="page-head">
+  <p class="eyebrow">Research</p>
+  <h1>{{ .Title }}</h1>
+  <div class="project-intro">{{ .Content }}</div>
+  <p class="project-meta research-total">{{ $total }} projects · {{ .Params.asof }}</p>
+</header>
+<div class="research-filter" role="search">
+  <input id="rq" type="search" placeholder="Filter by name, license or topic, e.g. sandbox, MIT, memory" autocomplete="off" aria-label="Filter projects">
+  <p class="project-meta" id="rcount" aria-live="polite"></p>
+</div>
+{{ range $d.groups }}
+<section class="year research-group">
+  <h2 class="year-label">{{ .name }}</h2>
+  <ul class="project-grid">
+    {{ range .projects }}
+    <li class="project-card research-card">
+      <h3>{{ $first := index .links 0 }}<a href="{{ $first.url }}" rel="noopener">{{ .name }}</a>{{ with .owner }} <span class="research-owner">{{ . }}</span>{{ end }}</h3>
+      {{ with .tags }}<p class="research-tags">{{ range . }}<span class="research-tag">{{ . }}</span>{{ end }}</p>{{ end }}
+      <p class="project-summary">{{ .summary }}</p>
+      <div class="project-foot">
+        <p class="project-meta">{{ .license }} · ★ {{ .stars }}</p>
+        <p class="research-links">{{ range .links }}<a href="{{ .url }}" rel="noopener">{{ .label }} ↗</a>{{ end }}</p>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+<style>
+  .research-total { margin-top: 12px; }
+  .research-filter { margin: 8px 0 28px; }
+  .research-filter input { width: 100%; max-width: 560px; padding: 11px 16px; font: 15px/1.4 var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; outline: none; }
+  .research-filter input:focus { border-color: var(--accent); }
+  .research-filter .project-meta { margin-top: 8px; }
+  .research-owner { font: 500 12px var(--mono); color: var(--muted); margin-left: 6px; }
+  .research-tags { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .research-tag { font: 500 11px/1 var(--mono); padding: 5px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+  .research-links { position: relative; z-index: 1; margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .research-links a { font-size: 13px; font-weight: 500; color: var(--accent-ink); }
+  .research-card[hidden], .research-group[hidden] { display: none; }
+</style>
+<script>
+(function(){
+  var q=document.getElementById("rq"),c=document.getElementById("rcount");
+  var cards=[].slice.call(document.querySelectorAll(".research-card"));
+  function run(){
+    var t=q.value.trim().toLowerCase(),n=0;
+    cards.forEach(function(el){var ok=!t||el.textContent.toLowerCase().indexOf(t)>-1;el.hidden=!ok;if(ok)n++;});
+    [].forEach.call(document.querySelectorAll(".research-group"),function(g){g.hidden=!g.querySelector(".research-card:not([hidden])");});
+    c.textContent=t?("Showing "+n+" of "+cards.length):"";
+  }
+  q.addEventListener("input",run);
+})();
+</script>
+{{ end }}
