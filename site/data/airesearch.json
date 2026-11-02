@@ -125,7 +125,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Inference"
   },
   {
    "id": "training",
@@ -155,7 +156,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Training"
   },
   {
    "id": "open-weights",
@@ -237,7 +239,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Open weights"
   },
   {
    "id": "multi-agent",
@@ -381,7 +384,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Multi-agent"
   },
   {
    "id": "coding",
@@ -441,7 +445,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Coding"
   },
   {
    "id": "memory",
@@ -567,7 +572,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Memory"
   },
   {
    "id": "tools",
@@ -761,7 +767,8 @@
       }
      ]
     }
-   ]
+   ],
+   "tab": "Tools"
   }
  ]
 }
