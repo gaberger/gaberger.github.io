@@ -1,0 +1,50 @@
+---
+title: "Experiments"
+layout: "projects"
+description: "Smaller experiments and prototypes by Gary Berger: API tooling, agent infrastructure and side projects."
+groups:
+  - name: "Experiments"
+    projects:
+      - name: "apidiff"
+        url: "https://github.com/gaberger/apidiff"
+        language: "JavaScript"
+        license: "No license yet"
+        status: "Experiment"
+        summary: "An API migration toolkit. Compares OpenAPI specs across versions, flags breaking changes, writes migration guides and emits a schema-valid changeset that humans and machines can both read."
+      - name: "specdiff"
+        url: "https://github.com/gaberger/specdiff"
+        language: "JavaScript"
+        license: "No license yet"
+        status: "Prototype"
+        summary: "The first cut of apidiff, with a web UI. Compares OpenAPI specs and turns the differences into migration checklists with severity and timelines."
+      - name: "rlm-mcp-server"
+        url: "https://github.com/gaberger/rlm-mcp-server"
+        language: "Node.js"
+        license: "No license yet"
+        status: "Experiment"
+        summary: "An MCP server for Recursive Language Model primitives: decompose an input too big for the context window, analyze each chunk, then aggregate the results."
+      - name: "tessl-carnival"
+        url: "https://github.com/gaberger/tessl-carnival"
+        language: "JavaScript"
+        license: "MIT"
+        status: "Workshop"
+        summary: "My copy of the AI DevCon NYC 2026 workshop repo: a browser carnival where labeling an issue sends an agent to ship a new game, built as a software factory one skill at a time."
+      - name: "fireworks-extension"
+        url: "https://github.com/gaberger/fireworks-extension"
+        language: "JavaScript"
+        license: "MIT"
+        status: "Experiment"
+        summary: "A browser extension for Firefox and Chrome that sets off particle fireworks on the pages and elements you choose."
+  - name: "Deprecated"
+    projects:
+      - name: "hex"
+        url: "https://github.com/gaberger/hex"
+        language: "Rust"
+        license: "MIT"
+        status: "Deprecated: superseded by hexa"
+        summary: "The original operating system for AI agents: process management, architecture enforcement, swarm coordination and inference routing. No longer maintained; its ideas live on in hexa."
+---
+
+Smaller things I've tried in the open: prototypes, workshop repos and ideas
+that may or may not grow up. The finished work is on the
+[Projects](/projects/) page.
