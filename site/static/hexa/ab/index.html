@@ -333,13 +333,13 @@ footer { padding: 32px 0 48px; color: var(--text-muted); font-size: 13px; border
       <h2>Reproduce it</h2>
       <p class="sub">The runner, the rubric and the raw run JSON are published together.</p>
 <pre><code>pip install lizard==1.17.13          # plus bun, jq, the claude CLI and a built hexa
-./selftest.sh                        # no model calls
-MODELS="claude-opus-5-5 claude-sonnet-5-5 claude-haiku-5-5" ARMS="A B C" RUNS=5 ./run_matrix.sh
-python3 -I report.py runs --json runs/evidence.json --md runs/EVIDENCE.md</code></pre>
+bench/ab/selftest.sh                 # no model calls
+MODELS="&lt;model id&gt; &lt;model id&gt;" ARMS="A B C" RUNS=5 bench/ab/run_matrix.sh
+python3 -I bench/ab/report.py bench/ab/runs</code></pre>
       <p class="sub" style="margin-top:16px;margin-bottom:0">
-        <a href="https://github.com/gaberger/experiments/blob/main/hexa-ab/RUBRIC.md">Full rubric</a> ·
-        <a href="https://github.com/gaberger/experiments/blob/main/hexa-ab/README.md">Harness README</a> ·
-        <a href="https://github.com/gaberger/experiments/tree/main/hexa-ab/runs">Raw runs</a> ·
+        <a href="https://github.com/gaberger/hexa/blob/main/bench/ab/RUBRIC.md">Full rubric</a> ·
+        <a href="https://github.com/gaberger/hexa/blob/main/bench/ab/README.md">Harness README</a> ·
+        <a href="https://github.com/gaberger/hexa/tree/main/bench/ab/runs">Raw runs</a> ·
         <a href="https://github.com/gaberger/hexa">hexa</a>
       </p>
     </div>
