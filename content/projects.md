@@ -6,7 +6,7 @@ groups:
   - name: "Current"
     projects:
       - name: "hexa"
-        url: "https://github.com/gaberger/hexa"
+        url: "https://gaberger.github.io/hexa/"
         language: "Rust"
         license: "MIT"
         status: "Alpha"
