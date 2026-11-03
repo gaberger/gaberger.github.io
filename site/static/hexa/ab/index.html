@@ -130,6 +130,9 @@ h3 { font-size: 16px; margin: 0 0 6px; }
 .empty .big { font-size: 22px; margin-bottom: 8px; }
 .empty p { max-width: 52ch; margin: 0 auto 16px; }
 .model-block { margin-bottom: 28px; }
+.family-head { margin: 8px 0 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.family-head:first-of-type { border-top: 0; padding-top: 0; }
+.family-head h3 { font-size: 20px; margin: 0 0 2px; }
 .model-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
 .model-head h3 { font-size: 18px; margin: 0; }
 .verdict { font-size: 13px; font-weight: 600; border-radius: 999px; padding: 3px 10px; }
@@ -235,10 +238,34 @@ footer { padding: 32px 0 48px; color: var(--text-muted); font-size: 13px; border
     </div>
   </section>
 
+  <section id="headline">
+    <div class="wrap">
+      <h2>What 360 runs show</h2>
+      <p class="sub">Three models, three task families. Written from the same data the charts below are drawn from. <a href="https://github.com/gaberger/hexa/blob/main/bench/ab/RESULTS.md">The full write-up</a> has every number and every caveat.</p>
+      <div class="grid g3">
+        <div class="card">
+          <div class="big">60% → 100%</div>
+          <div class="label">Haiku on an entangled refactor, without hexa and with it. Sonnet: 80% → 100%.</div>
+          <p style="margin-top:10px">Every miss without hexa had green tests and one boundary violation left behind. Through hexa, all 15 runs reached A+.</p>
+        </div>
+        <div class="card">
+          <div class="big">Ceiling</div>
+          <div class="label">on small, well-specified tasks</div>
+          <p style="margin-top:10px">Every arm passes nearly every fixture and shape trap. There, hexa’s effect is on cost and diff size: about the same or lower spend, and often half the lines changed.</p>
+        </div>
+        <div class="card">
+          <div class="big">1 task</div>
+          <div class="label">behind the refactor result, 5 runs per arm</div>
+          <p style="margin-top:10px">The point estimates clear the protocol’s bar; the confidence intervals still reach zero. A signal to scale up, not a settled result.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="results">
     <div class="wrap">
-      <h2>Results by model</h2>
-      <p class="sub">Read from <a href="runs/evidence.json"><code>runs/evidence.json</code></a>, which <code>report.py</code> writes from the raw per-run records. Nothing on this page is typed in by hand.</p>
+      <h2>Results by family and model</h2>
+      <p class="sub">Read from <a href="runs/evidence.json"><code>runs/evidence.json</code></a>, which <code>report.py</code> writes from the raw per-run records. The charts and tables are drawn from it, not typed in.</p>
       <div id="resultsBody">
         <div class="card empty">
           <div class="big">No model runs yet</div>
@@ -296,8 +323,8 @@ footer { padding: 32px 0 48px; color: var(--text-muted); font-size: 13px; border
       <h2>Self-test</h2>
       <p class="sub">Before any model run, the rubric has to show it can tell right from wrong. It makes no model calls and costs nothing.</p>
       <div class="card">
-        <div class="check"><span class="mark ok">✓</span><div><b>5 of 5 oracles fail the untouched starting code.</b> A test that passes before any work proves nothing.</div></div>
-        <div class="check"><span class="mark ok">✓</span><div><b>A known-correct answer passes its oracle</b> (<code>header-safe-url</code>, 5 of 5 tests).</div></div>
+        <div class="check"><span class="mark ok">✓</span><div><b>Every task fails on its untouched start.</b> All 5 fixture oracles fail the starting code, and none of the 3 project tasks is accepted as it ships. A test that passes before any work proves nothing.</div></div>
+        <div class="check"><span class="mark ok">✓</span><div><b>Known-correct answers are accepted</b> (<code>header-safe-url</code>, and a correct cache for <code>linkstore-cache</code>).</div></div>
         <div class="check"><span class="mark ok">✓</span><div><b>The runner refuses to start</b> unless both checks hold.</div></div>
       </div>
     </div>
@@ -305,12 +332,12 @@ footer { padding: 32px 0 48px; color: var(--text-muted); font-size: 13px; border
 
   <section>
     <div class="wrap">
-      <h2>Found before the first run</h2>
-      <p class="sub">Problems that would have skewed the comparison, found while reviewing the protocol and building the harness.</p>
+      <h2>Found along the way</h2>
+      <p class="sub">Problems that would have skewed the comparison, found while reviewing the protocol, building the harness and reading the runs.</p>
       <div class="grid g2">
         <div class="card finding">
-          <h3><span class="sev">Fixture</span> An oracle contradicts its own test name</h3>
-          <p><code>header-safe-url</code> says code points “above U+00FF” are rejected, but it also rejects <code>é</code> (U+00E9). An agent that follows the stated rule fails.</p>
+          <h3><span class="sev">Fixture</span> An oracle contradicted its own test name</h3>
+          <p><code>header-safe-url</code> said code points “above U+00FF” are rejected, but it also rejected <code>é</code> (U+00E9). Fixed: the case now uses U+0101.</p>
         </div>
         <div class="card finding">
           <h3><span class="sev">Grading</span> Single-file fixtures always grade F 0</h3>
@@ -323,6 +350,14 @@ footer { padding: 32px 0 48px; color: var(--text-muted); font-size: 13px; border
         <div class="card finding">
           <h3><span class="sev">Model</span> “Same model” has to be enforced</h3>
           <p>hexa tries local models before Claude by default, and its text-mode path passes no <code>--model</code>. The wrapper pins every call and voids runs that drift.</p>
+        </div>
+        <div class="card finding">
+          <h3><span class="sev">Example</span> A showcase example graded B</h3>
+          <p><code>linkstore-svc</code> never declared its two split adapters, so hexa graded it B 80. Declared as hexa’s ADR-2610271649 says, it is A+ 100.</p>
+        </div>
+        <div class="card finding">
+          <h3><span class="sev">hexa</span> One attempt, then revert</h3>
+          <p>With a Claude delegate, <code>hexa do run</code> makes one attempt. When the grade gate fails it reverts rather than handing the verdict back for a retry.</p>
         </div>
       </div>
     </div>
@@ -410,9 +445,25 @@ python3 -I bench/ab/report.py bench/ab/runs</code></pre>
     var legend = document.createElement("div"); legend.className = "legend";
     Object.keys(ARMS).forEach(function (k) { legend.innerHTML += '<span><span class="sw" style="background:' + ARMS[k].color + '"></span>' + k + " · " + ARMS[k].name + "</span>"; });
     body.appendChild(legend);
+    // One section per task family: a ceiling in one must not hide a difference in another.
+    var fams = ev.families || { all: { title: "All tasks", tasks: [], models: ev.models } };
+    Object.keys(fams).forEach(function (f) {
+      var fam = fams[f], head = document.createElement("div"); head.className = "family-head";
+      var h = document.createElement("h3"); h.textContent = fam.title; head.appendChild(h);
+      if (fam.tasks && fam.tasks.length) {
+        var p = document.createElement("p"); p.className = "chart-note"; p.textContent = "Tasks: " + fam.tasks.join(", ");
+        head.appendChild(p);
+      }
+      body.appendChild(head);
+      renderModels(fam.models, body, f);
+    });
+  }
 
-    models.forEach(function (model) {
-      var m = ev.models[model], arms = Object.keys(m.arms).sort();
+  function renderModels(models, body, family) {
+    // Where the grade is part of acceptance, the false-green that matters is a broken shape.
+    var shaped = family !== "change";
+    Object.keys(models).forEach(function (model) {
+      var m = models[model], arms = Object.keys(m.arms).sort();
       var block = document.createElement("div"); block.className = "model-block";
       var ba = m.paired && m.paired["B−A"], verdict = '<span class="verdict unk">B vs A: needs both arms</span>';
       if (ba && m.arms.A && m.arms.B) {
@@ -421,8 +472,11 @@ python3 -I bench/ab/report.py bench/ab/runs</code></pre>
         var meets = ba.diff_points >= 20 && ratio != null && ratio <= 1.5;
         // A point estimate past the bar is not a win while the CI still includes zero.
         var sure = ba.ci95_points[0] > 0;
-        var cls = meets && sure ? "win" : (meets ? "unk" : "no");
-        var word = meets && sure ? "Meets the win condition" : (meets ? "Inconclusive: CI includes 0" : "Misses the win condition");
+        // When A already scores above 80%, B cannot gain 20 points: the task has no headroom.
+        var ceiling = !meets && m.arms.A.accuracy.accepted_correct != null && m.arms.A.accuracy.accepted_correct > 0.8;
+        var cls = meets && sure ? "win" : (meets || ceiling ? "unk" : "no");
+        var word = meets && sure ? "Meets the win condition" : (meets ? "Inconclusive: CI includes 0"
+          : (ceiling ? "No headroom: A already at " + pct(m.arms.A.accuracy.accepted_correct) : "Misses the win condition"));
         verdict = '<span class="verdict ' + cls + '">' + word + ": B−A " + (ba.diff_points >= 0 ? "+" : "") + ba.diff_points + " pts" +
           (ratio != null ? " at " + ratio.toFixed(2) + "× tokens" : "") + "</span>";
       }
@@ -431,9 +485,13 @@ python3 -I bench/ab/report.py bench/ab/runs</code></pre>
       charts.appendChild(barChart("Accepted-correct", "Higher is better", arms, function (a) {
         var s = m.arms[a]; return { arm: a, value: s.accuracy.accepted_correct, extra: (s.runs_launched - s.runs_void) + " counted runs, " + s.runs_void + " void" };
       }, pct, 1));
-      charts.appendChild(barChart("False-green (correctness)", "Own tests pass, oracle fails · lower is better", arms, function (a) {
-        return { arm: a, value: m.arms[a].accuracy.false_green_correctness };
-      }, pct, 1));
+      charts.appendChild(shaped
+        ? barChart("False-green (shape)", "Tests pass, architecture broken · lower is better", arms, function (a) {
+            return { arm: a, value: m.arms[a].accuracy.false_green_shape };
+          }, pct, 1)
+        : barChart("False-green (correctness)", "Own tests pass, oracle fails · lower is better", arms, function (a) {
+            return { arm: a, value: m.arms[a].accuracy.false_green_correctness };
+          }, pct, 1));
       charts.appendChild(barChart("Cost per accepted-correct", "Dollars per good result · lower is better", arms, function (a) {
         var c = m.arms[a].cost; return { arm: a, value: c.usd_per_accepted_correct, extra: n(c.tokens_per_accepted_correct) + " tokens per good result" };
       }, usd));
