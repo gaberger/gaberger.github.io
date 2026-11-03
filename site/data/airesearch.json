@@ -632,50 +632,6 @@
      ]
     },
     {
-     "name": "SPACE",
-     "owner": "Perplexity",
-     "tags": [
-      "New Oct 31"
-     ],
-     "summary": "Firecracker microVM sandbox behind Perplexity Computer: one VM per agent task, with credentials and network egress controlled outside the VM. E2B-compatible.",
-     "license": "Apache-2.0",
-     "stars": "2.0k",
-     "links": [
-      {
-       "label": "GitHub",
-       "url": "https://github.com/perplexityai/SPACE"
-      },
-      {
-       "label": "Docs",
-       "url": "https://space.docs.perplexity.ai/guide/index.html"
-      },
-      {
-       "label": "Announcement",
-       "url": "https://www.perplexity.ai/hub/blog/open-sourcing-space"
-      }
-     ]
-    },
-    {
-     "name": "OpenShell",
-     "owner": "NVIDIA",
-     "tags": [
-      "New Oct 31"
-     ],
-     "summary": "Policy-governed sandbox runtime for agent fleets. Declarative YAML policies enforced outside the agent: kernel-level file, syscall and network controls, egress proxy, credential brokering, and a formal policy prover. Runs Claude Code, Codex, OpenCode and Copilot CLI on Docker, Podman, microVM or Kubernetes.",
-     "license": "Apache-2.0",
-     "stars": "20.8k",
-     "links": [
-      {
-       "label": "GitHub",
-       "url": "https://github.com/NVIDIA/OpenShell"
-      },
-      {
-       "label": "Docs",
-       "url": "https://docs.nvidia.com/openshell/latest/"
-      }
-     ]
-    },
-    {
      "name": "Lightpanda",
      "owner": "lightpanda-io",
      "tags": [
@@ -710,24 +666,6 @@
       {
        "label": "Site",
        "url": "https://www.skyvern.com"
-      }
-     ]
-    },
-    {
-     "name": "E2B",
-     "owner": "",
-     "tags": [],
-     "summary": "Secure cloud sandboxes for agents to run code.",
-     "license": "Apache-2.0",
-     "stars": "14.6k",
-     "links": [
-      {
-       "label": "GitHub",
-       "url": "https://github.com/e2b-dev/E2B"
-      },
-      {
-       "label": "Docs",
-       "url": "https://docs.e2b.dev/"
       }
      ]
     },
@@ -769,6 +707,240 @@
     }
    ],
    "tab": "Tools"
+  },
+  {
+   "id": "sandboxes",
+   "name": "Agent sandboxes",
+   "tab": "Sandboxes",
+   "projects": [
+    {
+     "name": "Not All Agent Sandboxes Are Created Equally",
+     "owner": "Christian Posta, kagent.dev",
+     "tags": [
+      "Article",
+      "New Nov 3, 2026"
+     ],
+     "summary": "Compares agent sandboxes on four axes: boundary and access controls, environment, lifecycle, and interface and experience. Advice: start with where the agent loop runs. First post in a series, with one follow-up per project.",
+     "license": "Blog post",
+     "stars": "n/a",
+     "links": [
+      {
+       "label": "Article",
+       "url": "https://kagent.dev/blog/agent-sandboxes-four-axes"
+      }
+     ]
+    },
+    {
+     "name": "Google AX",
+     "owner": "Google",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Agent Executor: Google's open agentic orchestration runtime, which runs agent tasks on Agent Substrate.",
+     "license": "Apache-2.0",
+     "stars": "14.5k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/google/ax"
+      }
+     ]
+    },
+    {
+     "name": "Agent Substrate",
+     "owner": "agent-substrate",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Kubernetes-based core for agent sandboxes. It suspends and wakes idle agents, and egress is denied by default.",
+     "license": "Apache-2.0",
+     "stars": "6.1k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/agent-substrate/substrate"
+      }
+     ]
+    },
+    {
+     "name": "nono",
+     "owner": "nolabs-ai",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Single binary that applies kernel-level restrictions to an agent, with an optional egress proxy.",
+     "license": "Apache-2.0",
+     "stars": "4.8k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/nolabs-ai/nono"
+      }
+     ]
+    },
+    {
+     "name": "kagent",
+     "owner": "Solo.io / CNCF",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Kubernetes-native agent framework (CNCF sandbox project); publisher of the sandbox series.",
+     "license": "Apache-2.0",
+     "stars": "4.1k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/kagent-dev/kagent"
+      },
+      {
+       "label": "Site",
+       "url": "https://kagent.dev"
+      }
+     ]
+    },
+    {
+     "name": "DefenseClaw",
+     "owner": "Cisco AI Defense",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Security governance layer for agentic AI, built on NVIDIA OpenShell.",
+     "license": "Apache-2.0",
+     "stars": "904",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/cisco-ai-defense/defenseclaw"
+      }
+     ]
+    },
+    {
+     "name": "Minimal",
+     "owner": "gominimal",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Runs an agent in a Minimal box: sandboxed sessions built from its own package registry, on your own computer.",
+     "license": "Apache-2.0",
+     "stars": "237",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/gominimal/minimal"
+      }
+     ]
+    },
+    {
+     "name": "Discobox",
+     "owner": "discobox-ai",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Coding-agent sandboxes: a dev box per agent on a copy of the repo (discobox apply).",
+     "license": "Apache-2.0",
+     "stars": "107",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/discobox-ai/discobox"
+      }
+     ]
+    },
+    {
+     "name": "Substrate env",
+     "owner": "agent-substrate",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "Agentic environment abstraction: a shell, file and MCP API on Agent Substrate.",
+     "license": "Apache-2.0",
+     "stars": "71",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/agent-substrate/env"
+      }
+     ]
+    },
+    {
+     "name": "Docker Sandboxes",
+     "owner": "Docker",
+     "tags": [
+      "New Nov 3, 2026"
+     ],
+     "summary": "A microVM per coding agent, each with its own Docker daemon.",
+     "license": "Docker product",
+     "stars": "n/a",
+     "links": [
+      {
+       "label": "Docs",
+       "url": "https://docs.docker.com/ai/sandboxes/"
+      }
+     ]
+    },
+    {
+     "name": "OpenShell",
+     "owner": "NVIDIA",
+     "tags": [
+      "New Oct 31"
+     ],
+     "summary": "Policy-governed sandbox runtime for agent fleets. Declarative YAML policies enforced outside the agent: kernel-level file, syscall and network controls, egress proxy, credential brokering, and a formal policy prover. Runs Claude Code, Codex, OpenCode and Copilot CLI on Docker, Podman, microVM or Kubernetes.",
+     "license": "Apache-2.0",
+     "stars": "20.8k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/NVIDIA/OpenShell"
+      },
+      {
+       "label": "Docs",
+       "url": "https://docs.nvidia.com/openshell/latest/"
+      }
+     ]
+    },
+    {
+     "name": "E2B",
+     "owner": "",
+     "tags": [],
+     "summary": "Secure cloud sandboxes for agents to run code.",
+     "license": "Apache-2.0",
+     "stars": "14.6k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/e2b-dev/E2B"
+      },
+      {
+       "label": "Docs",
+       "url": "https://docs.e2b.dev/"
+      }
+     ]
+    },
+    {
+     "name": "SPACE",
+     "owner": "Perplexity",
+     "tags": [
+      "New Oct 31"
+     ],
+     "summary": "Firecracker microVM sandbox behind Perplexity Computer: one VM per agent task, with credentials and network egress controlled outside the VM. E2B-compatible.",
+     "license": "Apache-2.0",
+     "stars": "2.0k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/perplexityai/SPACE"
+      },
+      {
+       "label": "Docs",
+       "url": "https://space.docs.perplexity.ai/guide/index.html"
+      },
+      {
+       "label": "Announcement",
+       "url": "https://www.perplexity.ai/hub/blog/open-sourcing-space"
+      }
+     ]
+    }
+   ]
   }
  ]
 }
