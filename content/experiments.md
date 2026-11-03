@@ -5,6 +5,12 @@ description: "Smaller experiments and prototypes by Gary Berger: API tooling, ag
 groups:
   - name: "Experiments"
     projects:
+      - name: "hexa A/B evidence"
+        url: "/hexa/ab/"
+        language: "Python"
+        license: "No license yet"
+        status: "Pre-registered: no runs yet"
+        summary: "Does hexa make AI-written code correct and the right shape? The same model, prompt and budget, run with and without hexa, judged by hidden oracles, with accuracy, tokens, cost, lines of code and complexity recorded per model."
       - name: "apidiff"
         url: "https://github.com/gaberger/apidiff"
         language: "JavaScript"
