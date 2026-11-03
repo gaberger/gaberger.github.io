@@ -129,12 +129,6 @@ h3{font-size:18.5px;letter-spacing:-.01em;font-weight:700;margin-bottom:6px;line
 .quote{padding:32px 34px;border-radius:var(--r);background:linear-gradient(135deg,rgba(88,166,255,.08),rgba(188,140,255,.08));border:1px solid var(--line2)}
 .quote .big{font-size:clamp(26px,2.8vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.2}
 .quote .small{color:var(--muted);margin-top:12px;font-size:15.5px}
-.ledger{margin-top:22px;display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
-.ledger i{aspect-ratio:1;border-radius:3px;background:var(--red);opacity:.75}
-.ledger i.ok{background:var(--green);opacity:.85}
-.legend{display:flex;gap:18px;margin-top:12px;font-size:13.5px;color:var(--muted);flex-wrap:wrap}
-.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:-1px;background:var(--red)}
-.legend span.ok::before{background:var(--green)}
 .vs{margin-top:44px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
 .vs table{width:100%;border-collapse:collapse;font-size:15.5px}
 .vs th,.vs td{padding:15px 22px;text-align:left;border-bottom:1px solid var(--line)}
@@ -145,6 +139,19 @@ h3{font-size:18.5px;letter-spacing:-.01em;font-weight:700;margin-bottom:6px;line
 .vs td.gd{background:rgba(63,185,80,.05)}
 .no{color:var(--red);font-weight:700}.yes{color:var(--green);font-weight:700}
 
+.ab{border-radius:var(--r);border:1px solid var(--line2);background:var(--panel);overflow:hidden}
+.abh{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:14px 20px;border-bottom:1px solid var(--line);background:#0e1420}
+.abcols{display:grid;grid-template-columns:1fr 1fr}
+.abc{padding:20px;display:flex;flex-direction:column;gap:10px}
+.abc+.abc{border-left:1px solid var(--line)}
+.abc.on{background:linear-gradient(180deg,rgba(88,166,255,.07),transparent)}
+.abt{font-weight:700;font-size:17px;margin-bottom:4px}
+.abr{font-size:14.5px;color:var(--muted);display:flex;gap:10px}
+.abr span{font-family:var(--mono);width:12px;flex:none}
+.abv{margin-top:8px;align-self:flex-start;font:600 12.5px var(--mono);padding:5px 10px;border-radius:8px}
+.abv.bad{color:var(--red);background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3)}
+.abv.good{color:var(--green);background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3)}
+@media (max-width:420px){.abcols{grid-template-columns:1fr}.abc+.abc{border-left:0;border-top:1px solid var(--line)}}
 /* flow */
 .flow{margin-top:48px;display:grid;grid-template-columns:repeat(5,1fr) auto;gap:0;align-items:stretch;position:relative}
 .node{position:relative;margin-right:26px;padding:20px 18px 18px;border-radius:14px;border:1px solid var(--line2);background:var(--panel);display:flex;flex-direction:column}
@@ -346,7 +353,6 @@ footer .links{display:flex;gap:20px;flex-wrap:wrap}
   .strip div.s:last-child{grid-column:1/-1}
   .navcta span{display:none}
   .ver{display:none}
-  .ledger{grid-template-columns:repeat(10,1fr)}
 }
 </style>
 </head>
@@ -420,12 +426,20 @@ footer .links{display:flex;gap:20px;flex-wrap:wrap}
         <p class="sub">An AI agent can ship a feature whose tests pass and whose shape is wrong: a use case that imports a database driver, a domain type that depends on an HTTP client. The suite stays green.</p>
         <p class="sub">Tests answer <em>does it run</em>. Nothing answers <em>is it still the system I designed</em>. hexa adds that second question, as a gate.</p>
       </div>
-      <div class="quote reveal">
-        <div class="big">A spec is prose. <span class="g">Prose can't fail.</span></div>
-        <p class="small">On 2026-09-15, this repo's own decision records were cited 140 times across code and docs. 113 of those ids had no file. Nothing errored, because nothing checked.</p>
-        <div class="ledger" id="ledger" aria-hidden="true"></div>
-        <div class="legend"><span>113 cited, no file</span><span class="ok">27 resolved</span></div>
-        <p class="small" style="margin-top:14px"><code>hexa adr doctor</code> now fails CI when a cited id resolves to nothing.</p>
+      <div class="ab reveal" aria-label="Same agent, same task, with and without hexa">
+        <div class="abh">Same agent · same task · illustrative</div>
+        <div class="abcols">
+          <div class="abc"><div class="abt">Without hexa</div>
+            <div class="abr"><span class="yes">✓</span> tests pass</div>
+            <div class="abr"><span class="c-d">–</span> shape not checked</div>
+            <div class="abr"><span class="c-d">–</span> use case imports the DB driver</div>
+            <div class="abv bad">merged</div></div>
+          <div class="abc on"><div class="abt">With hexa</div>
+            <div class="abr"><span class="yes">✓</span> tests pass</div>
+            <div class="abr"><span class="no">✗</span> rule 4: use case → adapter</div>
+            <div class="abr"><span class="no">✗</span> grade below floor A</div>
+            <div class="abv good">rejected, edit reverted</div></div>
+        </div>
       </div>
     </div>
 
@@ -769,9 +783,6 @@ footer .links{display:flex;gap:20px;flex-wrap:wrap}
   // terminal lines
   var ln=[].slice.call(document.querySelectorAll('#term .ln'));
   if(reduce)ln.forEach(function(l){l.classList.add('on')});else ln.forEach(function(l,i){setTimeout(function(){l.classList.add('on')},250+i*(i<2?180:420))});
-  // ledger grid: 140 cited ids, 113 with no file
-  var lg=document.getElementById('ledger');for(var i=0;i<140;i++){var c=document.createElement('i');if(i%5===2&&i<135)c.className='ok';lg.appendChild(c)}
-  var ok=lg.querySelectorAll('.ok').length;for(var k=0;ok<27&&k<140;k++){var el=lg.children[k];if(!el.className){el.className='ok';ok++}}
   // hexagon highlight
   document.querySelectorAll('.rule').forEach(function(r){
     function on(v){document.querySelectorAll('.hexsvg .ring').forEach(function(g){g.classList.toggle('hl',v&&g.dataset.layer===r.dataset.layer)})}
