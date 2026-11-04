@@ -580,6 +580,47 @@
    "name": "Tools and observability",
    "projects": [
     {
+     "name": "Unified Harness Protocol (UHP)",
+     "owner": "HarnessRouter",
+     "tags": [
+      "New Nov 4, 2026",
+      "Standard"
+     ],
+     "summary": "Open draft standard for driving complete agent harnesses (Codex, Claude Code, Hermes, DeepSeek Harness, Gemini CLI) through one HTTP contract: tasks, streaming, sessions, files, cancellation. Shaped like the OpenAI Responses API, with a 104-check conformance suite. HarnessRouter is the self-hosted reference server.",
+     "license": "Apache-2.0",
+     "stars": "4.1k",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/HarnessRouter/harnessrouter"
+      },
+      {
+       "label": "Spec",
+       "url": "https://unifiedharnessprotocol.org/"
+      },
+      {
+       "label": "Site",
+       "url": "https://harnessrouter.ai/"
+      }
+     ]
+    },
+    {
+     "name": "harness-eval",
+     "owner": "ashishpatel26",
+     "tags": [
+      "New Nov 4, 2026"
+     ],
+     "summary": "Did a harness change (AGENTS.md, skills, MCP, hooks) make a coding agent better or worse? Paired, repeated, isolated runs with per-task deltas, bootstrap CI, an A/A noise floor, and CI exit codes. Claude Code, Codex or Ollama.",
+     "license": "None stated (Caution)",
+     "stars": "3",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/ashishpatel26/harness-eval"
+      }
+     ]
+    },
+    {
      "name": "agent-desktop",
      "owner": "Vercel Labs",
      "tags": [
