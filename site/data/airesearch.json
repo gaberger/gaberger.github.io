@@ -392,6 +392,31 @@
    "name": "Coding agents",
    "projects": [
     {
+     "name": "AREX-2",
+     "owner": "BAAI",
+     "tags": [
+      "New Nov 6, 2026",
+      "Harness vs model"
+     ],
+     "summary": "A 27B agent (Qwen3.8-27B fine-tune) trained to run the try, measure and revise loop itself instead of leaving it to the harness. It's trained on long ML-engineering and algorithm trajectories that keep their failed rounds. Scores 81.8 on MLE-bench Lite and 70.7 on Frontier-CS, and keeps improving over a 5-hour budget. Ablation: skills plus more rounds (harness) add 39 points, training adds 13.6. The repo holds eval runners only; the optimized harness isn't published.",
+     "license": "Apache-2.0",
+     "stars": "52",
+     "links": [
+      {
+       "label": "GitHub",
+       "url": "https://github.com/VectorSpaceLab/AREX-2"
+      },
+      {
+       "label": "Paper",
+       "url": "https://arxiv.org/abs/2609.38288"
+      },
+      {
+       "label": "Model",
+       "url": "https://huggingface.co/BAAI/AREX-2"
+      }
+     ]
+    },
+    {
      "name": "SWE-agent",
      "owner": "",
      "tags": [],
