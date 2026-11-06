@@ -10,7 +10,7 @@
      "tags": [
       "We own a QuietBox 2"
      ],
-     "summary": "The open software stack for our Tenstorrent QuietBox 2. tt-metal (TT-NN ops + TT-Metalium kernels) is the core, tt-forge is the MLIR compiler for PyTorch/JAX, tt-inference-server serves models with vLLM, and tt-studio is a web GUI to deploy and chat with models. Latest tt-metal: v0.81.1 (Oct 23, 2026). Latest tt-inference-server: v0.26.0 (Oct 30, 2026) , adding QuietBox 2 support for K2-Horizon-7B, Muse-Glimmer-30B, Kolibri-1-BF16, gemma-4-26B-A4B-it and granite-4.2-30b.",
+     "summary": "The open software stack for our Tenstorrent QuietBox 2. tt-metal (TT-NN ops + TT-Metalium kernels) is the core, tt-forge is the MLIR compiler for PyTorch/JAX, tt-inference-server serves models with vLLM, and tt-studio is a web GUI to deploy and chat with models. Latest tt-studio: v2.13.0 (Nov 2026), adding fine-tune job deletion, a guided fine-tune tour, ~6x faster Hugging Face Xet downloads and shared RAG collections. Latest tt-metal: v0.81.1 (Oct 23, 2026). Latest tt-inference-server: v0.26.0 (Oct 30, 2026) , adding QuietBox 2 support for K2-Horizon-7B, Muse-Glimmer-30B, Kolibri-1-BF16, gemma-4-26B-A4B-it and granite-4.2-30b.",
      "license": "Apache-2.0",
      "stars": "1.7k tt-metal, Oct 31, 2026",
      "links": [
@@ -163,6 +163,22 @@
    "id": "open-weights",
    "name": "Open-weight models",
    "projects": [
+    {
+     "name": "Kimi K3.1 Pro",
+     "owner": "Moonshot AI",
+     "tags": [
+      "New Nov 5, 2026"
+     ],
+     "summary": "Open weights for Moonshot's flagship: 2.8T-parameter MoE with 104B active and a 1M-token context. Far too large for a 128 GB QuietBox 2.",
+     "license": "Custom (Caution)",
+     "stars": "—",
+     "links": [
+      {
+       "label": "Hugging Face",
+       "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro"
+      }
+     ]
+    },
     {
      "name": "DeepSeek",
      "owner": "DeepSeek",
