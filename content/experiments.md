@@ -5,6 +5,12 @@ description: "Smaller experiments and prototypes by Gary Berger: API tooling, ag
 groups:
   - name: "Experiments"
     projects:
+      - name: "mini-jev"
+        url: "/experiments/mini-jev/"
+        language: "Python"
+        license: "No license yet"
+        status: "Experiment"
+        summary: "A tiny \"System One\" driver whose neural network weights are written by hand, not trained. Inspired by Weight-Space Programming: an 11-layer net of 2,217 hand-set weights finishes 99.6% of 500 roads, while a REINFORCE net trained for 3,000 episodes finishes none. Runs in the browser."
       - name: "apidiff"
         url: "https://github.com/gaberger/apidiff"
         language: "JavaScript"
