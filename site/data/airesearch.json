@@ -150,6 +150,35 @@
       "name": "LLM training",
       "projects": [
         {
+          "name": "Weight-Space Programming",
+          "owner": "MIT CSAIL (Takehi, Teoh, Zhang, Khattab)",
+          "tags": [
+            "New Nov 11, 2026",
+            "Research"
+          ],
+          "summary": "Frontier LLMs reading and writing neural network weights directly, with no gradients and no training loop. GPT-6 Astra tells what a small network was trained on from its raw weights, and writes game-playing networks from scratch that beat PPO trained for 100M steps. Editing 0.016% of Qwen3.5-0.8B's weights to fix a reasoning-loop fault raises MATH-500 from 7.9% to 48.1% and IFEval about 3x (same sampling settings). Blog post (Nov 2, 2026); logs and the edited model are public.",
+          "license": "Custom / unclear (logs repo) Caution Edited model is Apache-2.0",
+          "stars": "1.2k logs repo",
+          "links": [
+            {
+              "label": "Blog",
+              "url": "https://rikiyat.github.io/blog/weight-space-programming/"
+            },
+            {
+              "label": "Logs",
+              "url": "https://github.com/RikiyaT/lm_understand-logs"
+            },
+            {
+              "label": "Model",
+              "url": "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming"
+            },
+            {
+              "label": "Demo",
+              "url": "https://huggingface.co/spaces/akhaliq/weight-space-programming-demo"
+            }
+          ]
+        },
+        {
           "name": "nanochat",
           "owner": "Andrej Karpathy",
           "tags": [
