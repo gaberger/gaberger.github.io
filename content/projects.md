@@ -6,7 +6,8 @@ groups:
   - name: "Current"
     projects:
       - name: "hexa"
-        url: "https://gaberger.github.io/hexa/"
+        site: "https://gaberger.github.io/hexa/"
+        url: "https://github.com/gaberger/hexa"
         language: "Rust"
         license: "MIT"
         status: "Alpha"
@@ -18,6 +19,7 @@ groups:
         license: "MIT"
         summary: "Keeps the small apps you make, often with AI, on a computer you control and serves them to your browser. Each app runs sealed, with no view of your files or your other apps unless you allow it."
       - name: "Earshot"
+        site: "https://gaberger.github.io/earshot/"
         url: "https://github.com/gaberger/earshot"
         language: "Swift"
         license: "MIT"

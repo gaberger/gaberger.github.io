@@ -127,6 +127,8 @@ h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; }
 .project-foot { margin-top: auto; }
 .project-meta { margin: 0; font: 500 12px/1.7 var(--mono); color: var(--muted); }
 .project-post { position: relative; display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 500; color: var(--accent-ink); }
+.project-links { display: flex; gap: 14px; margin: 6px 0 0; font-size: 13px; font-weight: 500; }
+.project-links a { color: var(--accent-ink); }
 
 /* Article */
 .post-head { padding: 64px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }

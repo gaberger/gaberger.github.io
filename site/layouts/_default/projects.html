@@ -10,10 +10,11 @@
   <ul class="project-grid">
     {{ range .projects }}
     <li class="project-card">
-      <h3><a href="{{ .url }}">{{ .name }}</a></h3>
+      <h3><a href="{{ .site | default .url }}">{{ .name }}</a></h3>
       <p class="project-summary">{{ .summary }}</p>
       <div class="project-foot">
         <p class="project-meta">{{ .language }} · {{ .license }}{{ with .status }} · {{ . }}{{ end }}</p>
+        {{ if and .site .url }}<p class="project-links"><a href="{{ .site }}">Site</a><a href="{{ .url }}">GitHub</a></p>{{ end }}
         {{ with .post }}{{ with site.GetPage (printf "/posts/%s" .) }}<a class="project-post" href="{{ .RelPermalink }}">Read: {{ .Title }}</a>{{ else }}{{ errorf "projects: no post named %q" . }}{{ end }}{{ end }}
       </div>
     </li>

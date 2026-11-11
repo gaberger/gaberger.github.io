@@ -15,6 +15,23 @@ is the built site. Don't edit it by hand: the workflow rebuilds it from
 Pages serves the root of `master`. Old 2017 URLs that the new site doesn't
 cover redirect from stubs in `site/static/`.
 
+## Project and experiment cards
+
+`content/projects.md` and `content/experiments.md` list one card per project.
+`url` is the GitHub repository. If the project also has a github.io site, add
+it as `site`: the card's title then opens the site, and the card shows both a
+Site and a GitHub link.
+
+```yaml
+      - name: "Earshot"
+        site: "https://gaberger.github.io/earshot/"
+        url: "https://github.com/gaberger/earshot"
+```
+
+A repository with GitHub Pages turned on owns `gaberger.github.io/<repo>/` and
+hides any page of this blog at the same path. That is why the `experiments`
+repository has Pages turned off.
+
 ## Writing a post
 
 Add `content/posts/<slug>/index.md`:
