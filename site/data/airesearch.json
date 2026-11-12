@@ -190,6 +190,114 @@
       "tab": "Inference"
     },
     {
+      "id": "strix-halo",
+      "name": "Strix Halo (Ryzen AI Max+ 395)",
+      "tab": "Strix Halo",
+      "projects": [
+        {
+          "name": "AMD AI Playbooks",
+          "owner": "AMD",
+          "tags": [
+            "New Nov 12, 2026",
+            "Official"
+          ],
+          "summary": "AMD's free step-by-step guides for local AI on Ryzen AI Halo, Ryzen AI Max+ and Radeon. They cover PyTorch on ROCm, LM Studio, Lemonade, Ollama, vLLM, ComfyUI, fine-tuning with Unsloth and LLaMA Factory, n8n with gpt-oss-120B, GAIA agents, and clustering two to four Halos over RPC or RCCL to run 350B+ models. Each guide has Windows and Linux steps, and AMD adds new ones every month.",
+          "license": "MIT",
+          "stars": "122, Nov 12, 2026",
+          "links": [
+            {
+              "label": "Playbooks",
+              "url": "https://developer.amd.com/playbooks"
+            },
+            {
+              "label": "GitHub",
+              "url": "https://github.com/amd/playbooks"
+            }
+          ]
+        },
+        {
+          "name": "Lemonade",
+          "owner": "lemonade-sdk",
+          "tags": [
+            "Strix Halo"
+          ],
+          "summary": "Open-source local AI server with an OpenAI-compatible API. It runs LLMs, image models and audio models on AMD GPUs and NPUs, and it's the default serving layer in AMD's Halo playbooks and Project Zenith.",
+          "license": "Apache-2.0",
+          "stars": "6.2k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/lemonade-sdk/lemonade"
+            }
+          ]
+        },
+        {
+          "name": "Strix Halo toolboxes",
+          "owner": "kyuz0",
+          "tags": [
+            "Strix Halo"
+          ],
+          "summary": "Community toolbox containers with llama.cpp built for Strix Halo, with Vulkan and ROCm backends. The quickest way to run llama.cpp on a 395 under Linux.",
+          "license": "None listed",
+          "stars": "2.0k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/kyuz0/amd-strix-halo-toolboxes"
+            }
+          ]
+        },
+        {
+          "name": "GAIA",
+          "owner": "AMD",
+          "tags": [
+            "Strix Halo"
+          ],
+          "summary": "AMD's framework for building AI agents that run locally on Ryzen AI PCs. It has its own Halo playbook.",
+          "license": "MIT",
+          "stars": "1.6k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/amd/gaia"
+            }
+          ]
+        },
+        {
+          "name": "TheRock",
+          "owner": "ROCm",
+          "tags": [
+            "Strix Halo"
+          ],
+          "summary": "Lightweight open-source build system for HIP and ROCm. Use it to get current ROCm builds onto newer consumer chips like the Strix Halo iGPU.",
+          "license": "MIT",
+          "stars": "1.4k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/ROCm/TheRock"
+            }
+          ]
+        },
+        {
+          "name": "strix-halo-testing",
+          "owner": "lhl",
+          "tags": [
+            "Benchmarks"
+          ],
+          "summary": "Benchmarks and setup notes for Strix Halo running LLMs. Last updated October 2025, so the numbers predate newer ROCm releases.",
+          "license": "Apache-2.0",
+          "stars": "258, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/lhl/strix-halo-testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "training",
       "name": "LLM training",
       "projects": [
