@@ -42,6 +42,7 @@ groups:
         summary: "A knowledge base an agent compiles from your source material. Every claim cites where it came from, and the claims a person has checked are cryptographically signed."
       - name: "Deskman"
         url: "https://github.com/weave-registry/deskman"
+        site: "https://weave-registry.github.io/deskman/"
         language: "Swift"
         license: "MIT"
         summary: "Tell your Mac where to put its windows, in plain words. Apple's on-device model understands the request, Deskman moves the windows, and nothing leaves your Mac."
