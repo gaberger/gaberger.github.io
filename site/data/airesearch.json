@@ -54,6 +54,28 @@
           ]
         },
         {
+          "name": "Strata",
+          "owner": "Niko1221",
+          "tags": [
+            "New Nov 12, 2026",
+            "Not for QB2",
+            "Runs on our RTX card"
+          ],
+          "summary": "Local MoE inference engine (C++, built on llama.cpp's GGUF formats and ggml kernels) that runs Qwen3.8-Flash-Next (125B MoE) on a consumer GPU with 12 GB or more. It keeps the hot experts in VRAM, the rest in system RAM computed on the CPU in parallel, and a lookup table on SSD. Also serves DeepSeek V4.1-Flash and Qwen3.6-35B-A3B. One-click install for Windows/Linux, OpenAI- and Anthropic-compatible API on localhost so Claude Code, Codex CLI and OpenCode can use it, plus an MCP server. Supports NVIDIA RTX 30/40/50, AMD R9700 and Strix Halo, Apple Silicon (64 GB+); no Tenstorrent backend. Latest: v0.2.13 (Nov 9, 2026).",
+          "license": "MIT",
+          "stars": "43.4k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Niko1221/Strata"
+            },
+            {
+              "label": "How it works",
+              "url": "https://github.com/Niko1221/Strata/blob/main/docs/DETAILS.md"
+            }
+          ]
+        },
+        {
           "name": "QB2 agentic coding guide",
           "owner": "Tenstorrent",
           "tags": [
