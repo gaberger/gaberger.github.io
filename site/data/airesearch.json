@@ -609,6 +609,31 @@
               "url": "https://agent-zero.ai"
             }
           ]
+        },
+        {
+          "name": "Goose",
+          "owner": "aardappel (Wouter van Oortmerssen)",
+          "tags": [
+            "New Nov 12, 2026",
+            "Language"
+          ],
+          "summary": "A new memory-safe systems language from the creator of FlatBuffers and Lobster. It has no heap, no GC, no reference counting and no lifetime annotations: every value lives inline on compiler-managed data stacks, so freeing a million-element structure is a single store. Compiles a whole program to one C file and calls C directly; a bundled TinyCC backend runs programs in-process. Threads share no memory and pass flat values over typed queues. Claims 1.16x the speed of hand-optimized C++ and 1.12x safe Rust across 16 of its own benchmarks. Much of the code and docs are AI-written; 603 points on Hacker News (Nov 2026).",
+          "license": "Apache-2.0",
+          "stars": "3.5k, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/aardappel/goose"
+            },
+            {
+              "label": "Site",
+              "url": "https://aardappel.github.io/goose"
+            },
+            {
+              "label": "HN",
+              "url": "https://news.ycombinator.com/item?id=50224100"
+            }
+          ]
         }
       ],
       "tab": "Coding"
