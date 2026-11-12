@@ -76,6 +76,28 @@
           ]
         },
         {
+          "name": "Avalon",
+          "owner": "freriadoc",
+          "tags": [
+            "New Nov 12, 2026",
+            "AMD/ROCm only",
+            "Not for QB2"
+          ],
+          "summary": "A llama.cpp fork built for one model, Qwen3.8-Flash-Next (125B MoE), on one consumer AMD GPU. The dense weights, KV cache and the hottest experts stay in VRAM, the rest live in system RAM (or are read from NVMe when RAM is short), and the CPU computes the missed experts in parallel. Reports 98 tok/s on an RX 7900 XT with 64 GB DDR4 over PCIe 3.0, about 88 tok/s with 32 GB and about 49 tok/s with 16 GB, and fits 256k context in 20 GB VRAM. The installer is Linux plus ROCm only. Benchmarks itself against Strata; its GPU and CPU kernels were written by Claude Opus 5.5. No releases yet.",
+          "license": "MIT",
+          "stars": "410, Nov 12, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/freriadoc/Avalon"
+            },
+            {
+              "label": "Model (GGUF)",
+              "url": "https://huggingface.co/freriadoc/Qwen3.8-Flash-Next-Avalon-GGUF"
+            }
+          ]
+        },
+        {
           "name": "QB2 agentic coding guide",
           "owner": "Tenstorrent",
           "tags": [
