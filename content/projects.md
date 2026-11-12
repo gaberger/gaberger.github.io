@@ -15,6 +15,7 @@ groups:
         post: "the-rules-nobody-wrote-down"
       - name: "Wardian"
         url: "https://github.com/weave-registry/wardian"
+        site: "https://wardian.studio/"
         language: "Rust"
         license: "MIT"
         summary: "Keeps the small apps you make, often with AI, on a computer you control and serves them to your browser. Each app runs sealed, with no view of your files or your other apps unless you allow it."
