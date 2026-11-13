@@ -357,6 +357,56 @@
           ]
         },
         {
+          "name": "Tenstorrent QuietBox 2 (Blackhole)",
+          "owner": "Tenstorrent",
+          "tags": [
+            "Shipping",
+            "Your QuietBox 2"
+          ],
+          "summary": "Your box: four Blackhole chips on two liquid-cooled p300c cards, with 128GB GDDR6 at 2,048 GB/s total (about 8x a Halo's bandwidth) and 720MB of SRAM. The host is a Ryzen 7 9700X with 256GB DDR5 and 4TB NVMe. It draws up to 1,300W and idles at 320W. Tenstorrent rates it for models up to 120B, and it ships with Qwen3-32B preloaded. Price as of Nov 13, 2026: $9,999, in stock, ships in 2 weeks plus 2 to 5 weeks transit. The original QuietBox (4x p150c, $11,999) and the Wormhole QuietBox ($15,000) are sold out. The p300c cards aren't sold separately.",
+          "license": "Hardware",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "QuietBox 2",
+              "url": "https://tenstorrent.com/hardware/tt-quietbox"
+            },
+            {
+              "label": "Specs",
+              "url": "https://docs.tenstorrent.com/systems/quietbox/quietbox-bh-2/specifications.html"
+            },
+            {
+              "label": "QB2 guide",
+              "url": "https://docs.tenstorrent.com/tt-quietbox2-guide"
+            }
+          ]
+        },
+        {
+          "name": "Tenstorrent Blackhole cards and Galaxy",
+          "owner": "Tenstorrent",
+          "tags": [
+            "Shipping",
+            "Scale-out"
+          ],
+          "summary": "The DIY route and the upgrade path. Blackhole p100a costs $999 (28GB, 448 GB/s, no links). The p150a (active) and p150b (passive) cost $1,399 each, with 32GB at 512 GB/s and 4x QSFP-DD 800G ports for pooling cards; the cable is $200, half off with two cards. Each card is 300W on PCIe 5.0 x16. The Wormhole n150 and n300 run $999 to $1,449. A February 2026 firmware update cut Blackhole to 120 Tensix cores (from 140), about a 1 to 2% hit by Tenstorrent's estimate. The Galaxy server is 32 chips with 1TB GDDR6 and 23 PFLOPS FP8 in 6U at 8 to 10 kW, listed at $160,000 (launched at $110,000 in April 2026). Tenstorrent raised a $1.5B Series E at a $6.2B valuation in Oct 2026.",
+          "license": "Hardware",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Blackhole cards",
+              "url": "https://tenstorrent.com/hardware/blackhole"
+            },
+            {
+              "label": "Galaxy H3 video blog",
+              "url": "https://tenstorrent.com/en/developers/blog/faster-cheaper-h3-video-on-blackhole"
+            },
+            {
+              "label": "Card docs",
+              "url": "https://docs.tenstorrent.com/aibs/blackhole/index.html"
+            }
+          ]
+        },
+        {
           "name": "Clustering Halo boxes",
           "owner": "AMD + community",
           "tags": [
