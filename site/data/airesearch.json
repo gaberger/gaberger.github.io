@@ -298,6 +298,116 @@
       ]
     },
     {
+      "id": "local-ai-hardware",
+      "name": "Local AI hardware",
+      "tab": "Hardware",
+      "projects": [
+        {
+          "name": "Gorgon Halo (Ryzen AI Max+ PRO 495)",
+          "owner": "AMD",
+          "tags": [
+            "Shipping",
+            "192GB"
+          ],
+          "summary": "A refresh of Strix Halo on the same Zen 5 and RDNA 3.5 design, with 192GB LPDDR5X-8533 (up to 160GB usable as VRAM) and 273 GB/s of bandwidth, up from 256. AMD announced it May 20, 2026 and partner boxes shipped from Sep 28. Prices as of Nov 13, 2026: TOPC TXA2 $6,499, ACEMAGIC F9A $6,699 (pre-order), GMKtec EVO-X5 Pro $6,799 (in stock), Framework Desktop from $6,799 DIY, AMD Ryzen AI Halo $7,299.99 (Micro Center pickup only), Minisforum MS-S1 MAX-P495 $7,399 (sold out). It's only worth it over a 128GB box for models above about 120GB, such as Qwen3-235B or DeepSeek V4 Flash.",
+          "license": "Hardware",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "GMKtec EVO-X5 Pro",
+              "url": "https://www.gmktec.com/products/gmktec-evo-x5-pro-amd-ryzen-ai-max-pro-495-ai-mini-pc"
+            },
+            {
+              "label": "AMD Halo (Micro Center)",
+              "url": "https://www.microcenter.com/product/717068/amd-ryzen-ai-halo-developer-platform-with-ryzen-ai-max-pro-495-processor-linux-os"
+            },
+            {
+              "label": "Minisforum P495",
+              "url": "https://store.minisforum.com/products/minisforum-ms-s1-max-p495-ai-workstation"
+            },
+            {
+              "label": "Framework",
+              "url": "https://frame.work/desktop"
+            }
+          ]
+        },
+        {
+          "name": "Strix Halo 128GB boxes (Ryzen AI Max+ 395)",
+          "owner": "AMD partners",
+          "tags": [
+            "Shipping",
+            "128GB"
+          ],
+          "summary": "The value pick: 128GB at 256 GB/s for about half the price of a 192GB box. Prices as of Nov 12, 2026: Bosgame M5 $3,099 (pre-order), GMKtec EVO-X2 $3,499.99 (early Black Friday through Nov 22, with 30-day price match), Minisforum MS-S1 MAX $3,959. 128GB is the most the 395 supports, and the memory is soldered.",
+          "license": "Hardware",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "GMKtec EVO-X2",
+              "url": "https://www.gmktec.com/products/amd-ryzen%E2%84%A2-ai-max-395-evo-x2-ai-mini-pc"
+            },
+            {
+              "label": "Bosgame M5",
+              "url": "https://www.bosgamepc.com/products/bosgame-m5-ai-mini-desktop-ryzen-ai-max-395"
+            },
+            {
+              "label": "Minisforum MS-S1 MAX",
+              "url": "https://store.minisforum.com/products/minisforum-ms-s1-max-mini-pc"
+            }
+          ]
+        },
+        {
+          "name": "Clustering Halo boxes",
+          "owner": "AMD + community",
+          "tags": [
+            "How-to"
+          ],
+          "summary": "AMD's playbooks cluster 2 to 4 Halos with llama.cpp RPC or RCCL to run 350B+ models, and 10GbE is enough for RPC's pipeline split. Tensor parallel needs RDMA, which USB4 can't do yet, so people add Mellanox or ConnectX NICs through a PCIe slot (MS-S1 MAX, wired x4; Framework Desktop, x4) or an M.2-to-OCuLink adapter. Networking by box: MS-S1 MAX and EVO-X5 Pro have 2x10GbE, TOPC TXA2 and AMD Halo 1x10GbE, Framework 5GbE, ACEMAGIC F9A 2x2.5GbE plus OCuLink.",
+          "license": "Guides",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "AMD RPC playbook",
+              "url": "https://developer.amd.com/playbooks/clustering-rpc-server/"
+            },
+            {
+              "label": "AMD RCCL playbook",
+              "url": "https://developer.amd.com/playbooks/clustering-rccl/"
+            },
+            {
+              "label": "RDMA wiki",
+              "url": "https://strixhalo.wiki/AI/Clustering_with_RDMA/source"
+            },
+            {
+              "label": "USB4 RDMA tests",
+              "url": "https://forum.level1techs.com/t/ryzen-ai-halo-usb4-clustering-with-rdma-testing-notes/253117"
+            }
+          ]
+        },
+        {
+          "name": "Siren Halo (formerly Medusa Halo)",
+          "owner": "AMD roadmap",
+          "tags": [
+            "Rumor",
+            "Nov 12, 2026"
+          ],
+          "summary": "The first real redesign after Strix Halo. Leakers say Medusa Halo (Zen 6, RDNA 5, LPDDR6) was renamed Siren Halo and adds dedicated GDDR7 VRAM next to LPDDR system memory. Gotou_3rd says there's no new Halo design in 2027, so likely 2028. AMD hasn't confirmed anything. Medusa Point (Zen 6 laptop chips) is expected in early 2027.",
+          "license": "Rumor",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "TechPowerUp",
+              "url": "https://www.techpowerup.com/354765/amd-siren-halo-apu-rumored-to-pair-dedicated-gddr7-with-lpddr-memory"
+            },
+            {
+              "label": "VideoCardz",
+              "url": "https://videocardz.com/newz/amd-next-gen-siren-halo-zen6-rdna5-apu-rumored-to-support-gddr7-memory"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "training",
       "name": "LLM training",
       "projects": [
