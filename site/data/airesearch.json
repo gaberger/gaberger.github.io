@@ -910,6 +910,40 @@
       "name": "Tools and observability",
       "projects": [
         {
+          "name": "Buzz",
+          "owner": "block",
+          "tags": [
+            "New Nov 13, 2026",
+            "Priority watch"
+          ],
+          "summary": "Block's self-hosted workspace where humans and agents share rooms on a Nostr relay: agents are members with their own keys and audit trail, YAML workflows, approval gates, ACP harness for Goose/Codex/Claude Code. Buzz 1.0 moved to block/buzz-app.",
+          "license": "Apache-2.0",
+          "stars": "37.2k (Nov 13, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/block/buzz"
+            }
+          ]
+        },
+        {
+          "name": "Plannotator",
+          "owner": "backnotprop",
+          "tags": [
+            "New Nov 13, 2026",
+            "Priority watch"
+          ],
+          "summary": "Human-in-the-loop workspace for coding agents: shape plans, annotate, review code and send all feedback back to the agent in one click.",
+          "license": "Apache-2.0",
+          "stars": "10.3k (Nov 13, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/backnotprop/plannotator"
+            }
+          ]
+        },
+        {
           "name": "Trajectory",
           "owner": "Datadog Labs",
           "tags": [
