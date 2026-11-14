@@ -17,7 +17,7 @@ When I build something now, I go looking for how other people solved the problem
 
 No package. No dependency tree underneath it.
 
-I should say where I stand before going on. I publish open source myself. [hexa](https://gaberger.github.io/hexa/) is MIT-licensed and alpha, one of a lot of tools trying to tame the genie. I'm not arguing against publishing. I'm describing a change in how I consume.
+I should say where I stand before going on. I publish open source myself. [hexa](https://gaberger.github.io/hexa/) is MIT-licensed and alpha, one of a lot of tools trying to [tame the genie](/2026/10/inside-the-ai-harness/#taming-the-genie). I'm not arguing against publishing. I'm describing a change in how I consume.
 
 This piece is about why I think a lot of us end up here, what it buys you, and where it stops working.
 
