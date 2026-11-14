@@ -904,6 +904,27 @@
       "name": "Memory and reasoning",
       "projects": [
         {
+          "name": "Auto Ontology MCP",
+          "owner": "gogoymh",
+          "tags": [
+            "New Nov 13, 2026",
+            "MCP"
+          ],
+          "summary": "Brings NVIDIA auto-ontology's semantic layer to any MCP client (Claude Code, Codex, Cursor, the Claude and ChatGPT apps) with no LLM API key: your client's model does the reading and SQL writing, and the server does schema extraction, profiling, join validation and read-only queries in local SQLite. It catches quiet text-to-SQL errors (bad joins, fan-out, wrong stored values) and also runs a personal knowledge base, a Karpathy-style LLM Wiki on an ontology that exports to Obsidian. Created Nov 6, 2026; Python 3.12+.",
+          "license": "Apache-2.0",
+          "stars": "391, Nov 13, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/gogoymh/auto-ontology-mcp"
+            },
+            {
+              "label": "Upstream",
+              "url": "https://github.com/NVIDIA/auto-ontology"
+            }
+          ]
+        },
+        {
           "name": "billion-context",
           "owner": "ranxianglei",
           "tags": [
