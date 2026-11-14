@@ -33,7 +33,7 @@ All of it rested on an assumption nobody wrote down, because nobody had to: the 
 
 That assumption is running out, and I don't think enough people have noticed.
 
-Before we go on, I should say I wrote [hexa, the tool](https://github.com/gaberger/hexa) in the second half of this piece. It's open source, it's alpha, and I'll be specific about what it doesn't do.
+Before we go on, I should say I wrote [hexa, the tool](https://gaberger.github.io/hexa/) in the second half of this piece. It's open source, it's alpha, and I'll be specific about what it doesn't do.
 
 Don't take my word for the numbers about the tool. The [README](https://github.com/gaberger/hexa/blob/1c96da2/README.md) explains what each one measures, and every one has a command behind it that you can run yourself; the full list is on the project's [evidence page](https://github.com/gaberger/hexa/blob/1c96da2/docs/EVIDENCE.md).
 
@@ -139,7 +139,7 @@ The question I'd rather ask is whether the boundary can be checked by a machine.
 
 ### A rule a machine can settle
 
-That is the bet behind [hexa](https://github.com/gaberger/hexa), an open-source tool I have been building.\[10\] It generates new projects, a step programmers call scaffolding, in Cockburn's layout, a domain that knows nothing about the outside world, ports that define how the outside world may ask, and adapters that do the actual talking to databases and APIs. Then it grades what came back. The generator is for new work; the grader runs on any repository.
+That is the bet behind [hexa](https://gaberger.github.io/hexa/), an open-source tool I have been building.\[10\] It generates new projects, a step programmers call scaffolding, in Cockburn's layout, a domain that knows nothing about the outside world, ports that define how the outside world may ask, and adapters that do the actual talking to databases and APIs. Then it grades what came back. The generator is for new work; the grader runs on any repository.
 
 The rules fit on one screen. Domain imports only domain. Adapters import ports and never reach the domain directly, and when an adapter needs a domain type it gets it because the port re-exports it, so every adapter has exactly one door into the core. The rest follows from those two:
 
@@ -301,7 +301,7 @@ A name is a promise about one thing. A directory is a promise about a graph. Bot
 7.  Alistair Cockburn, [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/), 2005. Cockburn's own account is that the name was a placeholder chosen before he understood what the sides stood for, and that the pattern is properly called Ports and Adapters
 8.  Jeffrey Palermo, [The Onion Architecture, part 1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/), July 29, 2008
 9.  Robert C. Martin, [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), August 13, 2012
-10. [hexa](https://github.com/gaberger/hexa)
+10. [hexa](https://gaberger.github.io/hexa/)
 11. Simone Daniotti, Johannes Wachs, Xiangnan Feng and Frank Neffke, Who is using AI to code? Global diffusion and impact of generative AI, Science 391 (6787), 2026, pp. 831-835. The link in the text goes to the authors' [open copy on arXiv](https://arxiv.org/abs/2506.08945v2), since the journal version is paywalled
 
 ---

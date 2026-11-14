@@ -294,7 +294,7 @@ Each level is a complete harness, with its own loop, transcript, tools and limit
 
 - **Cost multiplies.** Every level pays for its own model calls.
 
-The practical rule: keep depth to two or three levels, and pass down checks, not just instructions. A command that must pass is harder to misread than a paragraph of prose. The author's [hexa](https://github.com/gaberger/hexa) applies this directly: every task carries a gate that must exit cleanly, and a code-writing subagent must run in its own git worktree.
+The practical rule: keep depth to two or three levels, and pass down checks, not just instructions. A command that must pass is harder to misread than a paragraph of prose. The author's [hexa](https://gaberger.github.io/hexa/) applies this directly: every task carries a gate that must exit cleanly, and a code-writing subagent must run in its own git worktree.
 
 ### Where the context layer lives
 
@@ -437,7 +437,7 @@ Gary Berger has spent the past three years building AI-powered apps, harnesses a
 
 Recent projects include:
 
-- [hexa](https://github.com/gaberger/hexa): a scaffolding system for AI-written code. Work counts only if a command exits cleanly and the architecture grade holds, so the genie's output is checked by gates rather than by prose specs.
+- [hexa](https://gaberger.github.io/hexa/): a scaffolding system for AI-written code. Work counts only if a command exits cleanly and the architecture grade holds, so the genie's output is checked by gates rather than by prose specs.
 
 - [Wardian](https://wardian.studio/): an open-source, local-first home for small apps built with AI. Apps run in sealed sandboxes and must ask permission for sensitive capabilities.
 
