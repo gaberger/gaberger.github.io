@@ -1084,6 +1084,31 @@
       "name": "Tools and observability",
       "projects": [
         {
+          "name": "SparseRead",
+          "owner": "Liuzedooong",
+          "tags": [
+            "New Nov 15, 2026",
+            "Paper"
+          ],
+          "summary": "A training-free reading layer that sits in front of an agent's native read tools. It works out what evidence the task still needs and passes the model only bounded, source-anchored slices of pages, PDFs, logs and repos, and it falls back to a full read when the task needs one. The paper (arXiv 2608.22237, CAS ICT, v2 Nov 7, 2026) reports up to 92.9% fewer tokens and 89% less wall time across six models including Claude Opus 5, with quality held or improved in 97% of settings, and 31-43% fewer tokens on web deep search. Ships integrations for Claude Code, OpenCode, OpenClaw and NanoBot; v0.1.3 installs from source.",
+          "license": "MIT",
+          "stars": "75, Nov 15, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Liuzedooong/SparseReading"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2608.22237"
+            },
+            {
+              "label": "Site",
+              "url": "https://sparseread.pages.dev/"
+            }
+          ]
+        },
+        {
           "name": "Buzz",
           "owner": "block",
           "tags": [
