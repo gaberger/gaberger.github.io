@@ -5,6 +5,30 @@
       "name": "Local inference and edge serving",
       "projects": [
         {
+          "name": "Edge0",
+          "owner": "Edge0-AI",
+          "tags": [
+            "New Nov 16, 2026"
+          ],
+          "summary": "Streaming MoE inference framework plus Edge0-145B and 120B (10B active, 256K context, built on Qwen3.8-Flash-Next). Hot experts stay on the GPU, the rest stream from RAM and SSD, so 145B runs on one 24GB card with about 40GB RAM. FreeToken-like. NVIDIA CUDA 13 only. Weights license restricts commercial services.",
+          "license": "Apache-2.0 code; weights: Edge0 Community License + Qwen (Caution)",
+          "stars": "~12k (Nov 15, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Edge0-AI/edge0"
+            },
+            {
+              "label": "Blog",
+              "url": "https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer"
+            },
+            {
+              "label": "Models",
+              "url": "https://huggingface.co/Edge0"
+            }
+          ]
+        },
+        {
           "name": "Tenstorrent stack",
           "owner": "Tenstorrent",
           "tags": [
