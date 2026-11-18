@@ -638,6 +638,26 @@
       "name": "Multi-agent orchestration",
       "projects": [
         {
+          "name": "PaperOrchestra",
+          "owner": "google-research",
+          "tags": [
+            "New Nov 18, 2026"
+          ],
+          "summary": "Google Cloud AI Research multi-agent pipeline (outline, literature review, writing, refinement, plotting) that turns raw ideas and experiment logs into submission-ready LaTeX papers.",
+          "license": "Apache-2.0",
+          "stars": "3.7k",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/google-research/paper-orchestra"
+            },
+            {
+              "label": "Site",
+              "url": "https://yiwen-song.github.io/paper_orchestra/"
+            }
+          ]
+        },
+        {
           "name": "NeMo Switchyard",
           "owner": "NVIDIA-NeMo",
           "tags": [
