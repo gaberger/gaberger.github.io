@@ -1643,6 +1643,205 @@
           ]
         }
       ]
+    },
+    {
+      "id": "agentic-ops",
+      "name": "Agentic ops companies (AI SRE and AI SOC)",
+      "tab": "Companies",
+      "projects": [
+        {
+          "name": "Resolve AI",
+          "owner": "resolve.ai",
+          "tags": [
+            "New Nov 18, 2026",
+            "AI SRE",
+            "Watch"
+          ],
+          "summary": "AI SRE that joins on-call: investigates alerts, drives incidents to root cause, fixes issues and runs scheduled ops tasks, with custom agents. Founded by ex-Splunk observability leaders. Priced by tokens (Resolve Pro $4 in / $20 out per M; Pro Fast $12 / $60 for paging incidents); Standard is pay-as-you-go up to 100 users. Labs trained SRE-1, a 27B model for production investigations. Customers include Coinbase, DoorDash, MongoDB, Salesforce, Zscaler.",
+          "license": "Proprietary",
+          "stars": "~$200M ($1.5B val., Apr 2026)",
+          "links": [
+            {
+              "label": "Pricing",
+              "url": "https://resolve.ai/pricing"
+            },
+            {
+              "label": "SRE-1",
+              "url": "https://resolve.ai/labs/sre-1"
+            },
+            {
+              "label": "Docs",
+              "url": "https://docs.resolve.ai/"
+            }
+          ]
+        },
+        {
+          "name": "Traversal",
+          "owner": "Traversal (NYC)",
+          "tags": [
+            "New Nov 18, 2026",
+            "AI SRE"
+          ],
+          "summary": "Causal-ML AI SRE from Berkeley, Columbia, Cornell and MIT researchers. Causal Search Engine plus a Production World Model; Incident Workers join incident channels and own the investigation, Alert Workers triage alerts. Customers include Nubank, Harvey, DigitalOcean, PepsiCo, Amex.",
+          "license": "Proprietary",
+          "stars": "$120M Series B, $1B val. (Nov 3, 2026)",
+          "links": [
+            {
+              "label": "Blog",
+              "url": "https://traversal.cv/blog/traversal-series-b-120-million-ai-sre"
+            },
+            {
+              "label": "News",
+              "url": "https://www.businesswire.com/news/home/20261103122345/en/Traversal-Raises-%24120M-with-a-%241-Billion-Valuation-to-Keep-Code-Running-With-a-Superintelligent-AI-Site-Reliability-Engineer"
+            }
+          ]
+        },
+        {
+          "name": "Cleric",
+          "owner": "Cleric",
+          "tags": [
+            "New Nov 18, 2026",
+            "AI SRE"
+          ],
+          "summary": "Read-only AI SRE teammate: first pass on every alert, ranks and tests hypotheses against logs, metrics, traces and changes, posts a diagnosis and a fix PR you approve. Published pricing: Team $700/mo, Pro $1,500, Scale $3,000. Gartner Cool Vendor 2025.",
+          "license": "Proprietary",
+          "stars": "$9.8M raised",
+          "links": [
+            {
+              "label": "Site",
+              "url": "https://cleric.ai"
+            },
+            {
+              "label": "Comparison",
+              "url": "https://replicas.dev/resources/ai-sre-tools"
+            }
+          ]
+        },
+        {
+          "name": "Causely",
+          "owner": "Causely",
+          "tags": [
+            "New Nov 18, 2026",
+            "AI SRE"
+          ],
+          "summary": "Causal reasoning over OpenTelemetry, Prometheus, Datadog and eBPF signals across Kubernetes, ECS and VMs: root cause, blast radius and owner, with one-click scaling fixes. Professional $2,000/mo up to 500 services; on-prem and air-gapped on Enterprise.",
+          "license": "Proprietary",
+          "stars": "Undisclosed",
+          "links": [
+            {
+              "label": "Comparison",
+              "url": "https://replicas.dev/resources/ai-sre-tools"
+            }
+          ]
+        },
+        {
+          "name": "Mave",
+          "owner": "Mave Security (Tel Aviv)",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps",
+            "Watch"
+          ],
+          "summary": "Agentic SecOps: connects to existing security tools via scoped APIs and runs federated investigations in place, no central SIEM ingest. Evidence-backed findings, audit trail, governed response. Founded 2025 by Unit 8200 alumni Raziel Oren (CEO) and Guy Eshel (CTO); running in 200+ SOCs.",
+          "license": "Proprietary",
+          "stars": "$34M (Oct 22, 2026)",
+          "links": [
+            {
+              "label": "Site",
+              "url": "https://www.mave.com/company/about"
+            },
+            {
+              "label": "Launch",
+              "url": "https://www.mave.com/resources/mave-launches-with-34-million"
+            }
+          ]
+        },
+        {
+          "name": "Torq",
+          "owner": "Torq",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps"
+          ],
+          "summary": "Agentic SOC automation (SOAR grown into AI agents); bought Jit for its AI context graph in May 2026. FedRAMP Moderate on Nov 17, 2026. Customers include Marriott, PepsiCo, Siemens.",
+          "license": "Proprietary",
+          "stars": "$332M total ($1.2B val.)",
+          "links": [
+            {
+              "label": "FedRAMP news",
+              "url": "https://www.businesswire.com/news/home/20261117462171/en/Torq-Achieves-FedRAMP-Class-C-Moderate-Certification-Accelerating-AI-SOC-Adoption-Across-the-Federal-Government"
+            }
+          ]
+        },
+        {
+          "name": "7AI",
+          "owner": "7AI (Boston)",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps"
+          ],
+          "summary": "Swarm of 60+ specialized security agents across cloud, email, identity and EDR; federated queries over data in place. Founded by Cybereason's former CEO and CTO; 7M+ investigations by May 2026 (self-reported). Sold via AWS Security Hub.",
+          "license": "Proprietary",
+          "stars": "$166M ($130M Series A)",
+          "links": [
+            {
+              "label": "Funding",
+              "url": "https://www.salientpr.com/blog/ai-in-cybersecurity-money-sameness-problem"
+            }
+          ]
+        },
+        {
+          "name": "Exaforce",
+          "owner": "Exaforce",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps"
+          ],
+          "summary": "Autonomous AI-powered SOC platform: agents triage, investigate and respond across cloud and identity data.",
+          "license": "Proprietary",
+          "stars": "$200M ($125M B, May 2026)",
+          "links": [
+            {
+              "label": "Funding",
+              "url": "https://www.salientpr.com/blog/ai-in-cybersecurity-money-sameness-problem"
+            }
+          ]
+        },
+        {
+          "name": "Dropzone AI",
+          "owner": "Dropzone AI",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps"
+          ],
+          "summary": "Autonomous AI SOC analyst: investigates every alert, no playbooks, 90+ integrations, MSSP tiers. Flat-rate from $36,000/yr for 4,000 investigations.",
+          "license": "Proprietary",
+          "stars": "$57M ($37M B, Jul 2025)",
+          "links": [
+            {
+              "label": "Comparison",
+              "url": "https://cipherssecurity.com/best-ai-soc-platforms-2026/"
+            }
+          ]
+        },
+        {
+          "name": "Prophet Security",
+          "owner": "Prophet Security",
+          "tags": [
+            "New Nov 18, 2026",
+            "Agentic SecOps"
+          ],
+          "summary": "AI SOC Analyst plus AI Threat Hunter and AI Detection Engineer; respond automatically or with sign-off; Watchtower adds human review. Entry $50,000/yr for 5,000 investigations (AWS Marketplace).",
+          "license": "Proprietary",
+          "stars": "~$41M (Accel A; Amex, Citi)",
+          "links": [
+            {
+              "label": "Overview",
+              "url": "https://aisocsolutions.com/market-analysis/prophet-security-alternatives/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
