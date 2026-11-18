@@ -638,6 +638,35 @@
       "name": "Multi-agent orchestration",
       "projects": [
         {
+          "name": "NeMo Switchyard",
+          "owner": "NVIDIA-NeMo",
+          "tags": [
+            "New Nov 17, 2026",
+            "Router"
+          ],
+          "summary": "NVIDIA's open-source model router for agents (Aug 2026, successor to LLM Router). A Rust core (libsy) or the switchyard-server proxy decides per request whether an efficient model or a frontier one handles it, from the prompt or the agent's recent tool failures (stage router). Speaks OpenAI Chat, Responses and Anthropic Messages, so Claude Code and Codex work unchanged; no GPU needed. Integrations: OpenRouter, NeMo Relay, LiteLLM, Bedrock. LangChain's benchmark: Opus alone 86.0% at $0.092 per solved task vs routed with Nemotron 3.5 Lightning 80.0% at about $0.026. Candidate for QB2 as the cheap tier.",
+          "license": "Apache-2.0",
+          "stars": "~3.6k (Nov 17, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/NVIDIA-NeMo/Switchyard"
+            },
+            {
+              "label": "Docs",
+              "url": "https://nvidia-nemo.github.io/Switchyard/"
+            },
+            {
+              "label": "Blog",
+              "url": "https://developer.nvidia.com/blog/route-ai-agent-workloads-across-models-with-nvidia-nemo-switchyard"
+            },
+            {
+              "label": "Benchmark",
+              "url": "https://www.langchain.com/blog/switchyard-agent-routing-benchmark"
+            }
+          ]
+        },
+        {
           "name": "OpenMausBot",
           "owner": "milind-soni",
           "tags": [
