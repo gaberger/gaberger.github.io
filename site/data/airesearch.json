@@ -5,6 +5,35 @@
       "name": "Local inference and edge serving",
       "projects": [
         {
+          "name": "LMCache",
+          "owner": "LMCache (PyTorch Foundation; backed by Tensormesh)",
+          "tags": [
+            "New Nov 19, 2026",
+            "KV cache"
+          ],
+          "summary": "KV cache layer for LLM serving: runs as its own daemon beside vLLM or SGLang and offloads KV cache to a CPU RAM, SSD, Redis/Valkey, Mooncake or S3 tier, reusing it across requests, sessions and engines to cut time-to-first-token on long-context, multi-turn agent and RAG workloads. Adds non-prefix reuse (CacheBlend), prefill/decode disaggregation over NIXL (NVLink, RDMA, TCP), and KV observability. Integrated in NVIDIA Dynamo; runs on CUDA and ROCm. The new multiprocess architecture (Apr 2026) claims 10x on MoE. Latest release v0.5.7.post1 (Nov 11, 2026).",
+          "license": "Apache-2.0",
+          "stars": "12.4k (Nov 19, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/LMCache/LMCache"
+            },
+            {
+              "label": "Docs",
+              "url": "https://docs.lmcache.ai/"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2510.09665"
+            },
+            {
+              "label": "Site",
+              "url": "https://lmcache.ai/"
+            }
+          ]
+        },
+        {
           "name": "Edge0",
           "owner": "Edge0-AI",
           "tags": [
