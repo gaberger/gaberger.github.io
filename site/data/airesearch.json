@@ -1006,6 +1006,36 @@
       "name": "Memory and reasoning",
       "projects": [
         {
+          "name": "Memorilla",
+          "owner": "Stanford SNAP (Jure Leskovec)",
+          "tags": [
+            "New Nov 19, 2026",
+            "Latent memory",
+            "Paper"
+          ],
+          "summary": "Latent semantic memory for a frozen LLM: a trained memory module reads a whole document collection (past chats, a book) and hands the decoder just 16 query-dependent memory tokens, so cost stays flat as the collection grows. Beats Mem0 and MemoRAG on average; on FactKG it beats full context (84.33% vs 80.43%) with 108x fewer tokens. 128K tokens of docs answer in 0.74 s vs 19.9 s full-context on an H100; memory cache handles 1M docs in ~8 ms per question. Also learns agent memory via GRPO (TextWorld 18.6% to 24.2%). Checkpoints for Qwen3-8B with Qwen3-Embedding-4B; needs CUDA (H100-class).",
+          "license": "Apache-2.0",
+          "stars": "1.5k (Nov 19, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/snap-stanford/memorilla"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2610.21375"
+            },
+            {
+              "label": "Site",
+              "url": "https://memory.stanford.edu"
+            },
+            {
+              "label": "Models",
+              "url": "https://huggingface.co/memorilla/Memorilla-Qwen3-8B"
+            }
+          ]
+        },
+        {
           "name": "Auto Ontology MCP",
           "owner": "gogoymh",
           "tags": [
