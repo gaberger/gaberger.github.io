@@ -1157,6 +1157,36 @@
       "name": "Tools and observability",
       "projects": [
         {
+          "name": "Agent Name Service (ANS)",
+          "owner": "Linux Foundation (GoDaddy-originated)",
+          "tags": [
+            "New Nov 19, 2026",
+            "Agent identity",
+            "Spec"
+          ],
+          "summary": "Open spec for naming, discovering and authenticating AI agents on DNS: ans://v1.0.0.payments.example.com names bind an agent version to a domain, an identity certificate and a public transparency log, with offline sub-millisecond verification and event-driven revocation. Launched as a Linux Foundation project Nov 10, 2026 (KubeCon NA) with 11 supporting orgs (Cloudflare, Cisco, Infoblox, Salesforce, OWASP); 7-document draft spec. Used by AGNTCY's Agent Directory Service and interoperates with Agentic Resource Discovery (ARD). Go, Rust and Java SDKs; an ans-openshell integration exists.",
+          "license": "Apache-2.0",
+          "stars": "59 (ans) · 37 (spec), Nov 19, 2026",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/agentnameservice/ans"
+            },
+            {
+              "label": "Spec",
+              "url": "https://github.com/agentnameservice/ans-spec"
+            },
+            {
+              "label": "Site",
+              "url": "https://ansinfo.ai/"
+            },
+            {
+              "label": "LF news",
+              "url": "https://www.linuxfoundation.org/press/linux-foundation-welcomes-agent-name-service-to-bring-verifiable-identity-and-discovery-to-ai-agents"
+            }
+          ]
+        },
+        {
           "name": "SparseRead",
           "owner": "Liuzedooong",
           "tags": [
