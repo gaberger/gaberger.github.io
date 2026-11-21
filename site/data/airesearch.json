@@ -590,6 +590,32 @@
       "name": "Open-weight models",
       "projects": [
         {
+          "name": "Inkling 2 Mini",
+          "owner": "Thinking Machines",
+          "tags": [
+            "New Nov 21, 2026",
+            "Coding",
+            "Vision"
+          ],
+          "summary": "Thinking Machines' small open-weights model: 26B parameters, 5.4B active, with 12 of its 24 layers looping three times per token for more compute without more tokens. Trained and shipped natively in NVFP4 (no quantization loss), 20GB, 1M context, text and image, tools and thinking. Runs on a 32GB+ Mac or DGX Spark via Ollama. Claims 79.2% SWE-Bench Verified, 48.2% DeepSWE, 82.7% MCP Atlas, 85.3% DeepSearchQA, 76.5% ScreenSpot Pro, 92.8% OmniDocBench. Ollama has no Tenstorrent backend, so QuietBox 2 would need a tt-metal port.",
+          "license": "Apache-2.0",
+          "stars": "7.8k Ollama pulls (Nov 21, 2026)",
+          "links": [
+            {
+              "label": "Ollama",
+              "url": "https://ollama.com/library/inkling-2-mini"
+            },
+            {
+              "label": "Blog",
+              "url": "https://thinkingmachines.ai/news/inkling-2-mini/"
+            },
+            {
+              "label": "Model card",
+              "url": "https://thinkingmachines.ai/model-card/inkling-2-mini/"
+            }
+          ]
+        },
+        {
           "name": "Kimi K3.1 Pro",
           "owner": "Moonshot AI",
           "tags": [
@@ -1027,6 +1053,32 @@
       "id": "memory",
       "name": "Memory and reasoning",
       "projects": [
+        {
+          "name": "Semantica",
+          "owner": "semantica-agi",
+          "tags": [
+            "New Nov 21, 2026",
+            "Knowledge graph",
+            "MCP"
+          ],
+          "summary": "Graph-native context and semantic layer for agents: ingests enterprise data (files, DBs, Databricks, Snowflake, SAP, ServiceNow, Kafka), extracts entities and relations, builds a context graph/KG with conflict detection, dedup and bi-temporal time travel. Deterministic reasoning (forward chaining, Rete, Datalog, SPARQL), OWL/SHACL/SKOS ontologies, and W3C PROV-O provenance on every fact. Decisions are first-class graph nodes (record, trace causal chain, find precedents, policy check). RDF and LPG stores (Oxigraph, Jena, Neo4j, FalkorDB, Neptune) plus vector stores; MCP server, REST, CLI, Agno/LangChain. v0.7 added hierarchical community GraphRAG. Caution: Rete matcher is intentionally simple; validate before production compliance gates.",
+          "license": "MIT",
+          "stars": "14.7k (Nov 21, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/semantica-agi/semantica"
+            },
+            {
+              "label": "Docs",
+              "url": "https://docs.getsemantica.ai/"
+            },
+            {
+              "label": "Site",
+              "url": "https://getsemantica.ai/"
+            }
+          ]
+        },
         {
           "name": "Memorilla",
           "owner": "Stanford SNAP (Jure Leskovec)",
