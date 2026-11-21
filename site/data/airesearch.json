@@ -5,6 +5,28 @@
       "name": "Local inference and edge serving",
       "projects": [
         {
+          "name": "AI supply chain canaries (Dragos)",
+          "owner": "Dragos research (HD Moore)",
+          "tags": [
+            "New Nov 21, 2026",
+            "Security",
+            "Blog post"
+          ],
+          "summary": "HD Moore's team seeded about 2M prompts (Jul to Nov 2026) with unique canary URLs and real AWS keys, then watched who used them. Found three breached inference providers (requests copied at the front door, ZDR-flagged ones included; stolen keys used for tens of thousands of AWS calls), marketplace resellers harvesting prompts via request logging, undisclosed router hops, and Zero Data Retention ignored, including a Chinese lab scraping URLs from prompts sent to US resellers of its models. Built an LLM traceroute from image callbacks and nested error envelopes (~2,000 routes). Advice: self-host sensitive work (our QuietBox 2), go direct to first-tier providers, pin router upstreams, avoid reseller marketplaces, seed your own canaries. New detection UAs: artex-agent, artex-judge-r121.",
+          "license": "Blog post",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Blog",
+              "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
+            },
+            {
+              "label": "Canarytokens",
+              "url": "https://canarytokens.org/"
+            }
+          ]
+        },
+        {
           "name": "LMCache",
           "owner": "LMCache (PyTorch Foundation; backed by Tensormesh)",
           "tags": [
