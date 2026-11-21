@@ -1857,7 +1857,7 @@
             "AI SRE",
             "Watch"
           ],
-          "summary": "AI SRE that joins on-call: investigates alerts, drives incidents to root cause, fixes issues and runs scheduled ops tasks, with custom agents. Founded by ex-Splunk observability leaders. Priced by tokens (Resolve Pro $4 in / $20 out per M; Pro Fast $12 / $60 for paging incidents); Standard is pay-as-you-go up to 100 users. Labs trained SRE-1, a 27B model for production investigations. Customers include Coinbase, DoorDash, MongoDB, Salesforce, Zscaler.",
+          "summary": "AI SRE that joins on-call: investigates alerts, drives incidents to root cause, fixes issues and runs scheduled ops tasks, with custom agents. Founded by ex-Splunk observability leaders. Priced by tokens (Resolve Pro $4 in / $20 out per M; Pro Fast $12 / $60 for paging incidents); Standard is pay-as-you-go up to 100 users. SRE-1 launched Nov 18, 2026: a 27B model on open weights, trained with RL alone, available only through Resolve; Primary On-call is now GA and closes up to 80% of pages without escalation (per Resolve). Customers include Coinbase, DoorDash, MongoDB, Salesforce, Zscaler.",
           "license": "Proprietary",
           "stars": "~$200M ($1.5B val., Apr 2026)",
           "links": [
@@ -1872,6 +1872,10 @@
             {
               "label": "Docs",
               "url": "https://docs.resolve.ai/"
+            },
+            {
+              "label": "Announcement",
+              "url": "https://www.businesswire.com/news/home/20261118909665/en/ResolveAI-Launches-SRE-1-the-Most-Accurate-Model-for-Production-at-Every-Budget"
             }
           ]
         },
