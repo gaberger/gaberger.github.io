@@ -5,6 +5,26 @@
       "name": "Local inference and edge serving",
       "projects": [
         {
+          "name": "Basalt",
+          "owner": "jesdga95",
+          "tags": [
+            "New Nov 21, 2026"
+          ],
+          "summary": "Local inference engine for NVIDIA Blackwell: MoE experts offloaded to system RAM; runs Qwen3.8-Flash-Next, DeepSeek-V4.1-Flash, and (v0.5.0) Tencent's 220B Hy4-flash with 1M context. OpenAI/Anthropic APIs.",
+          "license": "MIT",
+          "stars": "1.6k (Nov 21, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/jesdga95/basalt"
+            },
+            {
+              "label": "Site",
+              "url": "https://basalt.jgulfo.com"
+            }
+          ]
+        },
+        {
           "name": "AI supply chain canaries (Dragos)",
           "owner": "Dragos research (HD Moore)",
           "tags": [
@@ -942,6 +962,23 @@
       "id": "coding",
       "name": "Coding agents",
       "projects": [
+        {
+          "name": "prime-agent",
+          "owner": "Prime Intellect",
+          "tags": [
+            "New Nov 21, 2026",
+            "Always-on"
+          ],
+          "summary": "Self-improving RLM coding/research agent with daemon-backed sessions that survive disconnects, heartbeats, rlm() subagents, agent-to-agent messaging and a /refine continual harness. Not a sandbox.",
+          "license": "MIT (API shows unspecified; verify)",
+          "stars": "22.9k (Nov 21, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/PrimeIntellect-ai/prime-agent"
+            }
+          ]
+        },
         {
           "name": "AREX-2",
           "owner": "BAAI",
