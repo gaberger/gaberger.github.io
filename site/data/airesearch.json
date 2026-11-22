@@ -610,6 +610,26 @@
       "name": "Open-weight models",
       "projects": [
         {
+          "name": "Tencent Hy4",
+          "owner": "Tencent",
+          "tags": [
+            "New Nov 22, 2026"
+          ],
+          "summary": "Open weights Nov 20, 2026: 770B MoE, 49B active, 1M context, vision, agentic coding. FP8 needs ~8 GPUs, so no fit for QuietBox 2 or a 192GB Halo; Hy4-flash (220B) is the local option.",
+          "license": "Tencent Hy License (custom, check terms)",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Hugging Face",
+              "url": "https://huggingface.co/tencent/Hy4"
+            },
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Tencent-Hunyuan/Hy4"
+            }
+          ]
+        },
+        {
           "name": "Inkling 2 Mini",
           "owner": "Thinking Machines",
           "tags": [
@@ -1326,6 +1346,26 @@
       "id": "tools",
       "name": "Tools and observability",
       "projects": [
+        {
+          "name": "OpenSRE",
+          "owner": "Tracer-Cloud",
+          "tags": [
+            "New Nov 22, 2026"
+          ],
+          "summary": "Open-source CLI agent for CI/CD reliability and incident investigation: reads failed runs, traces the cause, pushes a fix for review. 60+ integrations, self-hosted, public alpha. Telemetry is opt-out.",
+          "license": "Apache-2.0",
+          "stars": "14.2k (Nov 22, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Tracer-Cloud/opensre"
+            },
+            {
+              "label": "Site",
+              "url": "https://opensre.com"
+            }
+          ]
+        },
         {
           "name": "Agent Name Service (ANS)",
           "owner": "Linux Foundation (GoDaddy-originated)",
