@@ -606,6 +606,152 @@
       "tab": "Training"
     },
     {
+      "id": "ncm",
+      "name": "Next-Concept Modeling (NCM): coarse-to-fine text generation",
+      "tab": "NCM",
+      "projects": [
+        {
+          "name": "NCM: the method",
+          "owner": "Stanford Scaling Intelligence Lab + Hazy Research",
+          "tags": [
+            "New Nov 22, 2026",
+            "Non-autoregressive",
+            "Research"
+          ],
+          "summary": "A new way to generate text that is neither autoregressive (one token at a time) nor diffusion (refine the whole sequence many times). NCM writes text as a hierarchy that grows from coarse to fine: early levels hold a few discrete codes for the broad idea, later levels add detail. It generates one level at a time and predicts every code within a level in parallel, so it needs only a handful of steps (11 levels in the blog's translation demo), and the early steps are cheap because those levels are short. Authors: Hermann Kumbong and Ishan S. Khare (equal contribution), with Simran Arora, Azalia Mirhoseini and Christopher Ré advising.",
+          "license": "Paper (arXiv)",
+          "stars": "arXiv Oct 9, 2026",
+          "links": [
+            {
+              "label": "Blog",
+              "url": "https://scalingintelligence.stanford.edu/blogs/ncm/"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2610.14162"
+            },
+            {
+              "label": "Paper (HTML)",
+              "url": "https://arxiv.org/html/2610.14162v1"
+            }
+          ]
+        },
+        {
+          "name": "How it works: two stages",
+          "owner": "NCM architecture",
+          "tags": [
+            "Residual VQ-VAE",
+            "Parallel decoding"
+          ],
+          "summary": "Stage 1 trains a multiscale residual VQ-VAE tokenizer that turns text into coarse-to-fine residual codes. It adapts VAR's next-scale idea from images to text: each level gets its own codebook, nested dropout forces early levels to carry meaning on their own, and a token-level reconstruction loss keeps decoding accurate. Stage 2 freezes the tokenizer and trains a transformer to predict each level from the cumulative reconstruction of earlier ones, training all levels in one forward pass and corrupting some conditioning codes so it tolerates its own mistakes. At inference the decoder turns the finished hierarchy back into text.",
+          "license": "Method",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Blog: at a glance",
+              "url": "https://scalingintelligence.stanford.edu/blogs/ncm/"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2610.14162"
+            }
+          ]
+        },
+        {
+          "name": "Results vs diffusion LMs",
+          "owner": "Benchmarks (single H100 SXM 80GB)",
+          "tags": [
+            "10–31× faster",
+            "4–5× fewer training tokens"
+          ],
+          "summary": "Wall-clock, not just step counts: 21× faster than the strongest diffusion baseline on LM1B with better generative perplexity, 10× faster on OpenWebText at comparable perplexity, and matching ROUGE-L on XSum summarization while 31× faster. About 11× fewer function evaluations on TinyStories and LM1B. Competitive or better on WMT14 German-to-English translation. Beats both autoregressive and diffusion baselines on Sudoku at every difficulty (12 NFE on hard boards), which the authors read as evidence that coarse-to-fine helps global planning. Trains on about 4.9× (LM1B) and 4× (OpenWebText) fewer tokens, counting tokenizer and generator.",
+          "license": "Results",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Evaluation",
+              "url": "https://scalingintelligence.stanford.edu/blogs/ncm/"
+            },
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2610.14162"
+            }
+          ]
+        },
+        {
+          "name": "Scaling and test-time compute",
+          "owner": "NCM findings",
+          "tags": [
+            "97M–725M params",
+            "MBR decoding"
+          ],
+          "summary": "Early scaling runs at 97M, 317M and 725M parameters on LM1B improve perplexity and entropy steadily as the model grows. Because sampling is so fast, NCM can draw many candidates and pick one with minimum Bayes risk (MBR) decoding inside the same time budget, which lifts BLEU on WMT14 and ROUGE on XSum past diffusion baselines. Still small-model results: nothing yet near frontier scale.",
+          "license": "Results",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Scaling",
+              "url": "https://scalingintelligence.stanford.edu/blogs/ncm/"
+            }
+          ]
+        },
+        {
+          "name": "HazyResearch/ncm",
+          "owner": "HazyResearch",
+          "tags": [
+            "Code",
+            "Watch"
+          ],
+          "summary": "Official codebase for the tokenizer and generator. Created Oct 10, 2026 and still being pushed to (last push Nov 22, 2026).",
+          "license": "MIT",
+          "stars": "2.0k",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/HazyResearch/ncm"
+            }
+          ]
+        },
+        {
+          "name": "VAR: Visual Autoregressive Modeling",
+          "owner": "FoundationVision",
+          "tags": [
+            "Lineage",
+            "NeurIPS 2024 Best Paper"
+          ],
+          "summary": "The image model NCM builds on: it generates images by next-scale prediction, coarse resolution to fine, instead of next-token raster order. NCM carries that multiscale residual-code idea over to language.",
+          "license": "MIT",
+          "stars": "8.8k",
+          "links": [
+            {
+              "label": "Paper",
+              "url": "https://arxiv.org/abs/2404.02905"
+            },
+            {
+              "label": "GitHub",
+              "url": "https://github.com/FoundationVision/VAR"
+            }
+          ]
+        },
+        {
+          "name": "Open questions to watch",
+          "owner": "From the NCM authors",
+          "tags": [
+            "Watch"
+          ],
+          "summary": "Three next steps the authors name: scaling to far more parameters, FLOPs and tokens; training the tokenizer and generator jointly so the codes suit generation better; and adaptive compute, letting the model stop early on easy text or spend more levels on hard text. Why it matters for us: if it holds at scale, NCM-style decoding would cut serving cost and latency on long outputs, which is exactly the agent and inference workload we track.",
+          "license": "n/a",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "What's next",
+              "url": "https://scalingintelligence.stanford.edu/blogs/ncm/"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "open-weights",
       "name": "Open-weight models",
       "projects": [
