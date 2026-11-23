@@ -65,6 +65,28 @@
           ]
         },
         {
+          "name": "Cerebras disaggregated inference",
+          "owner": "Cerebras Systems",
+          "tags": [
+            "New Nov 23, 2026",
+            "Prefill/decode split",
+            "Heterogeneous"
+          ],
+          "summary": "Splits each request across two kinds of silicon. GPUs (AMD Instinct in production) run prefill with vLLM or SGLang; the KV cache moves over RDMA through Cerebras' KV Portal; CS-3/CS-4 wafers run decode, which is bound by memory bandwidth, from on-chip SRAM. Measured 5x throughput per megawatt vs CS-3-only on a shared GPT-OSS-120B endpoint (Nov 14, 2026) with no loss in generation speed. Partners get an end-to-end stack (router, prefill engine, decode engine, KV Portal, reference cluster design) or a decode-only SDK. Early access: AWS, Fireworks AI, Gimlet Labs, General Compute; hundreds of MW planned by end of 2027. Same idea as NVIDIA Dynamo and llm-d, but with heterogeneous chips.",
+          "license": "Proprietary",
+          "stars": "In production (Nov 17, 2026)",
+          "links": [
+            {
+              "label": "Launch post",
+              "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference"
+            },
+            {
+              "label": "Design deep dive",
+              "url": "https://www.cerebras.ai/blog/disaggregated-inference-from-the-ground-up"
+            }
+          ]
+        },
+        {
           "name": "Basalt",
           "owner": "jesdga95",
           "tags": [
