@@ -35,6 +35,36 @@
           ]
         },
         {
+          "name": "Cerebras",
+          "owner": "Cerebras Systems (Sunnyvale; NASDAQ: CBRS)",
+          "tags": [
+            "New Nov 23, 2026",
+            "Wafer-scale inference",
+            "Watch"
+          ],
+          "summary": "Wafer Scale Engine chips and the Cerebras Inference Cloud, the speed leader for token output. IPO'd May 15, 2026 at $185 (raised ~$6.2B); trading near $109, about $26B, by mid-Nov. Q3 2026: record $210.8M GAAP revenue (core $230.9M), cloud revenue up 265%, 700 MW of capacity under contract, Q4 guide ~$320M. Hyperscaler wins: Microsoft (signed Oct 2026, revenue from Q1 2027) and Oracle Cloud; OpenAI capacity deal. Nov 17, 2026: disaggregated inference in production, with GPUs doing prefill and Cerebras doing decode for 5x more tokens per megawatt.",
+          "license": "Proprietary",
+          "stars": "Public: CBRS, ~$26B mkt cap (Nov 17, 2026)",
+          "links": [
+            {
+              "label": "Site",
+              "url": "https://www.cerebras.ai/"
+            },
+            {
+              "label": "Disaggregated inference",
+              "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference"
+            },
+            {
+              "label": "Q3 2026 results",
+              "url": "https://investors.cerebras.ai/news-releases/news-release-details/cerebras-systems-delivers-record-revenue-third-quarter-2026"
+            },
+            {
+              "label": "Investor news",
+              "url": "https://investors.cerebras.ai/news-events/news-releases"
+            }
+          ]
+        },
+        {
           "name": "Basalt",
           "owner": "jesdga95",
           "tags": [
