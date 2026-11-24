@@ -951,9 +951,9 @@
           "name": "GLM",
           "owner": "Z.ai / Zhipu",
           "tags": [
-            "New Oct 31, 2026"
+            "New Nov 24, 2026"
           ],
-          "summary": "Top open-weight coding models. GLM-5.3 is a 744B MoE with 40B active and 1M context. GLM-5.3-Flash (Aug 26, 2026) is a 320B MoE with 18B active plus vision, under MIT.",
+          "summary": "Top open-weight coding models. GLM-5.4 (Nov 23, 2026) is a 750B Loop Transformer (28 layers run twice, vision, 1M context); weights not yet released. GLM-5.3 is a 744B MoE with 40B active; GLM-5.3-Flash is 320B MoE, 18B active, MIT.",
           "license": "GLM-5.3 License Caution Custom; Flash is MIT. Model-as-a-service providers over $10B revenue need Z.ai review",
           "stars": "GLM-5.3 Weights Aug 28, 2026",
           "links": [
