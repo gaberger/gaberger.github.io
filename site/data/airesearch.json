@@ -1579,6 +1579,27 @@
       "name": "Tools and observability",
       "projects": [
         {
+          "name": "Code execution with MCP",
+          "owner": "Anthropic Engineering (Adam Jones, Conor Kelly)",
+          "tags": [
+            "Article",
+            "New Nov 26, 2026"
+          ],
+          "summary": "Present MCP servers as code APIs (a file per tool) instead of loading every tool definition into context. The agent reads only the tools it needs, filters results in a sandbox, and can save working code as skills. Example cut 150k tokens to 2k (98.7%). Same idea as Cloudflare's Code Mode; needs a real sandbox.",
+          "license": "Blog post",
+          "stars": "n/a",
+          "links": [
+            {
+              "label": "Article",
+              "url": "https://www.anthropic.com/research/code-execution-with-mcp"
+            },
+            {
+              "label": "Code Mode",
+              "url": "https://blog.cloudflare.com/code-mode/"
+            }
+          ]
+        },
+        {
           "name": "OpenSRE",
           "owner": "Tracer-Cloud",
           "tags": [
