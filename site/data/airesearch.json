@@ -12,7 +12,7 @@
             "Inference cloud",
             "Watch"
           ],
-          "summary": "The 'AI-native cloud' for open models: serverless and dedicated inference, fine-tuning and GPU clusters for DeepSeek, Kimi, MiniMax, Qwen and the rest. Co-founded in 2022 by Vipul Ved Prakash (CEO), Ce Zhang, Percy Liang and Chris Ré, the same Stanford Hazy Research circle behind NCM, FlashAttention and ThunderKittens. Nov 4, 2026: launched Polymorphic Inference and Together Compiler, where AI agents rewrite and fuse a model's GPU kernels overnight (up to 2.6x over hand-written expert code; 28% over its own megakernels on B200). Capacity deals: IBM Cloud B300 cluster ($240M, Aug 2026), HUMAIN 250 MW in Saudi Arabia, Rackspace GB300 NVL72 for 2027. Annual bookings passed $1.15B in Q2 2026.",
+          "summary": "The 'AI-native cloud' for open models: serverless and dedicated inference, fine-tuning and GPU clusters for DeepSeek, Kimi, MiniMax, Qwen and the rest. Co-founded in 2022 by Vipul Ved Prakash (CEO), Ce Zhang, Percy Liang and Chris Ré, the same Stanford Hazy Research circle behind NCM, FlashAttention and ThunderKittens. Nov 4, 2026: launched Polymorphic Inference and Together Compiler, where AI agents rewrite and fuse a model's GPU kernels overnight (up to 2.6x over hand-written expert code; 28% over its own megakernels on B200). Capacity deals: IBM Cloud B300 cluster ($240M, Aug 2026), HUMAIN 250 MW in Saudi Arabia, Rackspace GB300 NVL72 for 2027. Annual bookings passed $1.15B in Q2 2026. Nov 25: open-sourced Hurdle (MIT), an agent-eval framework for Claude Code and Codex.",
           "license": "Proprietary",
           "stars": "$800M Series C, $8.3B val. (Jul 1, 2026)",
           "links": [
@@ -31,6 +31,10 @@
             {
               "label": "Series C",
               "url": "https://www.together.ai/blog/announcing-our-series-c"
+            },
+            {
+              "label": "Hurdle",
+              "url": "https://github.com/togethercomputer/hurdle"
             }
           ]
         },
