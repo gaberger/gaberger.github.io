@@ -987,6 +987,28 @@
       "name": "Multi-agent orchestration",
       "projects": [
         {
+          "name": "Hub (Icons8)",
+          "owner": "icons8",
+          "tags": [
+            "New Nov 27, 2026",
+            "Dispatcher",
+            "Always-on"
+          ],
+          "summary": "Self-hosted dispatcher that runs 100 Claude Code or Codex sessions like 5: a coordinator hands goals to permanent agents and short-lived executors in separate git worktrees, a watchdog catches loops and silent sessions, and only decision cards reach you in a browser or Telegram. Event journal as single source of truth. Experimental: agents run without permission prompts, and it is not a sandbox.",
+          "license": "Apache-2.0",
+          "stars": "58 (Nov 27, 2026)",
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/icons8/hub"
+            },
+            {
+              "label": "Site",
+              "url": "https://usehub.dev/"
+            }
+          ]
+        },
+        {
           "name": "PaperOrchestra",
           "owner": "google-research",
           "tags": [
